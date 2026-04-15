@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BorrowCheck — Know Where You Stand Before Your First Lender Conversation</title>
+<meta name="description" content="BorrowCheck assesses your situation and shows you what you're likely to be approved for — before you speak to a broker or lender. Free UK service. No credit checks. No obligation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D2B45;
+    --navy-mid: #1B4A6B;
+    --blue: #1E6FA8;
+    --blue-light: #E8F3FB;
+    --blue-mid: #C5DFF2;
+    --green: #1FAD72;
+    --green-light: #E6F7EF;
+    --sand: #F7F5F1;
+    --sand-dark: #EDE9E2;
+    --white: #FFFFFF;
+    --text-primary: #0D2B45;
+    --text-secondary: #4A6278;
+    --text-muted: #8A9BAB;
+    --border: rgba(13,43,69,0.1);
+    --border-strong: rgba(13,43,69,0.18);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 28px;
+    --radius-pill: 999px;
+    --shadow-sm: 0 1px 3px rgba(13,43,69,0.07), 0 1px 2px rgba(13,43,69,0.05);
+    --shadow-md: 0 4px 16px rgba(13,43,69,0.09), 0 1px 4px rgba(13,43,69,0.06);
+    --shadow-lg: 0 12px 40px rgba(13,43,69,0.13), 0 4px 12px rgba(13,43,69,0.08);
+    --transition: 0.2s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── UTILITY ─── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .container--narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .nav__inner { display: flex; justify-content: space-between; align-items: center; }
+  .nav__logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .nav__logo-mark {
+    width: 32px; height: 32px; background: var(--navy); border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav__logo-mark svg { width: 16px; height: 16px; }
+  .nav__logo-text { font-size: 15px; font-weight: 500; color: var(--text-primary); letter-spacing: -0.01em; }
+  .nav__logo-text span { color: var(--blue); }
+  .nav__cta { display: flex; align-items: center; gap: 16px; }
+  .nav__tel { font-size: 14px; color: var(--text-secondary); text-decoration: none; }
+  .nav__tel:hover { color: var(--text-primary); }
+
+  @media (max-width: 600px) {
+    .nav__tel { display: none; }
+    .nav__cta { gap: 0; }
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-weight: 500; transition: all var(--transition); text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn--primary {
+    background: var(--navy); color: var(--white);
+    padding: 14px 28px; border-radius: var(--radius-pill);
+    font-size: 15px; box-shadow: var(--shadow-sm);
+  }
+  .btn--primary:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn--primary:active { transform: translateY(0); }
+  .btn--ghost {
+    background: transparent; color: var(--text-secondary);
+    padding: 13px 24px; border-radius: var(--radius-pill);
+    font-size: 14px; border: 1px solid var(--border-strong);
+  }
+  .btn--ghost:hover { background: var(--sand); color: var(--text-primary); }
+  .btn--lg { padding: 16px 36px; font-size: 16px; }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 88px 0 80px;
+    background: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -120px; right: -80px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(30,111,168,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .hero__kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-light); color: var(--blue);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: var(--radius-pill); margin-bottom: 24px;
+  }
+  .hero__kicker-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+  .hero__headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 4.5vw, 52px);
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero__headline em { font-style: italic; color: var(--blue); }
+  .hero__sub {
+    font-size: 17px; line-height: 1.7;
+    color: var(--text-secondary); margin-bottom: 16px;
+    font-weight: 300; max-width: 440px;
+  }
+  .hero__actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero__trust { display: flex; flex-wrap: wrap; gap: 10px; }
+  .trust-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--sand); border: 1px solid var(--border);
+    border-radius: var(--radius-pill); padding: 6px 13px;
+    font-size: 12px; color: var(--text-secondary);
+  }
+  .trust-pill svg { width: 12px; height: 12px; color: var(--green); flex-shrink: 0; }
+
+  /* ─── HERO CARD ─── */
+  .hero__card {
+    background: var(--sand);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .hero__card-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 20px;
+  }
+  .hero__card-stat { margin-bottom: 20px; }
+  .hero__card-stat-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .hero__card-stat-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px; color: var(--text-primary); line-height: 1;
+  }
+  .hero__card-stat-value span { font-family: 'DM Sans', sans-serif; font-size: 16px; color: var(--text-secondary); font-weight: 300; margin-left: 4px; }
+  .hero__card-divider { height: 1px; background: var(--border); margin: 20px 0; }
+  .hero__card-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .hero__card-row:last-child { margin-bottom: 0; }
+  .hero__card-row-label { font-size: 13px; color: var(--text-secondary); }
+  .hero__card-row-val { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--green-light); color: var(--green);
+    font-size: 11px; font-weight: 500;
+    padding: 4px 10px; border-radius: var(--radius-pill);
+  }
+  .status-badge::before { content: ''; width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+
+  /* ─── SECTION ─── */
+  .section { padding: 80px 0; }
+  .section--sand { background: var(--sand); }
+  .section--navy { background: var(--navy); color: var(--white); }
+  .section__eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 12px;
+  }
+  .section--navy .section__eyebrow { color: var(--blue-mid); }
+  .section__title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 3vw, 38px);
+    line-height: 1.15; letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .section__sub { font-size: 16px; line-height: 1.7; color: var(--text-secondary); max-width: 500px; font-weight: 300; }
+  .section--navy .section__sub { color: rgba(255,255,255,0.65); }
+
+  /* ─── QUALIFIERS ─── */
+  .qual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+  .qual-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 28px;
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+  .qual-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .qual-card__icon {
+    width: 40px; height: 40px; background: var(--blue-light);
+    border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .qual-card__icon svg { width: 20px; height: 20px; color: var(--blue); }
+  .qual-card__title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+  .qual-card__desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ─── PROCESS ─── */
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 48px; position: relative; }
+  .process-steps::before {
+    content: '';
+    position: absolute; top: 20px; left: calc(12.5% + 12px); right: calc(12.5% + 12px);
+    height: 1px; background: var(--border-strong);
+  }
+  .process-step { padding: 0 16px; text-align: center; position: relative; }
+  .process-step__num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--white); border: 1.5px solid var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 16px;
+    color: var(--navy); margin: 0 auto 20px; position: relative; z-index: 1;
+  }
+  .process-step__title { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .process-step__desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ─── TRUST BAR ─── */
+  .trust-bar { padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .trust-bar__inner { display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 10px; }
+  .trust-item__icon {
+    width: 36px; height: 36px; background: var(--green-light);
+    border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .trust-item__icon svg { width: 18px; height: 18px; color: var(--green); }
+  .trust-item__text { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+  .trust-item__sub { font-size: 11px; color: var(--text-muted); }
+
+  /* ─── MID CTA ─── */
+  .mid-cta { text-align: center; padding: 80px 0; }
+  .mid-cta__title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(30px, 3.5vw, 44px); line-height: 1.15;
+    letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .mid-cta__sub { font-size: 16px; color: var(--text-secondary); margin-bottom: 36px; font-weight: 300; }
+  .mid-cta__trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+
+  /* ─── FOOTER ─── */
+  .footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 48px 0 32px; }
+  .footer__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+  .footer__logo-text { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+  .footer__logo-text span { color: var(--blue-mid); }
+  .footer__desc { font-size: 13px; line-height: 1.7; max-width: 320px; }
+  .footer__links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .footer__link { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--transition); }
+  .footer__link:hover { color: var(--white); }
+  .footer__bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; }
+  .footer__disclaimer { font-size: 11px; line-height: 1.8; color: rgba(255,255,255,0.35); }
+
+  /* ─── BROKER DIFF ─── */
+  .broker-diff {
+    background: var(--navy);
+    color: var(--white);
+    padding: 72px 0;
+  }
+  .broker-diff .section__eyebrow { color: var(--blue-mid); }
+  .broker-diff .section__title { color: var(--white); }
+  .broker-diff__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 48px; align-items: start; }
+  .broker-diff__points { display: flex; flex-direction: column; gap: 20px; }
+  .broker-diff__point { display: flex; gap: 14px; align-items: flex-start; }
+  .broker-diff__point-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;
+  }
+  .broker-diff__point-icon svg { width: 16px; height: 16px; color: var(--blue-mid); }
+  .broker-diff__point-text { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.7); font-weight: 300; }
+  .broker-diff__point-text strong { color: var(--white); font-weight: 500; }
+  .broker-diff__callout {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .broker-diff__callout-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; line-height: 1.35; color: var(--white);
+    margin-bottom: 14px; letter-spacing: -0.01em;
+  }
+  .broker-diff__callout-body { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.75; font-weight: 300; margin-bottom: 20px; }
+  .broker-diff__callout-cta {
+    font-size: 14px; font-weight: 500; color: var(--blue-mid);
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* ─── SHARP VALUE LINE ─── */
+  .sharp-value {
+    text-align: center;
+    padding: 20px 0 4px;
+  }
+  .sharp-value__line {
+    font-size: 15px; font-weight: 500; color: var(--text-secondary);
+    letter-spacing: -0.01em;
+  }
+  .sharp-value__line em { font-style: normal; color: var(--navy); font-weight: 600; }
+
+  @media (max-width: 840px) {
+    .broker-diff__grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 840px) {
+    .hero__inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero__card { display: none; }
+    .qual-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .process-steps::before { display: none; }
+    .footer__inner { grid-template-columns: 1fr; gap: 24px; }
+    .footer__links { align-items: flex-start; }
+    .trust-bar__inner { gap: 24px; }
+  }
+  @media (max-width: 560px) {
+    .hero { padding: 56px 0 52px; }
+    .process-steps { grid-template-columns: 1fr; }
+    .section { padding: 56px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<header class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a class="nav__logo" href="index.html">
+        <div class="nav__logo-mark">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 12L8 4L13 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.5 9H10.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="nav__logo-text"><span>Borrow</span>Check</span>
+      </a>
+      <div class="nav__cta">
+        <a href="tel:08001234567" class="nav__tel">0800 123 4567</a>
+        <a href="form.html" class="btn btn--primary" style="padding:11px 22px;font-size:14px;">Check your options</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__kicker">
+          <span class="hero__kicker-dot"></span>
+          Free pre-qualification — not a calculator
+        </div>
+        <h1 class="hero__headline">
+          Know where you stand <em>before</em> your first lender conversation
+        </h1>
+        <p class="hero__sub">
+          We assess your situation and show you what you're likely to be approved for, so you avoid speaking to the wrong broker or going down the wrong path.
+        </p>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-muted);margin-bottom:36px;max-width:440px;">Different lenders assess income, credit and deposits differently. We help you understand what will actually work before you apply.</p>
+        <div class="hero__actions">
+          <a href="form.html" class="btn btn--primary btn--lg">Check your options</a>
+          <a href="#how-it-works" class="btn btn--ghost">How it works</a>
+        </div>
+        <div class="hero__trust">
+          <span class="trust-pill">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            No obligation
+          </span>
+          <span class="trust-pill">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            No credit checks
+          </span>
+          <span class="trust-pill">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Takes 2 minutes
+          </span>
+          <span class="trust-pill">
+            <svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            UK-based team
+          </span>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__card">
+          <p class="hero__card-label">Example illustration</p>
+          <div class="hero__card-stat">
+            <p class="hero__card-stat-label">Estimated borrowing range</p>
+            <div class="hero__card-stat-value">£240k <span>– £280k</span></div>
+          </div>
+          <div class="hero__card-divider"></div>
+          <div class="hero__card-row">
+            <span class="hero__card-row-label">Deposit</span>
+            <span class="hero__card-row-val">£35,000</span>
+          </div>
+          <div class="hero__card-row">
+            <span class="hero__card-row-label">Annual income</span>
+            <span class="hero__card-row-val">£52,000</span>
+          </div>
+          <div class="hero__card-row">
+            <span class="hero__card-row-label">Loan-to-value</span>
+            <span class="hero__card-row-val">~88%</span>
+          </div>
+          <div class="hero__card-row">
+            <span class="hero__card-row-label">Monthly estimate</span>
+            <span class="hero__card-row-val">£1,180 – £1,340</span>
+          </div>
+          <div class="hero__card-divider"></div>
+          <div class="hero__card-row">
+            <span class="hero__card-row-label">Status</span>
+            <span class="status-badge">Eligible to proceed</span>
+          </div>
+          <p style="font-size:11px;color:#8A9BAB;margin-top:16px;line-height:1.6;">Figures are illustrative only and do not constitute a mortgage offer or financial advice.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SHARP VALUE LINE ─── -->
+<div class="sharp-value">
+  <div class="container--narrow">
+    <p class="sharp-value__line"><em>Most people speak to the wrong broker first.</em> We make sure you don't.</p>
+  </div>
+</div>
+
+<!-- ─── TRUST BAR ─── -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar__inner">
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg viewBox="0 0 18 18" fill="none"><path d="M9 2L11.09 7.26L17 7.27L12.45 10.74L14.18 16L9 12.77L3.82 16L5.55 10.74L1 7.27L6.91 7.26L9 2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="trust-item__text">No credit checks</div>
+          <div class="trust-item__sub">Won't affect your score</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg viewBox="0 0 18 18" fill="none"><rect x="3" y="8" width="12" height="8" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M6 8V6a3 3 0 116 0v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="trust-item__text">100% confidential</div>
+          <div class="trust-item__sub">We never sell your data</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.3"/><path d="M9 5v4l2.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="trust-item__text">Response same day</div>
+          <div class="trust-item__sub">Usually within hours</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__icon">
+          <svg viewBox="0 0 18 18" fill="none"><path d="M9 2C5.13 2 2 5.13 2 9s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7z" stroke="currentColor" stroke-width="1.3"/><path d="M2 9h14M9 2a10.9 10.9 0 010 14M9 2a10.9 10.9 0 000 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="trust-item__text">UK-based team</div>
+          <div class="trust-item__sub">Real humans, not bots</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WHO IS THIS FOR ─── -->
+<section class="section section--sand">
+  <div class="container">
+    <p class="section__eyebrow">Who this is for</p>
+    <h2 class="section__title">This is for you if:</h2>
+    <p class="section__sub">We work best with people who are genuinely preparing to buy — not just browsing.</p>
+    <div class="qual-grid">
+      <div class="qual-card">
+        <div class="qual-card__icon">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M10 2L12.5 7.5H18L13.5 11L15.5 17L10 13.5L4.5 17L6.5 11L2 7.5H7.5L10 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="qual-card__title">You have a deposit ready</p>
+        <p class="qual-card__desc">At least £10,000 saved. Whether that's from savings, gifted funds, or Help to Buy — we'll factor it in.</p>
+      </div>
+      <div class="qual-card">
+        <div class="qual-card__icon">
+          <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M10 6v4l2.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="qual-card__title">You're planning to buy soon</p>
+        <p class="qual-card__desc">Within 6–12 months. Even if you're still house hunting, getting pre-qualified now puts you in a stronger position.</p>
+      </div>
+      <div class="qual-card">
+        <div class="qual-card__icon">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="qual-card__title">You want clarity first</p>
+        <p class="qual-card__desc">Not ready to sit in an adviser's office yet? We give you a realistic view before you commit to anything.</p>
+      </div>
+    </div>
+    <p style="font-size:14px;color:var(--text-muted);margin-top:24px;">Not sure if this is right for you? <a href="form.html" style="font-size:14px;color:var(--blue);text-decoration:underline;">Fill in the form anyway</a> — we'll be honest with you.</p>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <p class="section__eyebrow">The process</p>
+    <h2 class="section__title">What happens next</h2>
+    <p class="section__sub">Simple, clear, and no pressure at any stage.</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step__num">1</div>
+        <p class="process-step__title">You fill in the form</p>
+        <p class="process-step__desc">Takes two minutes. No documents needed at this stage.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">2</div>
+        <p class="process-step__title">We review your details</p>
+        <p class="process-step__desc">A member of our team looks at what you've shared before calling.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">3</div>
+        <p class="process-step__title">We give you a call</p>
+        <p class="process-step__desc">Usually same day. No hard sell — just an honest conversation.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">4</div>
+        <p class="process-step__title">You get clear next steps</p>
+        <p class="process-step__desc">We'll tell you exactly where you stand and what to do next.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MID CTA ─── -->
+<section class="section section--sand">
+  <div class="container--narrow">
+    <div class="mid-cta">
+      <p class="section__eyebrow" style="text-align:center;">Ready to find out?</p>
+      <h2 class="mid-cta__title">Know what you're likely to be approved for — before you apply</h2>
+      <p class="mid-cta__sub">We don't just pass your details on. We make sure you're speaking to someone suited to your situation.</p>
+      <a href="form.html" class="btn btn--primary btn--lg">Check your options</a>
+      <div class="mid-cta__trust">
+        <span class="trust-pill"><svg viewBox="0 0 12 12" fill="none" style="width:12px;height:12px;color:var(--green)"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Free &amp; no obligation</span>
+        <span class="trust-pill"><svg viewBox="0 0 12 12" fill="none" style="width:12px;height:12px;color:var(--green)"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No credit checks</span>
+        <span class="trust-pill"><svg viewBox="0 0 12 12" fill="none" style="width:12px;height:12px;color:var(--green)"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Takes 2 minutes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY NOT JUST GO TO A BROKER ─── -->
+<section class="broker-diff">
+  <div class="container">
+    <p class="section__eyebrow">Why not just go straight to a broker?</p>
+    <h2 class="section__title" style="color:var(--white);max-width:520px;">Not all brokers are the same — and that matters</h2>
+    <div class="broker-diff__grid">
+      <div class="broker-diff__points">
+        <div class="broker-diff__point">
+          <div class="broker-diff__point-icon">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <p class="broker-diff__point-text"><strong>Some brokers handle simple cases only.</strong> If your income is complex, your credit isn't perfect, or your deposit is non-standard, a generalist may not be the right first call.</p>
+        </div>
+        <div class="broker-diff__point">
+          <div class="broker-diff__point-icon">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8l3 3 7-7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p class="broker-diff__point-text"><strong>Others specialise in complex situations.</strong> Self-employed income, adverse credit, unusual deposit sources — different brokers have different lender relationships and access.</p>
+        </div>
+        <div class="broker-diff__point">
+          <div class="broker-diff__point-icon">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v6l3 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.3"/></svg>
+          </div>
+          <p class="broker-diff__point-text"><strong>Speaking to the wrong broker first can lead to wasted time</strong> — or being told something isn't possible when it actually is.</p>
+        </div>
+      </div>
+      <div class="broker-diff__callout">
+        <p class="broker-diff__callout-title">We look at your situation first and point you to someone suited to it.</p>
+        <p class="broker-diff__callout-body">Before you speak to anyone, we assess your income, deposit and credit profile against what lenders actually look for. That means the conversation you have next is with the right person — not just the nearest one.</p>
+        <p class="broker-diff__callout-cta">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <a href="form.html" style="color:var(--blue-mid);text-decoration:none;">Check what will actually work for you</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <p class="footer__logo-text"><span>Borrow</span>Check</p>
+        <p class="footer__desc">A pre-qualification service for UK mortgage buyers. We assess your situation and help you understand what will actually work — before you speak to a broker or lender.</p>
+      </div>
+      <div class="footer__links">
+        <a href="form.html" class="footer__link">Check your options</a>
+        <a href="#how-it-works" class="footer__link">How it works</a>
+        <a href="#" class="footer__link">Privacy policy</a>
+        <a href="#" class="footer__link">Terms of use</a>
+        <a href="mailto:hello@borrowcheck.co.uk" class="footer__link">hello@borrowcheck.co.uk</a>
+        <a href="tel:08001234567" class="footer__link">0800 123 4567</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__disclaimer">BorrowCheck is not a lender, mortgage broker, or financial adviser. Nothing on this website constitutes financial advice or a mortgage offer. For regulated mortgage advice, please consult a qualified independent mortgage adviser. Your home may be repossessed if you do not keep up repayments on a mortgage or any other loan secured on it. Registered in England &amp; Wales. © 2025 BorrowCheck Ltd. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
