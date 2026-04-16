@@ -71,7 +71,7 @@
     .hero-trust { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 48px; }
     .trust-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.65); font-size: 14px; }
     .trust-item svg { color: #00C282; flex-shrink: 0; }
-    .hero-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 20px; padding: 40px; backdrop-filter: blur(10px); }
+    .hero-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13); border-radius: 20px; padding: 40px; backdrop-filter: blur(12px); box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08); }
     .hero-card-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: #fff; margin-bottom: 28px; }
     .process-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
     .process-step:last-child { margin-bottom: 0; }
@@ -95,9 +95,9 @@
     /* ── PROBLEM ── */
     .problem-section { background: #F4F7FC; }
     .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
-    .problem-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 16px; padding: 32px; transition: transform 0.2s, box-shadow 0.2s; }
-    .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(11,40,69,0.10), 0 4px 12px rgba(11,40,69,0.06); }
-    .problem-icon { width: 48px; height: 48px; background: #FFF3F3; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 24px; }
+    .problem-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 16px; padding: 32px; transition: transform 0.2s, box-shadow 0.2s; border-left: 3px solid transparent; }
+    .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(11,40,69,0.10), 0 4px 12px rgba(11,40,69,0.06); border-left-color: #009E6E; }
+    .problem-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 24px; }
     .problem-card h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 600; color: #0B2845; margin-bottom: 12px; }
     .problem-card p { font-size: 15px; color: #4A6580; line-height: 1.65; }
 
@@ -131,8 +131,8 @@
     .why-section .section-label { color: #00C282; }
     .why-section .section-title { color: #fff; }
     .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 56px; }
-    .why-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; transition: background 0.2s; }
-    .why-card:hover { background: rgba(255,255,255,0.08); }
+    .why-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+    .why-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(0,194,130,0.25); transform: translateY(-2px); }
     .why-card-icon { font-size: 28px; margin-bottom: 16px; }
     .why-card h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 10px; }
     .why-card p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.65; }
@@ -142,7 +142,7 @@
     }
 
     /* ── TRUST STRIP ── */
-    .trust-strip { background: #F0FAF6; border-top: 1px solid #D6F2E8; border-bottom: 1px solid #D6F2E8; padding: 24px; }
+    .trust-strip { background: linear-gradient(90deg, #EAF8F1 0%, #F0FAF6 50%, #EAF8F1 100%); border-top: 1px solid #C8EDE0; border-bottom: 1px solid #C8EDE0; padding: 28px 24px; }
     .trust-strip-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
     .strip-item { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; color: #0B2845; }
     .strip-item svg { color: #009E6E; }
@@ -183,6 +183,14 @@
     .fade-up-d1 { transition-delay: 0.1s; }
     .fade-up-d2 { transition-delay: 0.2s; }
     .fade-up-d3 { transition-delay: 0.3s; }
+
+    /* ── BADGE PULSE ── */
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
+    .hero-badge::before { animation: pulse-dot 2s ease-in-out infinite; }
+
+    /* ── NAV ACTIVE ── */
+    .nav-links a.active { color: #fff; position: relative; }
+    .nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: #00C282; border-radius: 1px; }
   </style>
 </head>
 <body>
@@ -311,17 +319,17 @@
     </div>
     <div class="problem-grid">
       <div class="problem-card fade-up fade-up-d1">
-        <div class="problem-icon">🎯</div>
+        <div class="problem-icon" style="background:#EEF2FF;">🎯</div>
         <h3>Brokers aren't all generalists</h3>
         <p>Some brokers specialise in first-time buyers. Others focus on self-employed applicants or bad credit cases. Going to the wrong one means they may not have access to the right lenders for your situation.</p>
       </div>
       <div class="problem-card fade-up fade-up-d2">
-        <div class="problem-icon">📋</div>
+        <div class="problem-icon" style="background:#FFF7ED;">📋</div>
         <h3>Lenders assess you differently</h3>
         <p>Different lenders have very different criteria — for income multiples, credit history, employment type, and deposit requirements. Most people don't know how they'll be assessed until it's too late.</p>
       </div>
       <div class="problem-card fade-up fade-up-d3">
-        <div class="problem-icon">⏱️</div>
+        <div class="problem-icon" style="background:#FFF3F3;">⏱️</div>
         <h3>Rejections waste time and risk your record</h3>
         <p>A declined mortgage application can stay on your credit record. Understanding your options first means you only apply when you have a realistic chance — protecting your credit file and saving time.</p>
       </div>
@@ -493,6 +501,10 @@
       observer.observe(el);
     }
   });
+  // Fallback: reveal all remaining elements after 900ms (catches below-fold content)
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible'));
+  }, 900);
 </script>
 </body>
 </html>

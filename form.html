@@ -33,76 +33,64 @@
     .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .progress-label { font-size: 13px; color: #4A6580; font-weight: 500; }
     .progress-count { font-size: 13px; color: #009E6E; font-weight: 600; }
-    .progress-track { height: 4px; background: #E0EBF5; border-radius: 2px; overflow: hidden; }
-    .progress-fill { height: 100%; background: linear-gradient(90deg, #009E6E, #00C282); border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .progress-track { height: 5px; background: #E0EBF5; border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #007A55, #00C282); border-radius: 3px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 1px 4px rgba(0,158,110,0.35); }
 
     /* ── STEP ── */
-    .step { display: none; animation: stepIn 0.3s ease; }
-    .step.active { display: block; }
-    @keyframes stepIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
+    .step { display: none; }
+    .step.active { display: block; animation: stepIn 0.3s ease; }
+    .step.slide-back { animation: stepBack 0.3s ease; }
+    @keyframes stepIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes stepBack { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
 
     .step-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #009E6E; margin-bottom: 10px; }
     .step-title { font-size: clamp(22px, 4vw, 30px); color: #0B2845; margin-bottom: 8px; line-height: 1.2; }
-    .step-subtitle { font-size: 16px; color: #4A6580; margin-bottom: 36px; line-height: 1.6; }
+    .step-subtitle { font-size: 16px; color: #4A6580; margin-bottom: 32px; line-height: 1.6; }
+
+    /* ── SUB-QUESTION LABEL ── */
+    .sub-q-label { font-size: 15px; font-weight: 600; color: #0B2845; margin: 28px 0 14px; }
+    .sub-q-label:first-child { margin-top: 0; }
 
     /* ── OPTION CARDS ── */
-    .option-grid { display: grid; gap: 12px; margin-bottom: 32px; }
+    .option-grid { display: grid; gap: 10px; margin-bottom: 8px; }
     .option-grid.cols-2 { grid-template-columns: 1fr 1fr; }
     .option-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-    .option-card { background: #fff; border: 2px solid #E0EBF5; border-radius: 12px; padding: 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s; display: flex; align-items: center; gap: 14px; }
+    .option-card { background: #fff; border: 2px solid #E0EBF5; border-radius: 12px; padding: 18px 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s; display: flex; align-items: center; gap: 12px; }
     .option-card:hover { border-color: #009E6E; box-shadow: 0 4px 16px rgba(0,158,110,0.12); transform: translateY(-1px); }
-    .option-card.selected { border-color: #009E6E; background: #F0FAF6; box-shadow: 0 4px 16px rgba(0,158,110,0.15); }
+    .option-card.selected { border-color: #009E6E; background: #F0FAF6; box-shadow: 0 0 0 4px rgba(0,158,110,0.08), 0 4px 16px rgba(0,158,110,0.15); }
     .option-card.selected .option-dot { background: #009E6E; border-color: #009E6E; }
     .option-card.selected .option-dot::after { opacity: 1; }
-    .option-dot { width: 20px; height: 20px; border: 2px solid #BDD0E5; border-radius: 50%; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
-    .option-dot::after { content: ''; width: 8px; height: 8px; background: #fff; border-radius: 50%; opacity: 0; transition: opacity 0.2s; }
+    .option-dot { width: 18px; height: 18px; border: 2px solid #BDD0E5; border-radius: 50%; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
+    .option-dot::after { content: ''; width: 7px; height: 7px; background: #fff; border-radius: 50%; opacity: 0; transition: opacity 0.2s; }
     .option-emoji { font-size: 22px; flex-shrink: 0; }
     .option-label h4 { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #0B2845; margin-bottom: 2px; }
     .option-label p { font-size: 13px; color: #6B8BA8; line-height: 1.4; }
 
+    /* compact tiles — no emoji, tighter */
+    .option-card.compact { padding: 14px 18px; }
+    .option-card.compact .option-label h4 { font-size: 14px; }
+
     /* ── CHECKBOX CARDS ── */
-    .checkbox-card { background: #fff; border: 2px solid #E0EBF5; border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s; display: flex; align-items: center; gap: 14px; }
+    .checkbox-card { background: #fff; border: 2px solid #E0EBF5; border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s; display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
     .checkbox-card:hover { border-color: #009E6E; }
     .checkbox-card.checked { border-color: #009E6E; background: #F0FAF6; }
     .checkbox-box { width: 20px; height: 20px; border: 2px solid #BDD0E5; border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
     .checkbox-card.checked .checkbox-box { background: #009E6E; border-color: #009E6E; }
     .checkbox-tick { color: #fff; opacity: 0; transition: opacity 0.2s; }
     .checkbox-card.checked .checkbox-tick { opacity: 1; }
-    .checkbox-label { font-size: 15px; font-weight: 500; color: #0B2845; }
-
-    /* ── INPUTS ── */
-    .input-group { margin-bottom: 24px; }
-    .input-label { font-size: 14px; font-weight: 600; color: #0B2845; margin-bottom: 8px; display: block; }
-    .input-sublabel { font-size: 13px; color: #6B8BA8; margin-bottom: 10px; display: block; }
-    .form-input { width: 100%; background: #fff; border: 2px solid #E0EBF5; border-radius: 10px; padding: 14px 16px; font-size: 16px; font-family: 'Inter', sans-serif; color: #0B2845; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
-    .form-input:focus { border-color: #009E6E; box-shadow: 0 0 0 4px rgba(0,158,110,0.1); }
-    .form-input::placeholder { color: #A0B8CC; }
-    .input-prefix { position: relative; }
-    .input-prefix-symbol { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #4A6580; pointer-events: none; }
-    .input-prefix .form-input { padding-left: 30px; }
-    .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    /* ── SLIDER ── */
-    .slider-wrap { margin-bottom: 8px; }
-    .slider-display { font-size: 28px; font-weight: 700; color: #009E6E; margin-bottom: 12px; font-family: 'DM Serif Display', serif; }
-    input[type="range"] { width: 100%; height: 6px; -webkit-appearance: none; appearance: none; background: #E0EBF5; border-radius: 3px; outline: none; cursor: pointer; }
-    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #009E6E; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,158,110,0.4); cursor: pointer; transition: transform 0.15s; }
-    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
-    .slider-labels { display: flex; justify-content: space-between; font-size: 12px; color: #A0B8CC; margin-top: 8px; }
-    .ltv-badge { display: inline-flex; align-items: center; gap: 6px; background: #EBF0F7; padding: 6px 14px; border-radius: 100px; font-size: 14px; color: #0B2845; font-weight: 600; margin-top: 12px; }
+    .checkbox-label { font-size: 15px; font-weight: 500; color: #0B2845; line-height: 1.4; }
 
     /* ── INFO BOX ── */
     .info-box { background: #F0FAF6; border: 1px solid #D6F2E8; border-radius: 10px; padding: 16px 20px; font-size: 14px; color: #1A6B52; line-height: 1.6; margin-bottom: 24px; display: flex; gap: 12px; }
     .info-box svg { flex-shrink: 0; color: #009E6E; margin-top: 2px; }
 
-    /* ── NAVIGATION ── */
-    .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-    .btn-back { background: none; border: 2px solid #E0EBF5; color: #4A6580; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; }
-    .btn-back:hover { border-color: #BDD0E5; color: #0B2845; transform: translateY(-1px); }
-    .btn-next { background: #009E6E; color: #fff; border: none; padding: 14px 36px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(0,158,110,0.3); }
-    .btn-next:hover { background: #007A55; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,158,110,0.4); }
-    .btn-next:active { transform: translateY(0); }
-    .btn-next:disabled { background: #BDD0E5; box-shadow: none; cursor: not-allowed; transform: none; }
+    /* ── INPUTS ── */
+    .input-group { margin-bottom: 24px; }
+    .input-label { font-size: 14px; font-weight: 600; color: #0B2845; margin-bottom: 8px; display: block; }
+    .form-input { width: 100%; background: #fff; border: 2px solid #E0EBF5; border-radius: 10px; padding: 14px 16px; font-size: 16px; font-family: 'Inter', sans-serif; color: #0B2845; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+    .form-input:focus { border-color: #009E6E; box-shadow: 0 0 0 4px rgba(0,158,110,0.1); }
+    .form-input::placeholder { color: #A0B8CC; }
+    .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
     /* ── CONSENT ── */
     .consent-check { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 24px; cursor: pointer; }
@@ -110,6 +98,15 @@
     .consent-check span { font-size: 14px; color: #4A6580; line-height: 1.6; }
     .consent-check a { color: #009E6E; text-decoration: none; }
     .consent-check a:hover { text-decoration: underline; }
+
+    /* ── NAVIGATION ── */
+    .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+    .btn-back { background: none; border: 2px solid #E0EBF5; color: #4A6580; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; }
+    .btn-back:hover { border-color: #BDD0E5; color: #0B2845; transform: translateY(-1px); }
+    .btn-next { background: #009E6E; color: #fff; border: none; padding: 14px 36px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(0,158,110,0.3); }
+    .btn-next:hover { background: #007A55; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,158,110,0.4); }
+    .btn-next:active { transform: translateY(0); }
+    .btn-next:disabled { background: #BDD0E5; box-shadow: none; cursor: not-allowed; transform: none; }
 
     /* ── SUCCESS ── */
     .success-state { text-align: center; padding: 48px 24px; }
@@ -120,6 +117,10 @@
     .success-steps { display: flex; flex-direction: column; gap: 12px; max-width: 420px; margin: 0 auto 40px; text-align: left; }
     .ss-item { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: #0B2845; }
     .ss-bullet { width: 24px; height: 24px; background: #009E6E; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── SUB-QUESTION REVEAL ── */
+    .sub-q-group { overflow: hidden; transition: opacity 0.25s ease; }
+    .sub-q-group.hidden { display: none; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
@@ -155,35 +156,30 @@
         <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:12.5%"></div></div>
       </div>
 
-      <!-- STEP 1: Mortgage Type -->
+      <!-- ═══ STEP 1: Mortgage Type ═══ -->
       <div class="step active" id="step-1">
         <p class="step-eyebrow">Step 1</p>
         <h2 class="step-title">What are you looking to do?</h2>
         <p class="step-subtitle">We assess your situation first, so you avoid going down the wrong path.</p>
         <div class="option-grid" id="mortgageType">
-          <div class="option-card" data-value="ftb" onclick="selectOption('mortgageType', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🏠</div>
+          <div class="option-card" data-value="ftb" onclick="selectOption('mortgageType', this, checkStep1)">
+            <div class="option-dot"></div><div class="option-emoji">🏠</div>
             <div class="option-label"><h4>First-time buyer</h4><p>Buying my first property</p></div>
           </div>
-          <div class="option-card" data-value="moving" onclick="selectOption('mortgageType', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">📦</div>
+          <div class="option-card" data-value="moving" onclick="selectOption('mortgageType', this, checkStep1)">
+            <div class="option-dot"></div><div class="option-emoji">📦</div>
             <div class="option-label"><h4>Moving home</h4><p>Buying a new home and selling current</p></div>
           </div>
-          <div class="option-card" data-value="remortgage" onclick="selectOption('mortgageType', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🔄</div>
+          <div class="option-card" data-value="remortgage" onclick="selectOption('mortgageType', this, checkStep1)">
+            <div class="option-dot"></div><div class="option-emoji">🔄</div>
             <div class="option-label"><h4>Remortgage</h4><p>Switching to a new mortgage deal</p></div>
           </div>
-          <div class="option-card" data-value="btl" onclick="selectOption('mortgageType', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🏢</div>
+          <div class="option-card" data-value="btl" onclick="selectOption('mortgageType', this, checkStep1)">
+            <div class="option-dot"></div><div class="option-emoji">🏢</div>
             <div class="option-label"><h4>Buy to let</h4><p>Purchasing an investment property</p></div>
           </div>
-          <div class="option-card" data-value="other" onclick="selectOption('mortgageType', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">💬</div>
+          <div class="option-card" data-value="other" onclick="selectOption('mortgageType', this, checkStep1)">
+            <div class="option-dot"></div><div class="option-emoji">💬</div>
             <div class="option-label"><h4>Something else</h4><p>Let's discuss your situation</p></div>
           </div>
         </div>
@@ -196,77 +192,76 @@
         </div>
       </div>
 
-      <!-- STEP 2: Property Value -->
+      <!-- ═══ STEP 2: Property Details (adaptive) ═══ -->
       <div class="step" id="step-2">
         <p class="step-eyebrow">Step 2</p>
-        <h2 class="step-title">Tell us about the property</h2>
+        <h2 class="step-title" id="step2-title">Tell us about the property</h2>
         <p class="step-subtitle">Approximate figures are fine — we're not running any credit checks at this stage.</p>
-        <div class="input-group">
-          <label class="input-label">Estimated property value</label>
-          <div class="slider-display" id="propValDisplay">£250,000</div>
-          <div class="slider-wrap">
-            <input type="range" id="propValSlider" min="50000" max="2000000" step="5000" value="250000" oninput="updatePropertyValue()">
-            <div class="slider-labels"><span>£50k</span><span>£2m+</span></div>
-          </div>
-          <div style="margin-top:16px;">
-            <label class="input-sublabel">Or type an amount:</label>
-            <div class="input-prefix">
-              <span class="input-prefix-symbol">£</span>
-              <input type="number" class="form-input" id="propValInput" placeholder="250000" oninput="updatePropertySlider()" style="padding-left:28px;">
-            </div>
+
+        <!-- Property value — always shown -->
+        <div class="sub-q-label" id="propValLabel">What's the property value?</div>
+        <div class="option-grid cols-2" id="propertyValue">
+          <div class="option-card compact" data-value="Under £150k" onclick="selectOption('propertyValue', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>Under £150k</h4></div></div>
+          <div class="option-card compact" data-value="£150k–£250k" onclick="selectOption('propertyValue', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£150k–£250k</h4></div></div>
+          <div class="option-card compact" data-value="£250k–£400k" onclick="selectOption('propertyValue', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£250k–£400k</h4></div></div>
+          <div class="option-card compact" data-value="£400k–£600k" onclick="selectOption('propertyValue', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£400k–£600k</h4></div></div>
+          <div class="option-card compact" data-value="£600k–£1m" onclick="selectOption('propertyValue', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£600k–£1m</h4></div></div>
+          <div class="option-card compact" data-value="Over £1m" onclick="selectOption('propertyValue', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>Over £1m</h4></div></div>
+        </div>
+
+        <!-- Deposit — shown for purchase (ftb, moving, btl, other) -->
+        <div id="depositGroup">
+          <div class="sub-q-label">What's your deposit?</div>
+          <div class="option-grid cols-2" id="deposit">
+            <div class="option-card compact" data-value="Under 5%" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>Under 5%</h4><p>High LTV — specialist lenders</p></div></div>
+            <div class="option-card compact" data-value="5–10%" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>5–10%</h4></div></div>
+            <div class="option-card compact" data-value="10–20%" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>10–20%</h4></div></div>
+            <div class="option-card compact" data-value="20–30%" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>20–30%</h4></div></div>
+            <div class="option-card compact" data-value="30%+" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>30% or more</h4></div></div>
           </div>
         </div>
-        <div class="input-group">
-          <label class="input-label">Your deposit amount</label>
-          <div class="slider-display" id="depositDisplay">£25,000</div>
-          <div class="slider-wrap">
-            <input type="range" id="depositSlider" min="5000" max="500000" step="1000" value="25000" oninput="updateDeposit()">
-            <div class="slider-labels"><span>£5k</span><span>£500k+</span></div>
-          </div>
-          <div style="margin-top:16px;">
-            <label class="input-sublabel">Or type an amount:</label>
-            <div class="input-prefix">
-              <span class="input-prefix-symbol">£</span>
-              <input type="number" class="form-input" id="depositInput" placeholder="25000" oninput="updateDepositSlider()" style="padding-left:28px;">
-            </div>
-          </div>
-          <div id="ltvBadge" class="ltv-badge" style="margin-top:16px;">
-            LTV: <span id="ltvValue">90%</span>
+
+        <!-- Remaining balance — shown for remortgage only -->
+        <div id="balanceGroup" style="display:none">
+          <div class="sub-q-label">How much is left on your mortgage?</div>
+          <div class="option-grid cols-2" id="remainingBalance">
+            <div class="option-card compact" data-value="Under £75k" onclick="selectOption('remainingBalance', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>Under £75k</h4></div></div>
+            <div class="option-card compact" data-value="£75k–£150k" onclick="selectOption('remainingBalance', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£75k–£150k</h4></div></div>
+            <div class="option-card compact" data-value="£150k–£250k" onclick="selectOption('remainingBalance', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£150k–£250k</h4></div></div>
+            <div class="option-card compact" data-value="£250k–£400k" onclick="selectOption('remainingBalance', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£250k–£400k</h4></div></div>
+            <div class="option-card compact" data-value="Over £400k" onclick="selectOption('remainingBalance', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>Over £400k</h4></div></div>
           </div>
         </div>
+
         <div class="step-nav">
           <button class="btn-back" onclick="prevStep()">← Back</button>
-          <button class="btn-next" onclick="nextStep()">
+          <button class="btn-next" onclick="nextStep()" id="next-2" disabled>
             Continue
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
           </button>
         </div>
       </div>
 
-      <!-- STEP 3: Timeline -->
+      <!-- ═══ STEP 3: Timeline ═══ -->
       <div class="step" id="step-3">
         <p class="step-eyebrow">Step 3</p>
         <h2 class="step-title">What's your timeline?</h2>
         <p class="step-subtitle">This helps us match you with an adviser who can respond at the right pace for you.</p>
         <div class="option-grid" id="timeline">
-          <div class="option-card" data-value="asap" onclick="selectOption('timeline', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">⚡</div>
+          <div class="option-card" data-value="asap" onclick="selectOption('timeline', this, checkStep3)">
+            <div class="option-dot"></div><div class="option-emoji">⚡</div>
             <div class="option-label"><h4>As soon as possible</h4><p>Within the next month</p></div>
           </div>
-          <div class="option-card" data-value="1to3" onclick="selectOption('timeline', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">📅</div>
+          <div class="option-card" data-value="1to3" onclick="selectOption('timeline', this, checkStep3)">
+            <div class="option-dot"></div><div class="option-emoji">📅</div>
             <div class="option-label"><h4>1–3 months</h4><p>I'm actively looking</p></div>
           </div>
-          <div class="option-card" data-value="3to6" onclick="selectOption('timeline', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🗓️</div>
+          <div class="option-card" data-value="3to6" onclick="selectOption('timeline', this, checkStep3)">
+            <div class="option-dot"></div><div class="option-emoji">🗓️</div>
             <div class="option-label"><h4>3–6 months</h4><p>Planning ahead</p></div>
           </div>
-          <div class="option-card" data-value="exploring" onclick="selectOption('timeline', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🔍</div>
+          <div class="option-card" data-value="exploring" onclick="selectOption('timeline', this, checkStep3)">
+            <div class="option-dot"></div><div class="option-emoji">🔍</div>
             <div class="option-label"><h4>Just exploring</h4><p>Not in a rush — doing my research</p></div>
           </div>
         </div>
@@ -279,51 +274,71 @@
         </div>
       </div>
 
-      <!-- STEP 4: Employment -->
+      <!-- ═══ STEP 4: Employment (adaptive) ═══ -->
       <div class="step" id="step-4">
         <p class="step-eyebrow">Step 4</p>
         <h2 class="step-title">What's your employment status?</h2>
         <p class="step-subtitle">This affects how lenders assess your income — and which advisers are best suited to your case.</p>
         <div class="option-grid cols-2" id="employment">
-          <div class="option-card" data-value="employed" onclick="selectOption('employment', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">💼</div>
+          <div class="option-card" data-value="employed" onclick="selectEmployment(this)">
+            <div class="option-dot"></div><div class="option-emoji">💼</div>
             <div class="option-label"><h4>Employed (PAYE)</h4><p>Paid a salary by an employer</p></div>
           </div>
-          <div class="option-card" data-value="selfemployed" onclick="selectOption('employment', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🧾</div>
+          <div class="option-card" data-value="selfemployed" onclick="selectEmployment(this)">
+            <div class="option-dot"></div><div class="option-emoji">🧾</div>
             <div class="option-label"><h4>Self-employed</h4><p>Sole trader or partnership</p></div>
           </div>
-          <div class="option-card" data-value="director" onclick="selectOption('employment', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🏛️</div>
+          <div class="option-card" data-value="director" onclick="selectEmployment(this)">
+            <div class="option-dot"></div><div class="option-emoji">🏛️</div>
             <div class="option-label"><h4>Company director</h4><p>Director of a limited company</p></div>
           </div>
-          <div class="option-card" data-value="contractor" onclick="selectOption('employment', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">📝</div>
+          <div class="option-card" data-value="contractor" onclick="selectEmployment(this)">
+            <div class="option-dot"></div><div class="option-emoji">📝</div>
             <div class="option-label"><h4>Contractor</h4><p>Day rate or fixed-term contracts</p></div>
           </div>
-          <div class="option-card" data-value="retired" onclick="selectOption('employment', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🌅</div>
+          <div class="option-card" data-value="retired" onclick="selectEmployment(this)">
+            <div class="option-dot"></div><div class="option-emoji">🌅</div>
             <div class="option-label"><h4>Retired</h4><p>Pension or investment income</p></div>
           </div>
-          <div class="option-card" data-value="other" onclick="selectOption('employment', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">💬</div>
+          <div class="option-card" data-value="other" onclick="selectEmployment(this)">
+            <div class="option-dot"></div><div class="option-emoji">💬</div>
             <div class="option-label"><h4>Other</h4><p>Multiple incomes or other situation</p></div>
           </div>
         </div>
-        <div class="input-group" style="margin-top:8px;">
-          <label class="input-label">Annual income (gross, approximate)</label>
-          <span class="input-sublabel">Your total income before tax. Estimates are fine.</span>
-          <div class="input-prefix">
-            <span class="input-prefix-symbol">£</span>
-            <input type="number" class="form-input" id="income" placeholder="50000" style="padding-left:28px;">
+
+        <!-- Sub-question: Self-employed / Director — years of accounts -->
+        <div id="accountsGroup" class="sub-q-group hidden">
+          <div class="sub-q-label">How many years of accounts do you have?</div>
+          <div class="option-grid cols-2" id="accountsYears">
+            <div class="option-card compact" data-value="Less than 1 year" onclick="selectOption('accountsYears', this)"><div class="option-dot"></div><div class="option-label"><h4>Less than 1 year</h4><p>Just started out</p></div></div>
+            <div class="option-card compact" data-value="1 year" onclick="selectOption('accountsYears', this)"><div class="option-dot"></div><div class="option-label"><h4>1 year</h4></div></div>
+            <div class="option-card compact" data-value="2 years" onclick="selectOption('accountsYears', this)"><div class="option-dot"></div><div class="option-label"><h4>2 years</h4></div></div>
+            <div class="option-card compact" data-value="3+ years" onclick="selectOption('accountsYears', this)"><div class="option-dot"></div><div class="option-label"><h4>3 or more years</h4></div></div>
           </div>
         </div>
+
+        <!-- Sub-question: Contractor — contract type -->
+        <div id="contractGroup" class="sub-q-group hidden">
+          <div class="sub-q-label">What type of contract?</div>
+          <div class="option-grid cols-2" id="contractType">
+            <div class="option-card compact" data-value="Outside IR35" onclick="selectOption('contractType', this)"><div class="option-dot"></div><div class="option-label"><h4>Outside IR35</h4></div></div>
+            <div class="option-card compact" data-value="Inside IR35" onclick="selectOption('contractType', this)"><div class="option-dot"></div><div class="option-label"><h4>Inside IR35</h4></div></div>
+            <div class="option-card compact" data-value="Fixed-term" onclick="selectOption('contractType', this)"><div class="option-dot"></div><div class="option-label"><h4>Fixed-term</h4></div></div>
+            <div class="option-card compact" data-value="Not sure" onclick="selectOption('contractType', this)"><div class="option-dot"></div><div class="option-label"><h4>Not sure</h4></div></div>
+          </div>
+        </div>
+
+        <!-- Income range tiles — replaces text input -->
+        <div class="sub-q-label" style="margin-top:28px;">Annual income (approximate, before tax)</div>
+        <div class="option-grid cols-3" id="income">
+          <div class="option-card compact" data-value="Under £25k" onclick="selectOption('income', this, checkStep4)"><div class="option-dot"></div><div class="option-label"><h4>Under £25k</h4></div></div>
+          <div class="option-card compact" data-value="£25k–£40k" onclick="selectOption('income', this, checkStep4)"><div class="option-dot"></div><div class="option-label"><h4>£25k–£40k</h4></div></div>
+          <div class="option-card compact" data-value="£40k–£60k" onclick="selectOption('income', this, checkStep4)"><div class="option-dot"></div><div class="option-label"><h4>£40k–£60k</h4></div></div>
+          <div class="option-card compact" data-value="£60k–£100k" onclick="selectOption('income', this, checkStep4)"><div class="option-dot"></div><div class="option-label"><h4>£60k–£100k</h4></div></div>
+          <div class="option-card compact" data-value="£100k–£150k" onclick="selectOption('income', this, checkStep4)"><div class="option-dot"></div><div class="option-label"><h4>£100k–£150k</h4></div></div>
+          <div class="option-card compact" data-value="Over £150k" onclick="selectOption('income', this, checkStep4)"><div class="option-dot"></div><div class="option-label"><h4>Over £150k</h4></div></div>
+        </div>
+
         <div class="step-nav">
           <button class="btn-back" onclick="prevStep()">← Back</button>
           <button class="btn-next" onclick="nextStep()" id="next-4" disabled>
@@ -333,7 +348,7 @@
         </div>
       </div>
 
-      <!-- STEP 5: Credit Profile -->
+      <!-- ═══ STEP 5: Credit Profile ═══ -->
       <div class="step" id="step-5">
         <p class="step-eyebrow">Step 5</p>
         <h2 class="step-title">How would you describe your credit history?</h2>
@@ -343,24 +358,20 @@
           We do not perform any credit checks. This is self-reported information used only to match you with the right adviser.
         </div>
         <div class="option-grid" id="credit">
-          <div class="option-card" data-value="clean" onclick="selectOption('credit', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">✅</div>
+          <div class="option-card" data-value="clean" onclick="selectOption('credit', this, checkStep5)">
+            <div class="option-dot"></div><div class="option-emoji">✅</div>
             <div class="option-label"><h4>Clean credit history</h4><p>No missed payments, defaults, or issues</p></div>
           </div>
-          <div class="option-card" data-value="minor" onclick="selectOption('credit', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🔶</div>
+          <div class="option-card" data-value="minor" onclick="selectOption('credit', this, checkStep5)">
+            <div class="option-dot"></div><div class="option-emoji">🔶</div>
             <div class="option-label"><h4>Minor issues</h4><p>One or two missed payments, now resolved</p></div>
           </div>
-          <div class="option-card" data-value="moderate" onclick="selectOption('credit', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">⚠️</div>
+          <div class="option-card" data-value="moderate" onclick="selectOption('credit', this, checkStep5)">
+            <div class="option-dot"></div><div class="option-emoji">⚠️</div>
             <div class="option-label"><h4>More significant issues</h4><p>CCJ, defaults, or debt management plan</p></div>
           </div>
-          <div class="option-card" data-value="severe" onclick="selectOption('credit', this)">
-            <div class="option-dot"></div>
-            <div class="option-emoji">🔴</div>
+          <div class="option-card" data-value="severe" onclick="selectOption('credit', this, checkStep5)">
+            <div class="option-dot"></div><div class="option-emoji">🔴</div>
             <div class="option-label"><h4>Bankruptcy or IVA</h4><p>Past or current — within the last 6 years</p></div>
           </div>
         </div>
@@ -373,41 +384,12 @@
         </div>
       </div>
 
-      <!-- STEP 6: Complexity Flags -->
+      <!-- ═══ STEP 6: Complexity Flags (adaptive — rendered by JS) ═══ -->
       <div class="step" id="step-6">
         <p class="step-eyebrow">Step 6</p>
         <h2 class="step-title">Are any of these relevant to your situation?</h2>
         <p class="step-subtitle">Select all that apply. These help us identify which specialist is the right fit.</p>
-        <div class="option-grid" id="complexityFlags" style="margin-bottom:32px;">
-          <div class="checkbox-card" onclick="toggleFlag(this, 'recently-selfemployed')">
-            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="checkbox-label">Recently self-employed (less than 2 years of accounts)</span>
-          </div>
-          <div class="checkbox-card" onclick="toggleFlag(this, 'non-standard-property')">
-            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="checkbox-label">Non-standard property (flat above shop, new build, listed building, etc.)</span>
-          </div>
-          <div class="checkbox-card" onclick="toggleFlag(this, 'high-ltv')">
-            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="checkbox-label">Small deposit — less than 10% (high LTV)</span>
-          </div>
-          <div class="checkbox-card" onclick="toggleFlag(this, 'previously-declined')">
-            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="checkbox-label">Previously declined for a mortgage</span>
-          </div>
-          <div class="checkbox-card" onclick="toggleFlag(this, 'foreign-national')">
-            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="checkbox-label">Non-UK national or foreign-sourced income</span>
-          </div>
-          <div class="checkbox-card" onclick="toggleFlag(this, 'complex-income')">
-            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="checkbox-label">Complex income (bonuses, commission, rental income, dividends)</span>
-          </div>
-          <div class="checkbox-card" onclick="toggleFlag(this, 'none')">
-            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <span class="checkbox-label">None of the above apply</span>
-          </div>
-        </div>
+        <div id="complexityFlags"></div>
         <div class="step-nav">
           <button class="btn-back" onclick="prevStep()">← Back</button>
           <button class="btn-next" onclick="nextStep()">
@@ -417,29 +399,25 @@
         </div>
       </div>
 
-      <!-- STEP 7: Region -->
+      <!-- ═══ STEP 7: Region (tile grid) ═══ -->
       <div class="step" id="step-7">
         <p class="step-eyebrow">Step 7</p>
         <h2 class="step-title">Where is the property located?</h2>
         <p class="step-subtitle">Some advisers have regional expertise. This helps us find the closest match.</p>
-        <div class="input-group">
-          <label class="input-label">Region or area</label>
-          <select class="form-input" id="region" style="cursor:pointer;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%234A6580' stroke-width='2'%3E%3Cpath d='M4 6l8 0 M4 10l8 0'/%3E%3C/svg%3E\");">
-            <option value="">Select a region…</option>
-            <option>London</option>
-            <option>South East England</option>
-            <option>South West England</option>
-            <option>East of England</option>
-            <option>East Midlands</option>
-            <option>West Midlands</option>
-            <option>Yorkshire &amp; the Humber</option>
-            <option>North West England</option>
-            <option>North East England</option>
-            <option>Scotland</option>
-            <option>Wales</option>
-            <option>Northern Ireland</option>
-            <option>Not sure yet</option>
-          </select>
+        <div class="option-grid cols-3" id="region">
+          <div class="option-card compact" data-value="London" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>London</h4></div></div>
+          <div class="option-card compact" data-value="South East" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>South East</h4></div></div>
+          <div class="option-card compact" data-value="South West" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>South West</h4></div></div>
+          <div class="option-card compact" data-value="East of England" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>East of England</h4></div></div>
+          <div class="option-card compact" data-value="East Midlands" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>East Midlands</h4></div></div>
+          <div class="option-card compact" data-value="West Midlands" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>West Midlands</h4></div></div>
+          <div class="option-card compact" data-value="Yorkshire & Humber" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Yorkshire &amp; Humber</h4></div></div>
+          <div class="option-card compact" data-value="North West" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>North West</h4></div></div>
+          <div class="option-card compact" data-value="North East" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>North East</h4></div></div>
+          <div class="option-card compact" data-value="Scotland" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Scotland</h4></div></div>
+          <div class="option-card compact" data-value="Wales" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Wales</h4></div></div>
+          <div class="option-card compact" data-value="Northern Ireland" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Northern Ireland</h4></div></div>
+          <div class="option-card compact" data-value="Not sure" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Not sure yet</h4></div></div>
         </div>
         <div class="step-nav">
           <button class="btn-back" onclick="prevStep()">← Back</button>
@@ -450,7 +428,7 @@
         </div>
       </div>
 
-      <!-- STEP 8: Your Details -->
+      <!-- ═══ STEP 8: Your Details ═══ -->
       <div class="step" id="step-8">
         <p class="step-eyebrow">Step 8 — Final step</p>
         <h2 class="step-title">Great — let's get your results</h2>
@@ -483,14 +461,14 @@
         </label>
         <div class="step-nav">
           <button class="btn-back" onclick="prevStep()">← Back</button>
-          <button class="btn-next" id="submitBtn" onclick="submitForm()" disabled style="background:#009E6E;">
+          <button class="btn-next" id="submitBtn" onclick="submitForm()" disabled>
             Get My Match
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
           </button>
         </div>
       </div>
 
-      <!-- SUCCESS STATE -->
+      <!-- ═══ SUCCESS STATE ═══ -->
       <div class="step" id="step-success">
         <div class="success-state">
           <div class="success-icon">
@@ -499,18 +477,9 @@
           <h2>You're in — we're on it.</h2>
           <p>We've received your details. We'll assess your situation and match you with the right adviser, typically within one business day.</p>
           <div class="success-steps">
-            <div class="ss-item">
-              <div class="ss-bullet">1</div>
-              <span>We review your case against current lender criteria</span>
-            </div>
-            <div class="ss-item">
-              <div class="ss-bullet">2</div>
-              <span>We identify the adviser best suited to your situation</span>
-            </div>
-            <div class="ss-item">
-              <div class="ss-bullet">3</div>
-              <span>Your matched adviser contacts you to discuss your options — no obligation</span>
-            </div>
+            <div class="ss-item"><div class="ss-bullet">1</div><span>We review your case against current lender criteria</span></div>
+            <div class="ss-item"><div class="ss-bullet">2</div><span>We identify the adviser best suited to your situation</span></div>
+            <div class="ss-item"><div class="ss-bullet">3</div><span>Your matched adviser contacts you to discuss your options — no obligation</span></div>
           </div>
           <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;color:#009E6E;text-decoration:none;font-size:15px;font-weight:600;">
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -524,18 +493,37 @@
 </div>
 
 <script>
+  // ── CONFIG ──────────────────────────────────────────────────────────────────
+  // To capture submissions in Google Sheets:
+  // 1. Create a Google Sheet
+  // 2. Go to Extensions → Apps Script and paste the doPost function from the setup guide
+  // 3. Deploy as Web App (Execute as: Me, Access: Anyone), copy the URL
+  // 4. Replace the placeholder below with your deployed URL
+  const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzNxg-Mngr15CvYSVoIxyP-IEaS1J35EcEKwp-DXRRpQslD3b64K_Z2ZgnkZjhbOfIq2w/exec';
+
+  // ── STATE ───────────────────────────────────────────────────────────────────
   let currentStep = 1;
   const totalSteps = 8;
   const stepLabels = ['Mortgage type', 'Property details', 'Timeline', 'Employment', 'Credit profile', 'Complexity', 'Location', 'Your details'];
   const formData = {};
+  let goingBack = false;
 
+  // ── NAVIGATION ──────────────────────────────────────────────────────────────
   function showStep(n) {
-    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-    document.getElementById('step-' + (n === 0 ? 'success' : n)).classList.add('active');
+    const prev = document.querySelector('.step.active');
+    if (prev) {
+      prev.classList.remove('active');
+      if (goingBack) prev.classList.add('slide-back');
+      setTimeout(() => prev.classList.remove('slide-back'), 300);
+    }
+
+    const next = document.getElementById(n === 0 ? 'step-success' : 'step-' + n);
+    next.classList.add('active');
+    if (goingBack) next.style.animation = 'none';
+    requestAnimationFrame(() => { next.style.animation = ''; });
 
     if (n > 0) {
-      const pct = (n / totalSteps) * 100;
-      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressFill').style.width = ((n / totalSteps) * 100) + '%';
       document.getElementById('progressLabel').textContent = stepLabels[n - 1];
       document.getElementById('progressCount').textContent = n + ' of ' + totalSteps;
       document.getElementById('headerStep').textContent = 'Step ' + n;
@@ -543,102 +531,191 @@
     } else {
       document.getElementById('progressWrap').style.display = 'none';
     }
+
+    // Step-specific init
+    if (n === 2) initStep2();
+    if (n === 6) renderComplexityFlags();
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    goingBack = false;
   }
 
   function nextStep() {
-    if (currentStep < totalSteps) {
-      currentStep++;
-      showStep(currentStep);
-    }
+    if (currentStep < totalSteps) { currentStep++; showStep(currentStep); }
   }
 
   function prevStep() {
-    if (currentStep > 1) {
-      currentStep--;
-      showStep(currentStep);
-    }
+    if (currentStep > 1) { goingBack = true; currentStep--; showStep(currentStep); }
   }
 
-  function selectOption(groupId, el) {
+  // ── STEP 2: INIT (adaptive based on mortgage type) ──────────────────────────
+  function initStep2() {
+    const isRemortgage = formData.mortgageType === 'remortgage';
+
+    document.getElementById('step2-title').textContent = isRemortgage
+      ? 'Tell us about your current mortgage' : 'Tell us about the property';
+    document.getElementById('propValLabel').textContent = isRemortgage
+      ? "What's your current property worth?" : "What's the property value?";
+
+    document.getElementById('depositGroup').style.display = isRemortgage ? 'none' : 'block';
+    document.getElementById('balanceGroup').style.display = isRemortgage ? 'block' : 'none';
+
+    // Reset step 2 selections on re-entry
+    document.querySelectorAll('#step-2 .option-card').forEach(c => c.classList.remove('selected'));
+    delete formData.propertyValue;
+    delete formData.deposit;
+    delete formData.remainingBalance;
+    document.getElementById('next-2').disabled = true;
+  }
+
+  // ── STEP 6: RENDER ADAPTIVE FLAGS ──────────────────────────────────────────
+  function renderComplexityFlags() {
+    const container = document.getElementById('complexityFlags');
+    const isRemortgage = formData.mortgageType === 'remortgage';
+    const isBtl = formData.mortgageType === 'btl';
+    const emp = formData.employment || '';
+    const isSelfEmpOrDir = emp === 'selfemployed' || emp === 'director';
+    const isContractor = emp === 'contractor';
+    const isEmployed = emp === 'employed';
+    const highDeposit = ['20–30%', '30%+'].includes(formData.deposit || '');
+
+    const flags = [];
+
+    // Recently self-employed — hide if already answered in step 4 or clearly not applicable
+    if (!isSelfEmpOrDir && !isContractor && !isEmployed) {
+      flags.push({ val: 'recently-selfemployed', label: 'Recently self-employed (less than 2 years of accounts)' });
+    }
+
+    // Non-standard property — always relevant
+    flags.push({ val: 'non-standard-property', label: 'Non-standard property (flat above shop, new build, listed building, etc.)' });
+
+    // High LTV — hide for remortgage; hide for BTL if large deposit
+    if (!isRemortgage && !(isBtl && highDeposit)) {
+      flags.push({ val: 'high-ltv', label: 'Small deposit — less than 10% (high LTV)' });
+    }
+
+    // Equity release — remortgage only
+    if (isRemortgage) {
+      flags.push({ val: 'equity-release', label: 'Looking to release equity from the property' });
+    }
+
+    // Portfolio landlord — BTL only
+    if (isBtl) {
+      flags.push({ val: 'portfolio-landlord', label: 'Portfolio landlord (4 or more investment properties)' });
+    }
+
+    // Always shown
+    flags.push({ val: 'previously-declined', label: 'Previously declined for a mortgage' });
+    flags.push({ val: 'foreign-national', label: 'Non-UK national or foreign-sourced income' });
+    flags.push({ val: 'complex-income', label: 'Complex income (bonuses, commission, rental income, dividends)' });
+    flags.push({ val: 'none', label: 'None of the above apply' });
+
+    container.innerHTML = flags.map(f => `
+      <div class="checkbox-card" onclick="toggleFlag(this, '${f.val}')">
+        <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <span class="checkbox-label">${f.label}</span>
+      </div>
+    `).join('');
+
+    formData.complexityFlags = [];
+  }
+
+  // ── SELECTION HELPERS ───────────────────────────────────────────────────────
+  function selectOption(groupId, el, checkFn) {
     const group = document.getElementById(groupId);
     group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
     formData[groupId] = el.getAttribute('data-value');
+    if (typeof checkFn === 'function') checkFn();
+  }
 
-    // Enable next button for this step
-    const nextBtn = document.getElementById('next-' + currentStep);
-    if (nextBtn) nextBtn.disabled = false;
+  function selectEmployment(el) {
+    const group = document.getElementById('employment');
+    group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    const val = el.getAttribute('data-value');
+    formData.employment = val;
+
+    // Clear sub-question answers and reset tiles on employment change
+    delete formData.accountsYears;
+    delete formData.contractType;
+    document.querySelectorAll('#accountsYears .option-card, #contractType .option-card').forEach(c => c.classList.remove('selected'));
+
+    // Show/hide sub-questions
+    const isSelfEmpOrDir = val === 'selfemployed' || val === 'director';
+    document.getElementById('accountsGroup').classList.toggle('hidden', !isSelfEmpOrDir);
+    document.getElementById('contractGroup').classList.toggle('hidden', val !== 'contractor');
+
+    checkStep4();
   }
 
   function toggleFlag(el, val) {
+    const container = document.getElementById('complexityFlags');
     if (val === 'none') {
-      document.querySelectorAll('#complexityFlags .checkbox-card').forEach(c => {
-        c.classList.remove('checked');
-      });
+      container.querySelectorAll('.checkbox-card').forEach(c => c.classList.remove('checked'));
+      formData.complexityFlags = [];
     } else {
-      const noneCard = document.querySelector('#complexityFlags .checkbox-card:last-child');
+      const noneCard = container.querySelector('[onclick*="\'none\'"]');
       if (noneCard) noneCard.classList.remove('checked');
+      formData.complexityFlags = (formData.complexityFlags || []).filter(v => v !== 'none');
     }
-    el.classList.toggle('checked');
+    const isChecked = el.classList.toggle('checked');
+    if (isChecked) {
+      formData.complexityFlags = [...(formData.complexityFlags || []).filter(v => v !== val), val];
+    } else {
+      formData.complexityFlags = (formData.complexityFlags || []).filter(v => v !== val);
+    }
   }
 
-  function formatCurrency(v) {
-    if (v >= 1000000) return '£' + (v / 1000000).toFixed(v % 1000000 === 0 ? 0 : 1) + 'm';
-    return '£' + v.toLocaleString('en-GB');
+  // ── VALIDATION ──────────────────────────────────────────────────────────────
+  function checkStep1() { document.getElementById('next-1').disabled = !formData.mortgageType; }
+
+  function checkStep2() {
+    const hasValue = !!formData.propertyValue;
+    const isRemortgage = formData.mortgageType === 'remortgage';
+    const hasSecond = isRemortgage ? !!formData.remainingBalance : !!formData.deposit;
+    document.getElementById('next-2').disabled = !(hasValue && hasSecond);
   }
 
-  function updateLTV() {
-    const prop = parseInt(document.getElementById('propValSlider').value) || 250000;
-    const dep = parseInt(document.getElementById('depositSlider').value) || 25000;
-    const ltv = Math.round(((prop - dep) / prop) * 100);
-    const display = ltv < 0 ? '0%' : ltv + '%';
-    document.getElementById('ltvValue').textContent = display;
-    const badge = document.getElementById('ltvBadge');
-    badge.style.background = ltv > 90 ? '#FFF3F3' : ltv > 80 ? '#FFF9EC' : '#EBF0F7';
-    badge.style.color = ltv > 90 ? '#C0392B' : ltv > 80 ? '#B7791F' : '#0B2845';
+  function checkStep3() { document.getElementById('next-3').disabled = !formData.timeline; }
+
+  function checkStep4() {
+    document.getElementById('next-4').disabled = !(formData.employment && formData.income);
   }
 
-  function updatePropertyValue() {
-    const v = parseInt(document.getElementById('propValSlider').value);
-    document.getElementById('propValDisplay').textContent = formatCurrency(v);
-    document.getElementById('propValInput').value = v;
-    updateLTV();
-  }
-  function updatePropertySlider() {
-    const v = parseInt(document.getElementById('propValInput').value) || 250000;
-    const clamped = Math.min(2000000, Math.max(50000, v));
-    document.getElementById('propValSlider').value = clamped;
-    document.getElementById('propValDisplay').textContent = formatCurrency(clamped);
-    updateLTV();
-  }
-  function updateDeposit() {
-    const v = parseInt(document.getElementById('depositSlider').value);
-    document.getElementById('depositDisplay').textContent = formatCurrency(v);
-    document.getElementById('depositInput').value = v;
-    updateLTV();
-  }
-  function updateDepositSlider() {
-    const v = parseInt(document.getElementById('depositInput').value) || 25000;
-    const clamped = Math.min(500000, Math.max(5000, v));
-    document.getElementById('depositSlider').value = clamped;
-    document.getElementById('depositDisplay').textContent = formatCurrency(clamped);
-    updateLTV();
-  }
+  function checkStep5() { document.getElementById('next-5').disabled = !formData.credit; }
 
   function updateConsentButton() {
     document.getElementById('submitBtn').disabled = !document.getElementById('consentCheck').checked;
   }
 
-  function submitForm() {
+  // ── SUBMIT ──────────────────────────────────────────────────────────────────
+  async function submitForm() {
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    // Collect personal details into formData
+    formData.firstName = document.getElementById('firstName').value.trim();
+    formData.lastName  = document.getElementById('lastName').value.trim();
+    formData.email     = document.getElementById('email').value.trim();
+    formData.phone     = document.getElementById('phone').value.trim();
+    formData.complexityFlags = (formData.complexityFlags || []).join(', ');
+
+    // Send to Google Sheets (no-cors — data is written even if response is opaque)
+    if (SHEETS_WEBHOOK_URL && SHEETS_WEBHOOK_URL !== 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+      try {
+        await fetch(SHEETS_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify(formData),
+        });
+      } catch (_) { /* fail silently — still show success to user */ }
+    }
+
     currentStep = 0;
     showStep(0);
   }
-
-  // Init
-  updatePropertyValue();
-  updateDeposit();
-  updateLTV();
 </script>
 </body>
 </html>
