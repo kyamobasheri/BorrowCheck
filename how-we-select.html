@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How We Select Advisers — BorrowCheck</title>
+  <meta name="description" content="We're selective about the mortgage advisers we work with. Every adviser in our network is fully vetted, FCA-authorised, and experienced in specific case types.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #0B2845; background: #fff; }
+    h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; letter-spacing: -0.02em; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,40,69,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; text-decoration: none; }
+    .nav-logo span { color: #00C282; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta { background: #009E6E; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.2s, transform 0.15s; }
+    .nav-cta:hover { background: #007A55; transform: translateY(-1px); }
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; color: #fff; padding: 4px; }
+    .mobile-menu { display: none; background: #0B2845; border-top: 1px solid rgba(255,255,255,0.07); padding: 20px 24px 28px; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mobile-menu .mob-cta { background: #009E6E; color: #fff; text-align: center; padding: 14px; border-radius: 8px; font-weight: 600; margin-top: 16px; border-bottom: none !important; }
+    @media (max-width: 900px) { .nav-links, .nav-cta { display: none; } .nav-burger { display: block; } }
+
+    /* PAGE HERO */
+    .page-hero { background: #0B2845; padding: 140px 24px 96px; position: relative; overflow: hidden; }
+    .page-hero-grain { position: absolute; inset: 0; pointer-events: none; }
+    .page-hero-glow { position: absolute; width: 600px; height: 600px; top: -150px; right: -100px; background: radial-gradient(circle, rgba(0,158,110,0.15) 0%, transparent 70%); pointer-events: none; }
+    .page-hero-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .page-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,194,130,0.12); border: 1px solid rgba(0,194,130,0.25); color: #00C282; padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; margin-bottom: 24px; }
+    .page-hero h1 { font-size: clamp(32px, 5vw, 52px); color: #fff; margin-bottom: 20px; line-height: 1.15; }
+    .page-hero p { font-size: 18px; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+
+    /* SECTIONS */
+    section { padding: 96px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #009E6E; margin-bottom: 14px; }
+    .section-title { font-size: clamp(28px, 4vw, 42px); color: #0B2845; margin-bottom: 20px; line-height: 1.2; }
+    .section-body { font-size: 17px; color: #4A6580; line-height: 1.7; max-width: 640px; }
+
+    /* INTRO */
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .intro-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+    .stat-box { background: #F4F7FC; border-radius: 16px; padding: 28px; }
+    .stat-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: #009E6E; margin-bottom: 6px; }
+    .stat-label { font-size: 14px; color: #4A6580; line-height: 1.5; }
+    @media (max-width: 900px) { .intro-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* VETTING PROCESS */
+    .vetting-section { background: #F4F7FC; }
+    .vetting-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+    .vetting-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 16px; padding: 32px; display: flex; gap: 20px; transition: transform 0.2s, box-shadow 0.2s; }
+    .vetting-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(11,40,69,0.09), 0 4px 12px rgba(11,40,69,0.05); }
+    .vetting-num { width: 44px; height: 44px; background: #0B2845; color: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; flex-shrink: 0; font-family: 'DM Serif Display', serif; }
+    .vetting-content h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 600; color: #0B2845; margin-bottom: 10px; }
+    .vetting-content p { font-size: 15px; color: #4A6580; line-height: 1.65; }
+    .vetting-tag { display: inline-flex; align-items: center; gap: 6px; background: #F0FAF6; color: #007A55; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; margin-top: 12px; }
+    @media (max-width: 768px) { .vetting-grid { grid-template-columns: 1fr; } }
+
+    /* NOT JUST ANY BROKER */
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 56px; }
+    .diff-side { }
+    .diff-title { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .diff-title.bad { color: #B91C1C; }
+    .diff-title.good { color: #047857; }
+    .diff-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .diff-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #4A6580; line-height: 1.5; }
+    .diff-list li .icon { flex-shrink: 0; margin-top: 2px; }
+    @media (max-width: 700px) { .diff-grid { grid-template-columns: 1fr; } }
+
+    /* WHAT WE LOOK FOR */
+    .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+    .spec-card { background: #F4F7FC; border-radius: 14px; padding: 24px; }
+    .spec-icon { font-size: 28px; margin-bottom: 14px; }
+    .spec-card h3 { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #0B2845; margin-bottom: 8px; }
+    .spec-card p { font-size: 14px; color: #4A6580; line-height: 1.6; }
+    @media (max-width: 768px) { .spec-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .spec-grid { grid-template-columns: 1fr; } }
+
+    /* CTA */
+    .cta-section { background: linear-gradient(135deg, #0B2845 0%, #1A3D66 100%); text-align: center; position: relative; overflow: hidden; }
+    .cta-glow { position: absolute; width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(0,158,110,0.2) 0%, transparent 70%); pointer-events: none; }
+    .cta-section .section-title { color: #fff; }
+    .cta-section p { font-size: 18px; color: rgba(255,255,255,0.65); margin-bottom: 40px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #009E6E; color: #fff; padding: 16px 32px; border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,158,110,0.35); }
+    .btn-primary:hover { background: #007A55; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,158,110,0.45); }
+
+    /* FOOTER */
+    footer { background: #071C30; color: rgba(255,255,255,0.6); padding: 64px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; margin-bottom: 16px; }
+    .footer-logo span { color: #00C282; }
+    .footer-desc { font-size: 14px; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+    .footer-bottom p { font-size: 13px; max-width: 700px; line-height: 1.6; }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.8); }
+    @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } }
+
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: 0.1s; } .fd2 { transition-delay: 0.2s; } .fd3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Borrow<span>Check</span></a>
+    <div class="nav-links">
+      <a href="how-we-select.html" class="active">How We Select Advisers</a>
+      <a href="for-advisers.html">For Advisers</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="form.html" class="nav-cta">Check My Eligibility</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-we-select.html">How We Select Advisers</a>
+    <a href="for-advisers.html">For Advisers</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="form.html" class="mob-cta">Check My Eligibility</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-grain">
+    <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:0.035;"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+  </div>
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-inner">
+    <div class="page-badge">Our Adviser Network</div>
+    <h1>We're selective. Not just about who gets matched — but who gets in.</h1>
+    <p>Every adviser in the BorrowCheck network has passed a thorough vetting process. We don't work with just anyone who calls themselves a broker.</p>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section>
+  <div class="section-inner">
+    <div class="intro-grid">
+      <div class="fade-up">
+        <p class="section-label">Why it matters</p>
+        <h2 class="section-title">The quality of your adviser changes everything</h2>
+        <p class="section-body">A good mortgage adviser doesn't just find you a rate — they understand lender criteria, protect your credit file, and guide you through what can be a complex process. The wrong one can cost you time, money, and in some cases, your application.</p>
+        <p class="section-body" style="margin-top:16px;">That's why BorrowCheck doesn't pass your details to just any available broker. We maintain a curated network of advisers, each vetted against specific standards.</p>
+      </div>
+      <div class="fade-up fd1">
+        <div class="intro-stats">
+          <div class="stat-box">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">FCA-authorised advisers — no exceptions</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Whole-<br>of-market</div>
+            <div class="stat-label">Access — not tied to a single lender panel</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Case-<br>matched</div>
+            <div class="stat-label">Matched to your specific case type</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Ongoing</div>
+            <div class="stat-label">Quality monitoring and client feedback review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VETTING PROCESS -->
+<section class="vetting-section">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center;max-width:640px;margin:0 auto;">
+      <p class="section-label">Our vetting process</p>
+      <h2 class="section-title">What every adviser must demonstrate before joining our network</h2>
+    </div>
+    <div class="vetting-grid">
+      <div class="vetting-card fade-up">
+        <div class="vetting-num">1</div>
+        <div class="vetting-content">
+          <h3>Fully qualified and FCA-authorised</h3>
+          <p>Every adviser must hold appropriate mortgage qualifications (CeMAP or equivalent) and be directly authorised or an appointed representative of an FCA-regulated firm. We verify this independently before onboarding.</p>
+          <div class="vetting-tag">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Mandatory
+          </div>
+        </div>
+      </div>
+      <div class="vetting-card fade-up fd1">
+        <div class="vetting-num">2</div>
+        <div class="vetting-content">
+          <h3>Whole-of-market or broad lender access</h3>
+          <p>We only accept advisers with access to a wide panel of lenders — including specialist and challenger lenders that high-street banks don't offer. Advisers tied to a single lender or narrow panel are not eligible.</p>
+          <div class="vetting-tag">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Mandatory
+          </div>
+        </div>
+      </div>
+      <div class="vetting-card fade-up fd2">
+        <div class="vetting-num">3</div>
+        <div class="vetting-content">
+          <h3>Proven track record and client outcomes</h3>
+          <p>We review advisers' case history, completion rates, and client feedback before onboarding. We look for evidence of successful outcomes — not just activity. Advisers with poor completion records are not accepted.</p>
+          <div class="vetting-tag">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Reviewed at onboarding
+          </div>
+        </div>
+      </div>
+      <div class="vetting-card fade-up">
+        <div class="vetting-num">4</div>
+        <div class="vetting-content">
+          <h3>Verified specialism in relevant case types</h3>
+          <p>Advisers declare their areas of specialism — first-time buyers, bad credit, self-employed, high LTV, buy to let, and more. We verify this against their case history before assigning them to matched clients.</p>
+          <div class="vetting-tag">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Case-specific
+          </div>
+        </div>
+      </div>
+      <div class="vetting-card fade-up fd1">
+        <div class="vetting-num">5</div>
+        <div class="vetting-content">
+          <h3>Communication and responsiveness standards</h3>
+          <p>Advisers must commit to our client communication standards — including response times, clear expectations-setting, and keeping clients informed throughout the process. We monitor this with client feedback.</p>
+          <div class="vetting-tag">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Ongoing monitoring
+          </div>
+        </div>
+      </div>
+      <div class="vetting-card fade-up fd2">
+        <div class="vetting-num">6</div>
+        <div class="vetting-content">
+          <h3>Client-first, no-pressure approach</h3>
+          <p>We only work with advisers who put clients' interests first. We explicitly screen for pressure tactics, inappropriate upselling, or advice that doesn't align with a client's stated needs. One verified complaint can result in removal.</p>
+          <div class="vetting-tag">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Zero tolerance
+          </div>
+        </div>
+      </div>
+      <div class="vetting-card fade-up" style="grid-column: 1 / -1; max-width: 100%;">
+        <div class="vetting-num">7</div>
+        <div class="vetting-content">
+          <h3>Ongoing quality monitoring and periodic review</h3>
+          <p>Acceptance to our network isn't permanent. We review adviser performance quarterly, including completion rates, client satisfaction scores, and any complaints. Advisers who don't maintain our standards are removed from the network — even if they were previously accepted. This is an ongoing obligation, not a one-time gate.</p>
+          <div class="vetting-tag">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Quarterly review
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOT JUST ANY BROKER -->
+<section>
+  <div class="section-inner">
+    <div class="fade-up" style="max-width:640px;">
+      <p class="section-label">The difference</p>
+      <h2 class="section-title">What sets our advisers apart</h2>
+      <p class="section-body">Here's the difference between going directly to a random broker and being matched through BorrowCheck.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-side fade-up">
+        <div class="diff-title bad">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          Going direct to a random broker
+        </div>
+        <ul class="diff-list">
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>May only have access to a limited lender panel</li>
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>May not have experience with your specific case type</li>
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>No pre-assessment — you find out at the lender stage</li>
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>Quality and approach varies widely</li>
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></span>No accountability structure if things go wrong</li>
+        </ul>
+      </div>
+      <div class="diff-side fade-up fd1">
+        <div class="diff-title good">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Matched through BorrowCheck
+        </div>
+        <ul class="diff-list">
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#047857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>Whole-of-market or broad lender panel access verified</li>
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#047857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>Matched specifically to advisers with your case type experience</li>
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#047857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>Your situation assessed before any adviser is involved</li>
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#047857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>All advisers meet consistent quality standards</li>
+          <li><span class="icon"><svg width="18" height="18" fill="none" stroke="#047857" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>Ongoing monitoring with removal for poor performance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALISMS -->
+<section style="background:#F4F7FC;padding:96px 24px;">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center;max-width:640px;margin:0 auto 0;">
+      <p class="section-label">Case specialisms</p>
+      <h2 class="section-title">Advisers for every situation</h2>
+      <p class="section-body" style="margin:0 auto;">Our network includes advisers with experience across a wide range of case types. Wherever your situation sits, we aim to have a specialist for it.</p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-card fade-up">
+        <div class="spec-icon">🏠</div>
+        <h3>First-time buyers</h3>
+        <p>Advisers who guide buyers through the entire process — from understanding affordability to exchanging contracts.</p>
+      </div>
+      <div class="spec-card fade-up fd1">
+        <div class="spec-icon">🔴</div>
+        <h3>Adverse credit</h3>
+        <p>Specialist advisers with lender access for clients with CCJs, defaults, missed payments, or previous bankruptcies.</p>
+      </div>
+      <div class="spec-card fade-up fd2">
+        <div class="spec-icon">🧾</div>
+        <h3>Self-employed &amp; directors</h3>
+        <p>Advisers experienced with complex income structures, limited company accounts, and multiple income streams.</p>
+      </div>
+      <div class="spec-card fade-up">
+        <div class="spec-icon">🏢</div>
+        <h3>Buy to let &amp; portfolio</h3>
+        <p>From single BTL purchases to portfolio landlords — including HMOs, limited company BTL, and complex structures.</p>
+      </div>
+      <div class="spec-card fade-up fd1">
+        <div class="spec-icon">📝</div>
+        <h3>Contractors</h3>
+        <p>Day rate and fixed-term contractors are assessed differently by lenders. Our advisers know which lenders work best.</p>
+      </div>
+      <div class="spec-card fade-up fd2">
+        <div class="spec-icon">🔄</div>
+        <h3>Remortgages</h3>
+        <p>Advisers who focus on finding the right deal at renewal — whether that's a better rate, releasing equity, or restructuring.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-inner" style="position:relative;z-index:1;text-align:center;">
+    <p class="section-label" style="color:#00C282;">Get matched today</p>
+    <h2 class="section-title fade-up">Ready to be matched with the right adviser?</h2>
+    <p class="fade-up">Tell us about your situation — it takes 2 minutes. No credit checks, no obligation.</p>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;" class="fade-up">
+      <a href="form.html" class="btn-primary" style="font-size:17px;padding:18px 40px;">
+        Check My Eligibility — Free
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+      </a>
+      <span style="font-size:14px;color:rgba(255,255,255,0.4);">Takes 2 minutes · No credit checks · Completely free</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Borrow<span>Check</span></div>
+        <p class="footer-desc">We help you understand what's actually possible before you speak to a broker.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <a href="form.html">Check Eligibility</a>
+        <a href="how-we-select.html">Our Advisers</a>
+        <a href="for-advisers.html">For Advisers</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="contact.html">Get in Touch</a>
+        <a href="mailto:hello@borrowcheck.co.uk">hello@borrowcheck.co.uk</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 BorrowCheck. BorrowCheck is not a lender and does not provide financial advice. We are an introducer service that connects users with FCA-authorised mortgage advisers.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navBurger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

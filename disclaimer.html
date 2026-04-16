@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disclaimer — BorrowCheck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: #0B2845; background: #fff; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; letter-spacing: -0.02em; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,40,69,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; text-decoration: none; }
+    .nav-logo span { color: #00C282; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta { background: #009E6E; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.2s; }
+    .nav-cta:hover { background: #007A55; }
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; color: #fff; padding: 4px; }
+    .mobile-menu { display: none; background: #0B2845; border-top: 1px solid rgba(255,255,255,0.07); padding: 20px 24px 28px; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mobile-menu .mob-cta { background: #009E6E; color: #fff; text-align: center; padding: 14px; border-radius: 8px; font-weight: 600; margin-top: 16px; border-bottom: none !important; }
+    @media (max-width: 900px) { .nav-links, .nav-cta { display: none; } .nav-burger { display: block; } }
+
+    .page-hero { background: #0B2845; padding: 130px 24px 64px; }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .legal-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); padding: 5px 14px; border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 20px; text-transform: uppercase; }
+    .page-hero h1 { font-size: clamp(28px, 4vw, 40px); color: #fff; margin-bottom: 12px; }
+    .page-hero p { font-size: 15px; color: rgba(255,255,255,0.5); }
+
+    .legal-content { padding: 64px 24px 100px; }
+    .legal-inner { max-width: 760px; margin: 0 auto; }
+
+    /* Disclaimer alert box */
+    .disclaimer-box { background: #FFF9EC; border: 2px solid #F5A623; border-radius: 14px; padding: 28px 32px; margin-bottom: 48px; }
+    .disclaimer-box h2 { font-size: 22px; color: #7A5200; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .disclaimer-box p { font-size: 15px; color: #7A5200; line-height: 1.7; margin-bottom: 10px; }
+    .disclaimer-box p:last-child { margin-bottom: 0; }
+
+    .legal-section { margin-bottom: 44px; }
+    .legal-section h2 { font-size: 22px; color: #0B2845; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #E0EBF5; }
+    .legal-section h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 600; color: #0B2845; margin: 24px 0 10px; }
+    .legal-section p { font-size: 15px; color: #4A6580; line-height: 1.75; margin-bottom: 14px; }
+    .legal-section ul { list-style: disc; padding-left: 24px; margin-bottom: 14px; }
+    .legal-section ul li { font-size: 15px; color: #4A6580; line-height: 1.7; margin-bottom: 6px; }
+    .legal-section a { color: #009E6E; text-decoration: none; }
+    .legal-section a:hover { text-decoration: underline; }
+
+    .legal-meta { background: #F4F7FC; border-radius: 12px; padding: 20px 24px; font-size: 14px; color: #4A6580; margin-bottom: 48px; display: flex; gap: 24px; flex-wrap: wrap; }
+    .legal-meta span { display: flex; align-items: center; gap: 6px; }
+
+    footer { background: #071C30; color: rgba(255,255,255,0.6); padding: 48px 24px 28px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-bottom { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: #fff; }
+    .footer-logo span { color: #00C282; }
+    .footer-bottom p { font-size: 13px; max-width: 600px; line-height: 1.6; }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.8); }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Borrow<span>Check</span></a>
+    <div class="nav-links">
+      <a href="how-we-select.html">How We Select Advisers</a>
+      <a href="for-advisers.html">For Advisers</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="form.html" class="nav-cta">Check My Eligibility</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-we-select.html">How We Select Advisers</a>
+    <a href="for-advisers.html">For Advisers</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="form.html" class="mob-cta">Check My Eligibility</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="legal-badge">Legal</div>
+    <h1>Disclaimer</h1>
+    <p>Last updated: April 2025</p>
+  </div>
+</div>
+
+<section class="legal-content">
+  <div class="legal-inner">
+
+    <div class="legal-meta">
+      <span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Last updated: April 2025
+      </span>
+      <span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Applies to all users of BorrowCheck
+      </span>
+    </div>
+
+    <!-- Key disclaimer box -->
+    <div class="disclaimer-box">
+      <h2>
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Important: Please Read Before Using BorrowCheck
+      </h2>
+      <p><strong>BorrowCheck is not a lender.</strong> We do not provide mortgage loans, credit facilities, or any form of lending. We have no involvement in approving or declining mortgage applications.</p>
+      <p><strong>BorrowCheck does not provide financial advice.</strong> The information on this website and the assessment process are for general informational purposes only. Nothing on this website constitutes financial, mortgage, legal, or tax advice.</p>
+      <p><strong>BorrowCheck is an introducer service.</strong> We connect users with FCA-authorised and regulated mortgage advisers. Any advice you receive will come from your matched adviser, who is responsible for it in accordance with FCA regulations.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>1. Nature of the Service</h2>
+      <p>BorrowCheck operates as a mortgage introducer. Our service is limited to:</p>
+      <ul>
+        <li>Collecting information from users about their mortgage situation via our assessment form;</li>
+        <li>Reviewing that information to assess suitability in general terms;</li>
+        <li>Connecting users with FCA-authorised mortgage advisers whose specialism appears suited to the user's situation.</li>
+      </ul>
+      <p>BorrowCheck does not participate in the mortgage advice process beyond this introduction. We have no role in the advice given by advisers, the mortgage products recommended, or any application made by the user.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>2. No Financial Advice</h2>
+      <p>Nothing on this website, in our assessment process, or in any communication from BorrowCheck constitutes regulated financial advice, mortgage advice, or a personal recommendation.</p>
+      <p>Any information provided on this website — including explanations of how lenders assess applicants, descriptions of mortgage types, or general guidance — is for informational purposes only and is not tailored to any individual's circumstances.</p>
+      <p>You should not make any financial decisions based solely on information provided by BorrowCheck. All mortgage decisions should be made in consultation with your FCA-authorised adviser.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>3. FCA Regulation</h2>
+      <p>BorrowCheck is an introducer service. The mortgage advisers in our network are independently FCA-authorised or are appointed representatives of FCA-regulated firms. They are responsible for the advice they provide in accordance with FCA rules.</p>
+      <p>You can verify any adviser's FCA authorisation at <a href="https://register.fca.org.uk" target="_blank" rel="noopener noreferrer">register.fca.org.uk</a>.</p>
+      <p>If you have a complaint about advice received from a matched adviser, this should be directed to the adviser's firm first, and if unresolved, to the Financial Ombudsman Service (FOS).</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>4. Accuracy of Information</h2>
+      <p>BorrowCheck endeavours to ensure that information on this website is accurate and up to date. However, mortgage markets, lender criteria, and regulatory requirements change frequently, and we cannot guarantee that all information on this website is current at any given time.</p>
+      <p>Any specific mortgage criteria, rates, or lender policies described on this website are for illustrative purposes only. Your adviser will provide up-to-date information relevant to your specific circumstances.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>5. No Guarantee of Outcome</h2>
+      <p>BorrowCheck makes no guarantee that:</p>
+      <ul>
+        <li>Any user will be matched with an adviser;</li>
+        <li>Any matched adviser will be able to assist the user;</li>
+        <li>Any mortgage application made following our introduction will be approved;</li>
+        <li>Any rate, product, or terms described in general terms on our site will be available to any individual user.</li>
+      </ul>
+      <p>Mortgage eligibility depends on individual circumstances, lender criteria, and market conditions at the time of application. BorrowCheck provides no warranty as to outcome.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>6. Credit and Financial Warning</h2>
+      <p>Your home may be repossessed if you do not keep up repayments on a mortgage or any other loan secured on it.</p>
+      <p>Think carefully before securing other debts against your home.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>7. Third-Party Websites</h2>
+      <p>This website may contain links to third-party websites. BorrowCheck is not responsible for the content, accuracy, or privacy practices of any third-party sites and does not endorse them.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>8. Contact</h2>
+      <p>If you have any questions about this disclaimer, please contact us at <a href="mailto:hello@borrowcheck.co.uk">hello@borrowcheck.co.uk</a> or via our <a href="contact.html">contact page</a>.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <div class="footer-logo">Borrow<span>Check</span></div>
+      <p>© 2025 BorrowCheck. BorrowCheck is not a lender and does not provide financial advice. We connect users with FCA-authorised mortgage advisers.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navBurger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+</script>
+</body>
+</html>

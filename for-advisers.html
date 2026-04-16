@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Mortgage Advisers — Join the BorrowCheck Network</title>
+  <meta name="description" content="Get pre-qualified mortgage leads matched to your specialism. Join the BorrowCheck adviser network.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #0B2845; background: #fff; }
+    h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; letter-spacing: -0.02em; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,40,69,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; text-decoration: none; }
+    .nav-logo span { color: #00C282; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta { background: #009E6E; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.2s, transform 0.15s; }
+    .nav-cta:hover { background: #007A55; transform: translateY(-1px); }
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; color: #fff; padding: 4px; }
+    .mobile-menu { display: none; background: #0B2845; border-top: 1px solid rgba(255,255,255,0.07); padding: 20px 24px 28px; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mobile-menu .mob-cta { background: #009E6E; color: #fff; text-align: center; padding: 14px; border-radius: 8px; font-weight: 600; margin-top: 16px; border-bottom: none !important; }
+    @media (max-width: 900px) { .nav-links, .nav-cta { display: none; } .nav-burger { display: block; } }
+
+    /* HERO */
+    .hero { background: #0B2845; padding: 140px 24px 96px; position: relative; overflow: hidden; }
+    .hero-glow-1 { position: absolute; width: 600px; height: 600px; top: -100px; right: -100px; background: radial-gradient(circle, rgba(0,158,110,0.2) 0%, transparent 70%); }
+    .hero-grain { position: absolute; inset: 0; pointer-events: none; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,194,130,0.12); border: 1px solid rgba(0,194,130,0.25); color: #00C282; padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(32px, 4.5vw, 52px); color: #fff; margin-bottom: 20px; line-height: 1.15; }
+    .hero p { font-size: 18px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 36px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #009E6E; color: #fff; padding: 16px 32px; border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,158,110,0.35); }
+    .btn-primary:hover { background: #007A55; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,158,110,0.45); }
+    .hero-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .metric-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 14px; padding: 24px; }
+    .metric-num { font-family: 'DM Serif Display', serif; font-size: 34px; color: #00C282; margin-bottom: 6px; }
+    .metric-label { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+    @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; gap: 48px; } .hero-metrics { display: none; } }
+
+    /* SECTIONS */
+    section { padding: 96px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #009E6E; margin-bottom: 14px; }
+    .section-title { font-size: clamp(28px, 4vw, 42px); color: #0B2845; margin-bottom: 20px; line-height: 1.2; }
+    .section-body { font-size: 17px; color: #4A6580; line-height: 1.7; max-width: 640px; }
+
+    /* BENEFITS */
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .benefit-card { background: #F4F7FC; border-radius: 16px; padding: 32px; transition: transform 0.2s, box-shadow 0.2s; }
+    .benefit-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(11,40,69,0.09); }
+    .benefit-icon { font-size: 36px; margin-bottom: 20px; }
+    .benefit-card h3 { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 600; color: #0B2845; margin-bottom: 12px; }
+    .benefit-card p { font-size: 15px; color: #4A6580; line-height: 1.65; }
+    @media (max-width: 900px) { .benefits-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr; } }
+
+    /* HOW IT WORKS FOR ADVISERS */
+    .adviser-steps { background: #0B2845; }
+    .adviser-steps .section-label { color: #00C282; }
+    .adviser-steps .section-title { color: #fff; }
+    .asteps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
+    .astep { text-align: center; }
+    .astep-icon-wrap { width: 60px; height: 60px; background: rgba(0,158,110,0.15); border: 1px solid rgba(0,158,110,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+    .astep-num { font-family: 'DM Serif Display', serif; font-size: 24px; color: #00C282; }
+    .astep h3 { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 10px; }
+    .astep p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    @media (max-width: 900px) { .asteps-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    @media (max-width: 500px) { .asteps-grid { grid-template-columns: 1fr; } }
+
+    /* BOOKING FORM */
+    .booking-section { background: #F4F7FC; }
+    .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+    .booking-points { display: flex; flex-direction: column; gap: 20px; }
+    .bpoint { display: flex; gap: 16px; align-items: flex-start; }
+    .bpoint-icon { width: 40px; height: 40px; background: #009E6E; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .bpoint-icon svg { color: #fff; }
+    .bpoint-text h4 { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #0B2845; margin-bottom: 4px; }
+    .bpoint-text p { font-size: 14px; color: #4A6580; line-height: 1.55; }
+    .booking-form-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 20px; padding: 40px; box-shadow: 0 8px 32px rgba(11,40,69,0.08), 0 2px 8px rgba(11,40,69,0.04); }
+    .booking-form-card h3 { font-family: 'DM Serif Display', serif; font-size: 24px; color: #0B2845; margin-bottom: 8px; }
+    .booking-form-card p { font-size: 15px; color: #4A6580; margin-bottom: 28px; line-height: 1.6; }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; font-size: 14px; font-weight: 600; color: #0B2845; margin-bottom: 8px; }
+    .form-input { width: 100%; background: #F4F7FC; border: 2px solid #E0EBF5; border-radius: 10px; padding: 13px 16px; font-size: 15px; font-family: 'Inter', sans-serif; color: #0B2845; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+    .form-input:focus { border-color: #009E6E; box-shadow: 0 0 0 4px rgba(0,158,110,0.1); background: #fff; }
+    .form-input::placeholder { color: #A0B8CC; }
+    textarea.form-input { resize: vertical; min-height: 100px; }
+    .submit-btn { width: 100%; background: #009E6E; color: #fff; border: none; padding: 16px; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(0,158,110,0.3); }
+    .submit-btn:hover { background: #007A55; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,158,110,0.4); }
+    @media (max-width: 900px) { .booking-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* CRITERIA */
+    .criteria-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 48px; }
+    .crit-item { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid #E0EBF5; border-radius: 12px; padding: 20px 24px; }
+    .crit-item svg { color: #009E6E; flex-shrink: 0; margin-top: 2px; }
+    .crit-item p { font-size: 15px; color: #0B2845; font-weight: 500; }
+    .crit-item span { font-size: 13px; color: #4A6580; }
+    @media (max-width: 700px) { .criteria-grid { grid-template-columns: 1fr; } }
+
+    /* FOOTER */
+    footer { background: #071C30; color: rgba(255,255,255,0.6); padding: 64px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; margin-bottom: 16px; }
+    .footer-logo span { color: #00C282; }
+    .footer-desc { font-size: 14px; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+    .footer-bottom p { font-size: 13px; max-width: 700px; line-height: 1.6; }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.8); }
+    @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } }
+
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: 0.1s; } .fd2 { transition-delay: 0.2s; } .fd3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Borrow<span>Check</span></a>
+    <div class="nav-links">
+      <a href="how-we-select.html">How We Select Advisers</a>
+      <a href="for-advisers.html" class="active">For Advisers</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="form.html" class="nav-cta">Check My Eligibility</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-we-select.html">How We Select Advisers</a>
+    <a href="for-advisers.html">For Advisers</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="form.html" class="mob-cta">Check My Eligibility</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grain">
+    <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:0.035;"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
+  </div>
+  <div class="hero-glow-1"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">For Mortgage Advisers</div>
+      <h1>Get qualified clients matched to your strengths.</h1>
+      <p>Stop chasing unqualified enquiries. BorrowCheck sends you clients whose situation has already been assessed — and who are matched to your specific specialism.</p>
+      <a href="#book-a-call" class="btn-primary">
+        Book a Call to Find Out More
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+      </a>
+      <div style="margin-top:20px;font-size:14px;color:rgba(255,255,255,0.45);">No commitment required · Introductory call · Find out if it's a fit</div>
+    </div>
+    <div>
+      <div class="hero-metrics">
+        <div class="metric-box">
+          <div class="metric-num">Pre-<br>qualified</div>
+          <div class="metric-label">Every lead has been assessed before you receive it</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">Case-<br>matched</div>
+          <div class="metric-label">Matched to your declared areas of specialism</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">Higher<br>intent</div>
+          <div class="metric-label">Clients who understand the process and have opted in</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">No<br>cold leads</div>
+          <div class="metric-label">We don't send bulk, unqualified or cold enquiries</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section>
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
+      <p class="section-label">Why work with BorrowCheck</p>
+      <h2 class="section-title">Better leads. Better conversion. Less wasted time.</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">🎯</div>
+        <h3>Pre-qualified leads only</h3>
+        <p>Every client that reaches you has already filled in a detailed assessment. You know their mortgage type, deposit, employment status, credit profile, and any complexity flags before you make first contact.</p>
+      </div>
+      <div class="benefit-card fade-up fd1">
+        <div class="benefit-icon">🔗</div>
+        <h3>Matched to your specialism</h3>
+        <p>We match clients to advisers based on declared case-type experience. If you specialise in self-employed or adverse credit cases, you'll get clients that match — not random enquiries from unrelated case types.</p>
+      </div>
+      <div class="benefit-card fade-up fd2">
+        <div class="benefit-icon">📈</div>
+        <h3>Higher conversion rates</h3>
+        <p>Because clients are matched to you specifically, and have already been assessed before contacting you, they arrive with higher intent and more realistic expectations — leading to better conversion.</p>
+      </div>
+      <div class="benefit-card fade-up">
+        <div class="benefit-icon">⏱️</div>
+        <h3>Less time on unsuitable cases</h3>
+        <p>The assessment process filters out unsuitable clients before they reach you. You spend more of your time on cases you can actually help with — and less time on initial calls that go nowhere.</p>
+      </div>
+      <div class="benefit-card fade-up fd1">
+        <div class="benefit-icon">🛡️</div>
+        <h3>Clients who understand the process</h3>
+        <p>BorrowCheck educates clients throughout the assessment. By the time they speak to you, they understand how lenders assess them — which means better-informed conversations and faster progress.</p>
+      </div>
+      <div class="benefit-card fade-up fd2">
+        <div class="benefit-icon">🤝</div>
+        <h3>A partnership, not a transaction</h3>
+        <p>We work with a carefully maintained network of advisers. We're not a bulk lead provider. We expect quality outcomes from both sides — and our advisers get ongoing matching based on performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="adviser-steps">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center;max-width:600px;margin:0 auto;">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">Simple, straightforward process</h2>
+    </div>
+    <div class="asteps-grid">
+      <div class="astep fade-up">
+        <div class="astep-icon-wrap"><span class="astep-num">1</span></div>
+        <h3>Introductory call</h3>
+        <p>We have a short call to understand your specialism, lender access, case history, and capacity. No commitment required.</p>
+      </div>
+      <div class="astep fade-up fd1">
+        <div class="astep-icon-wrap"><span class="astep-num">2</span></div>
+        <h3>Vetting &amp; onboarding</h3>
+        <p>We verify your FCA authorisation, review case history, and agree the case types you'll be matched to. Takes 3–5 working days.</p>
+      </div>
+      <div class="astep fade-up fd2">
+        <div class="astep-icon-wrap"><span class="astep-num">3</span></div>
+        <h3>Receive matched leads</h3>
+        <p>We send you client enquiries that match your specialism, along with a pre-assessment summary so you're prepared before first contact.</p>
+      </div>
+      <div class="astep fade-up fd3">
+        <div class="astep-icon-wrap"><span class="astep-num">4</span></div>
+        <h3>Work the case, report outcomes</h3>
+        <p>You work with the client in the normal way. We ask for brief outcome reporting, which feeds into ongoing matching quality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRITERIA -->
+<section>
+  <div class="section-inner">
+    <div class="fade-up" style="max-width:600px;">
+      <p class="section-label">Who we work with</p>
+      <h2 class="section-title">Our network requirements</h2>
+      <p class="section-body">We're selective about who joins the BorrowCheck network. Here's what we require.</p>
+    </div>
+    <div class="criteria-grid">
+      <div class="crit-item fade-up">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div><p>FCA-authorised</p><span>Directly authorised or AR of an FCA-regulated firm</span></div>
+      </div>
+      <div class="crit-item fade-up fd1">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div><p>Qualified (CeMAP or equivalent)</p><span>Appropriate mortgage qualification required</span></div>
+      </div>
+      <div class="crit-item fade-up">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div><p>Whole-of-market or broad panel access</p><span>Access to a wide range of lenders, not a single panel</span></div>
+      </div>
+      <div class="crit-item fade-up fd1">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div><p>Proven case history</p><span>Demonstrable experience in your stated specialisms</span></div>
+      </div>
+      <div class="crit-item fade-up">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div><p>Client-first approach</p><span>No pressure sales, clear communication, client interests first</span></div>
+      </div>
+      <div class="crit-item fade-up fd1">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div><p>Capacity to take on new clients</p><span>Sufficient bandwidth to respond and progress cases promptly</span></div>
+      </div>
+    </div>
+    <div style="margin-top:28px;padding:20px 24px;background:#F0FAF6;border:1px solid #D6F2E8;border-radius:12px;font-size:15px;color:#1A6B52;display:flex;gap:12px;align-items:flex-start;">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      <span>We review adviser performance quarterly. Meeting these criteria gets you onboarded — maintaining our standards keeps you in the network.</span>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section id="book-a-call" class="booking-section">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center;max-width:560px;margin:0 auto 0;">
+      <p class="section-label">Get started</p>
+      <h2 class="section-title">Book an introductory call</h2>
+      <p style="font-size:17px;color:#4A6580;line-height:1.7;">Tell us a bit about your practice and we'll arrange a short call to discuss whether BorrowCheck is a fit.</p>
+    </div>
+    <div class="booking-grid">
+      <div class="booking-points fade-up">
+        <div class="bpoint">
+          <div class="bpoint-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 5.18 5.18l.96-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 20.9 15.9z"/></svg></div>
+          <div class="bpoint-text">
+            <h4>No-pressure introductory call</h4>
+            <p>We'll explain how BorrowCheck works, answer your questions, and assess whether it's a good fit for your practice. No obligation to proceed.</p>
+          </div>
+        </div>
+        <div class="bpoint">
+          <div class="bpoint-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <div class="bpoint-text">
+            <h4>See the pre-assessment format</h4>
+            <p>We'll show you exactly what information you receive when a client is matched to you — so you can assess whether the lead quality meets your expectations.</p>
+          </div>
+        </div>
+        <div class="bpoint">
+          <div class="bpoint-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="bpoint-text">
+            <h4>Understand the matching process</h4>
+            <p>We'll explain how we match clients to advisers — including how your specialism affects which cases you receive, and how volume is managed.</p>
+          </div>
+        </div>
+      </div>
+      <div class="booking-form-card fade-up fd1">
+        <h3>Request a call</h3>
+        <p>Fill in your details and we'll be in touch within one business day to arrange a convenient time.</p>
+        <form onsubmit="handleAdvisersForm(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label class="form-label">First name</label>
+              <input type="text" class="form-input" placeholder="James" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last name</label>
+              <input type="text" class="form-input" placeholder="Wilson" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email address</label>
+            <input type="email" class="form-input" placeholder="james@yourfirm.co.uk" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone number</label>
+            <input type="tel" class="form-input" placeholder="07700 900000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your firm / trading name</label>
+            <input type="text" class="form-input" placeholder="Wilson Mortgage Advice">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Main areas of specialism</label>
+            <textarea class="form-input" placeholder="e.g. First-time buyers, self-employed, adverse credit, buy to let…" rows="3"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Request a Call →</button>
+        </form>
+        <div id="advisersSuccess" style="display:none;text-align:center;padding:32px 0;">
+          <div style="font-size:36px;margin-bottom:16px;">✅</div>
+          <h3 style="font-size:20px;margin-bottom:8px;">Request received</h3>
+          <p style="font-size:15px;color:#4A6580;">We'll be in touch within one business day to arrange a call.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Borrow<span>Check</span></div>
+        <p class="footer-desc">We help you understand what's actually possible before you speak to a broker.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <a href="form.html">Check Eligibility</a>
+        <a href="how-we-select.html">Our Advisers</a>
+        <a href="for-advisers.html">For Advisers</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="contact.html">Get in Touch</a>
+        <a href="mailto:hello@borrowcheck.co.uk">hello@borrowcheck.co.uk</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 BorrowCheck. BorrowCheck is not a lender and does not provide financial advice. We are an introducer service that connects users with FCA-authorised mortgage advisers.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navBurger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  function handleAdvisersForm(e) {
+    e.preventDefault();
+    e.target.style.display = 'none';
+    document.getElementById('advisersSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>

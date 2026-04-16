@@ -1,777 +1,644 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Check Your Options — BorrowCheck</title>
-<meta name="description" content="Find out what you're likely to be approved for in 2 minutes. BorrowCheck assesses your situation before you speak to a broker or lender. No credit checks. No obligation.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check My Eligibility — BorrowCheck</title>
+  <meta name="description" content="Answer a few questions about your mortgage situation and we'll match you with the right adviser for your case.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #F4F7FC; color: #0B2845; min-height: 100vh; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; letter-spacing: -0.02em; }
 
-:root {
-  --navy:        #0D2B45;
-  --navy-mid:    #1B4A6B;
-  --blue:        #1E6FA8;
-  --blue-light:  #EAF3FB;
-  --blue-mid:    #9AC5E5;
-  --green:       #1FAD72;
-  --green-light: #E6F7EF;
-  --green-dark:  #177A51;
-  --sand:        #F7F5F1;
-  --sand-dark:   #EDE9E2;
-  --white:       #FFFFFF;
-  --tp:  #0D2B45;
-  --ts:  #4A6278;
-  --tm:  #8A9BAB;
-  --border:   rgba(13,43,69,0.10);
-  --border-s: rgba(13,43,69,0.18);
-  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 22px; --r-pill: 999px;
-  --sh-sm: 0 1px 4px rgba(13,43,69,0.07);
-  --sh-md: 0 4px 20px rgba(13,43,69,0.09);
-  --sh-lg: 0 16px 48px rgba(13,43,69,0.14);
-  --ease: 0.2s cubic-bezier(0.4,0,0.2,1);
-}
+    /* ── HEADER ── */
+    .form-header { background: rgba(11,40,69,0.97); backdrop-filter: blur(16px); padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .form-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: #fff; text-decoration: none; }
+    .form-logo span { color: #00C282; }
+    .form-header-right { font-size: 13px; color: rgba(255,255,255,0.5); }
+    .form-header-right span { color: rgba(255,255,255,0.8); font-weight: 600; }
+    .back-link { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .back-link:hover { color: #fff; }
 
-html, body { height: 100%; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--white);
-  color: var(--tp);
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
+    /* ── LAYOUT ── */
+    .form-page { min-height: calc(100vh - 64px); display: flex; flex-direction: column; }
+    .form-main { flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 48px 24px 80px; }
+    .form-container { width: 100%; max-width: 680px; }
 
-/* ── PAGE SHELL: 1/3 + 2/3 ── */
-.page {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  min-height: 100vh;
-}
+    /* ── PROGRESS ── */
+    .progress-bar-wrap { margin-bottom: 40px; }
+    .progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .progress-label { font-size: 13px; color: #4A6580; font-weight: 500; }
+    .progress-count { font-size: 13px; color: #009E6E; font-weight: 600; }
+    .progress-track { height: 4px; background: #E0EBF5; border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #009E6E, #00C282); border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
 
-/* ════════════════════════════
-   LEFT PANEL  (1/3)
-════════════════════════════ */
-.panel-l {
-  position: sticky; top: 0; height: 100vh;
-  background: var(--navy);
-  overflow: hidden;
-  display: flex; flex-direction: column;
-}
-.panel-l__bg {
-  position: absolute; inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=75&auto=format&fit=crop&crop=center');
-  background-size: cover; background-position: center top;
-  opacity: 0.22;
-}
-.panel-l__grad {
-  position: absolute; inset: 0;
-  background: linear-gradient(175deg, rgba(13,43,69,0.45) 0%, rgba(13,43,69,0.90) 100%);
-}
-.panel-l__inner {
-  position: relative; z-index: 2;
-  height: 100%;
-  display: flex; flex-direction: column;
-  justify-content: space-between;
-  padding: 32px 28px;
-}
-.p-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; flex-shrink: 0; }
-.p-logo__mark {
-  width: 32px; height: 32px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.22);
-  border-radius: var(--r-sm);
-  display: flex; align-items: center; justify-content: center;
-}
-.p-logo__mark svg { width: 15px; height: 15px; }
-.p-logo__text { font-size: 14px; font-weight: 500; color: #fff; }
-.p-logo__text span { color: var(--blue-mid); }
-.p-mid { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 32px 0; }
-.p-eyebrow {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase;
-  color: var(--blue-mid); margin-bottom: 14px;
-  display: flex; align-items: center; gap: 8px;
-}
-.p-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--blue-mid); }
-.p-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(20px, 2vw, 28px);
-  line-height: 1.2; letter-spacing: -0.02em;
-  color: #fff; margin-bottom: 18px;
-}
-.p-title em { font-style: italic; color: var(--blue-mid); }
-.p-sub { font-size: 13px; line-height: 1.75; font-weight: 300; color: rgba(255,255,255,0.58); margin-bottom: 28px; }
-.p-bullets { display: flex; flex-direction: column; gap: 11px; }
-.p-bullet { display: flex; align-items: flex-start; gap: 10px; }
-.p-bullet__dot {
-  width: 18px; height: 18px; flex-shrink: 0;
-  background: rgba(31,173,114,0.18); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; margin-top: 1px;
-}
-.p-bullet__dot svg { width: 9px; height: 9px; }
-.p-bullet__text { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.5; }
-.p-bullet__text strong { color: #fff; font-weight: 500; }
-.p-bottom {}
-.p-quote { border-left: 2px solid rgba(255,255,255,0.15); padding-left: 14px; margin-bottom: 20px; }
-.p-quote__text { font-family: 'DM Serif Display', serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 6px; }
-.p-quote__attr { font-size: 11px; color: rgba(255,255,255,0.35); }
-.p-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.p-pill {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: var(--r-pill); padding: 4px 10px;
-  font-size: 11px; color: rgba(255,255,255,0.55);
-}
-.p-pill svg { width: 9px; height: 9px; color: var(--green); flex-shrink: 0; }
+    /* ── STEP ── */
+    .step { display: none; animation: stepIn 0.3s ease; }
+    .step.active { display: block; }
+    @keyframes stepIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
 
-/* ════════════════════════════
-   RIGHT PANEL  (2/3)
-════════════════════════════ */
-.panel-r {
-  display: flex; flex-direction: column;
-  background: var(--white);
-}
+    .step-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #009E6E; margin-bottom: 10px; }
+    .step-title { font-size: clamp(22px, 4vw, 30px); color: #0B2845; margin-bottom: 8px; line-height: 1.2; }
+    .step-subtitle { font-size: 16px; color: #4A6580; margin-bottom: 36px; line-height: 1.6; }
 
-/* Mobile header — hidden on desktop */
-.mobile-bar {
-  display: none;
-  align-items: center; justify-content: space-between;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--border);
-}
-.mobile-bar__logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-.mobile-bar__mark { width: 28px; height: 28px; background: var(--navy); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
-.mobile-bar__mark svg { width: 13px; height: 13px; }
-.mobile-bar__text { font-size: 14px; font-weight: 500; color: var(--tp); }
-.mobile-bar__text span { color: var(--blue); }
-.mobile-back { font-size: 13px; color: var(--ts); text-decoration: none; display: flex; align-items: center; gap: 4px; }
-.mobile-back:hover { color: var(--tp); }
+    /* ── OPTION CARDS ── */
+    .option-grid { display: grid; gap: 12px; margin-bottom: 32px; }
+    .option-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .option-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .option-card { background: #fff; border: 2px solid #E0EBF5; border-radius: 12px; padding: 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s; display: flex; align-items: center; gap: 14px; }
+    .option-card:hover { border-color: #009E6E; box-shadow: 0 4px 16px rgba(0,158,110,0.12); transform: translateY(-1px); }
+    .option-card.selected { border-color: #009E6E; background: #F0FAF6; box-shadow: 0 4px 16px rgba(0,158,110,0.15); }
+    .option-card.selected .option-dot { background: #009E6E; border-color: #009E6E; }
+    .option-card.selected .option-dot::after { opacity: 1; }
+    .option-dot { width: 20px; height: 20px; border: 2px solid #BDD0E5; border-radius: 50%; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
+    .option-dot::after { content: ''; width: 8px; height: 8px; background: #fff; border-radius: 50%; opacity: 0; transition: opacity 0.2s; }
+    .option-emoji { font-size: 22px; flex-shrink: 0; }
+    .option-label h4 { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #0B2845; margin-bottom: 2px; }
+    .option-label p { font-size: 13px; color: #6B8BA8; line-height: 1.4; }
 
-/* The form itself — centred, generous breathing room */
-.form-area {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 56px 72px;
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
-}
+    /* ── CHECKBOX CARDS ── */
+    .checkbox-card { background: #fff; border: 2px solid #E0EBF5; border-radius: 12px; padding: 16px 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s; display: flex; align-items: center; gap: 14px; }
+    .checkbox-card:hover { border-color: #009E6E; }
+    .checkbox-card.checked { border-color: #009E6E; background: #F0FAF6; }
+    .checkbox-box { width: 20px; height: 20px; border: 2px solid #BDD0E5; border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background 0.2s, border-color 0.2s; }
+    .checkbox-card.checked .checkbox-box { background: #009E6E; border-color: #009E6E; }
+    .checkbox-tick { color: #fff; opacity: 0; transition: opacity 0.2s; }
+    .checkbox-card.checked .checkbox-tick { opacity: 1; }
+    .checkbox-label { font-size: 15px; font-weight: 500; color: #0B2845; }
 
-/* ── PROGRESS ── */
-.progress-wrap { margin-bottom: 48px; }
-.progress-track { height: 2px; background: var(--sand-dark); border-radius: 2px; overflow: hidden; margin-bottom: 10px; }
-.progress-fill { height: 100%; background: var(--blue); border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-.progress-meta { display: flex; justify-content: space-between; align-items: center; }
-.progress-label { font-size: 11px; color: var(--tm); }
-.step-dots { display: flex; gap: 5px; }
-.step-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sand-dark); transition: all 0.25s; }
-.step-dot.active { background: var(--blue); width: 18px; border-radius: 3px; }
-.step-dot.done { background: var(--green); }
+    /* ── INPUTS ── */
+    .input-group { margin-bottom: 24px; }
+    .input-label { font-size: 14px; font-weight: 600; color: #0B2845; margin-bottom: 8px; display: block; }
+    .input-sublabel { font-size: 13px; color: #6B8BA8; margin-bottom: 10px; display: block; }
+    .form-input { width: 100%; background: #fff; border: 2px solid #E0EBF5; border-radius: 10px; padding: 14px 16px; font-size: 16px; font-family: 'Inter', sans-serif; color: #0B2845; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
+    .form-input:focus { border-color: #009E6E; box-shadow: 0 0 0 4px rgba(0,158,110,0.1); }
+    .form-input::placeholder { color: #A0B8CC; }
+    .input-prefix { position: relative; }
+    .input-prefix-symbol { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #4A6580; pointer-events: none; }
+    .input-prefix .form-input { padding-left: 30px; }
+    .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-/* ── STEPS ── */
-.form-step { display: none; }
-.form-step.active { display: block; animation: stepIn 0.28s cubic-bezier(0.4,0,0.2,1); }
-@keyframes stepIn { from { opacity:0; transform:translateX(14px); } to { opacity:1; transform:translateX(0); } }
+    /* ── SLIDER ── */
+    .slider-wrap { margin-bottom: 8px; }
+    .slider-display { font-size: 28px; font-weight: 700; color: #009E6E; margin-bottom: 12px; font-family: 'DM Serif Display', serif; }
+    input[type="range"] { width: 100%; height: 6px; -webkit-appearance: none; appearance: none; background: #E0EBF5; border-radius: 3px; outline: none; cursor: pointer; }
+    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #009E6E; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,158,110,0.4); cursor: pointer; transition: transform 0.15s; }
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+    .slider-labels { display: flex; justify-content: space-between; font-size: 12px; color: #A0B8CC; margin-top: 8px; }
+    .ltv-badge { display: inline-flex; align-items: center; gap: 6px; background: #EBF0F7; padding: 6px 14px; border-radius: 100px; font-size: 14px; color: #0B2845; font-weight: 600; margin-top: 12px; }
 
-.step-q {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(24px, 2.8vw, 32px);
-  line-height: 1.2; letter-spacing: -0.02em;
-  color: var(--tp); margin-bottom: 8px;
-}
-.step-hint { font-size: 14px; color: var(--ts); line-height: 1.65; font-weight: 300; margin-bottom: 32px; }
+    /* ── INFO BOX ── */
+    .info-box { background: #F0FAF6; border: 1px solid #D6F2E8; border-radius: 10px; padding: 16px 20px; font-size: 14px; color: #1A6B52; line-height: 1.6; margin-bottom: 24px; display: flex; gap: 12px; }
+    .info-box svg { flex-shrink: 0; color: #009E6E; margin-top: 2px; }
 
-/* ── TILE GRID (large icon tiles) ── */
-.tile-grid { display: grid; gap: 10px; margin-bottom: 8px; }
-.tile-grid--2 { grid-template-columns: 1fr 1fr; }
+    /* ── NAVIGATION ── */
+    .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+    .btn-back { background: none; border: 2px solid #E0EBF5; color: #4A6580; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; }
+    .btn-back:hover { border-color: #BDD0E5; color: #0B2845; transform: translateY(-1px); }
+    .btn-next { background: #009E6E; color: #fff; border: none; padding: 14px 36px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 16px rgba(0,158,110,0.3); }
+    .btn-next:hover { background: #007A55; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,158,110,0.4); }
+    .btn-next:active { transform: translateY(0); }
+    .btn-next:disabled { background: #BDD0E5; box-shadow: none; cursor: not-allowed; transform: none; }
 
-.tile {
-  display: flex; align-items: center; gap: 16px;
-  padding: 18px 20px;
-  border: 1.5px solid var(--border-s); border-radius: var(--r-lg);
-  background: var(--white); cursor: pointer; text-align: left;
-  transition: all var(--ease); user-select: none;
-}
-.tile:hover { border-color: var(--blue); background: var(--blue-light); }
-.tile.active { border-color: var(--blue); background: var(--blue-light); box-shadow: 0 0 0 3px rgba(30,111,168,0.10); }
-.tile__icon {
-  width: 46px; height: 46px; flex-shrink: 0;
-  background: var(--sand); border-radius: var(--r-md);
-  display: flex; align-items: center; justify-content: center;
-  transition: background var(--ease);
-}
-.tile.active .tile__icon { background: rgba(30,111,168,0.12); }
-.tile__icon svg { width: 22px; height: 22px; color: var(--blue); }
-.tile__label { font-size: 15px; font-weight: 500; color: var(--tp); line-height: 1.2; }
-.tile.active .tile__label { color: var(--blue); }
-.tile__desc { font-size: 12px; color: var(--tm); margin-top: 2px; line-height: 1.4; }
-.tile--full { grid-column: 1 / -1; }
+    /* ── CONSENT ── */
+    .consent-check { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 24px; cursor: pointer; }
+    .consent-check input { width: 18px; height: 18px; margin-top: 2px; accent-color: #009E6E; flex-shrink: 0; cursor: pointer; }
+    .consent-check span { font-size: 14px; color: #4A6580; line-height: 1.6; }
+    .consent-check a { color: #009E6E; text-decoration: none; }
+    .consent-check a:hover { text-decoration: underline; }
 
-/* ── SELECT BUTTONS (text-only, smaller) ── */
-.sel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 8px; }
-.sel-btn {
-  padding: 15px 18px;
-  border: 1.5px solid var(--border-s); border-radius: var(--r-lg);
-  background: var(--white); font-size: 14px; font-family: 'DM Sans', sans-serif;
-  color: var(--tp); cursor: pointer; text-align: left;
-  transition: all var(--ease); line-height: 1.35;
-}
-.sel-btn:hover { border-color: var(--blue); background: var(--blue-light); }
-.sel-btn.active { border-color: var(--blue); background: var(--blue-light); color: var(--blue); font-weight: 500; box-shadow: 0 0 0 3px rgba(30,111,168,0.10); }
-.sel-sub { font-size: 11px; color: var(--tm); display: block; margin-top: 3px; font-weight: 400; }
-.sel-btn.active .sel-sub { color: rgba(30,111,168,0.65); }
-.sel-btn--full { grid-column: 1 / -1; }
+    /* ── SUCCESS ── */
+    .success-state { text-align: center; padding: 48px 24px; }
+    .success-icon { width: 80px; height: 80px; background: #F0FAF6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; }
+    .success-icon svg { color: #009E6E; }
+    .success-state h2 { font-size: 32px; color: #0B2845; margin-bottom: 16px; }
+    .success-state p { font-size: 17px; color: #4A6580; line-height: 1.7; max-width: 480px; margin: 0 auto 32px; }
+    .success-steps { display: flex; flex-direction: column; gap: 12px; max-width: 420px; margin: 0 auto 40px; text-align: left; }
+    .ss-item { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: #0B2845; }
+    .ss-bullet { width: 24px; height: 24px; background: #009E6E; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
-/* ── CHECKBOX TILES ── */
-.cb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 8px; }
-.cb-tile {
-  display: flex; align-items: center; gap: 11px;
-  padding: 13px 15px; border: 1.5px solid var(--border); border-radius: var(--r-md);
-  background: var(--white); cursor: pointer; transition: all var(--ease); user-select: none;
-}
-.cb-tile:hover { border-color: var(--border-s); }
-.cb-tile.checked { border-color: var(--blue); background: var(--blue-light); }
-.cb-tile input { display: none; }
-.cb-box {
-  width: 18px; height: 18px; flex-shrink: 0; border-radius: 5px;
-  border: 1.5px solid var(--border-s); background: var(--white);
-  display: flex; align-items: center; justify-content: center; transition: all var(--ease);
-}
-.cb-tile.checked .cb-box { background: var(--blue); border-color: var(--blue); }
-.cb-box svg { width: 10px; height: 10px; display: none; }
-.cb-tile.checked .cb-box svg { display: block; }
-.cb-tile span { font-size: 13px; color: var(--tp); line-height: 1.3; }
-.cb-tile.checked span { color: var(--blue); }
-.cb-tile--full { grid-column: 1 / -1; }
-
-/* ── TEXT FIELDS ── */
-.fields-block { display: flex; flex-direction: column; gap: 14px; margin-bottom: 8px; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.field__label { font-size: 12px; font-weight: 500; color: var(--ts); display: block; margin-bottom: 7px; }
-.field__input {
-  width: 100%; padding: 14px 16px;
-  border: 1.5px solid var(--border-s); border-radius: var(--r-md);
-  background: var(--white); color: var(--tp);
-  font-size: 15px; font-family: 'DM Sans', sans-serif;
-  transition: border-color var(--ease), box-shadow var(--ease);
-}
-.field__input::placeholder { color: var(--tm); }
-.field__input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(30,111,168,0.10); }
-.field__input.err { border-color: #C94F4F; box-shadow: 0 0 0 3px rgba(201,79,79,0.10); }
-
-/* ── NAV ── */
-.step-nav { display: flex; gap: 10px; margin-top: 28px; align-items: center; }
-.btn-next {
-  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
-  background: var(--navy); color: #fff;
-  padding: 16px 24px; border-radius: var(--r-pill);
-  font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif;
-  border: none; cursor: pointer; box-shadow: var(--sh-sm);
-  transition: all var(--ease);
-}
-.btn-next:hover { background: var(--navy-mid); transform: translateY(-1px); box-shadow: var(--sh-md); }
-.btn-next:active { transform: translateY(0); }
-.btn-back {
-  display: flex; align-items: center; justify-content: center;
-  background: transparent; color: var(--ts);
-  padding: 15px 18px; border-radius: var(--r-pill);
-  font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif;
-  border: 1.5px solid var(--border-s); cursor: pointer; flex-shrink: 0;
-  transition: all var(--ease);
-}
-.btn-back:hover { background: var(--sand); color: var(--tp); }
-.skip-link {
-  font-size: 13px; color: var(--tm); cursor: pointer;
-  background: none; border: none; font-family: 'DM Sans', sans-serif;
-  text-decoration: underline; padding: 0; display: block; margin-top: 12px;
-}
-.skip-link:hover { color: var(--ts); }
-.step-disclaimer { font-size: 11px; color: var(--tm); line-height: 1.65; margin-top: 14px; text-align: center; }
-.step-disclaimer a { color: var(--tm); text-decoration: underline; }
-.step-disclaimer a:hover { color: var(--blue); }
-
-/* ── SUCCESS ── */
-.success-screen { display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; flex: 1; padding: 40px 0; animation: fadeUp 0.4s ease; }
-.success-screen.show { display: flex; }
-@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-.success-icon { width: 68px; height: 68px; background: var(--green-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; animation: popIn 0.45s cubic-bezier(0.34,1.56,0.64,1) 0.1s both; }
-@keyframes popIn { from { transform:scale(0); } to { transform:scale(1); } }
-.success-icon svg { width: 32px; height: 32px; color: var(--green); }
-.success-title { font-family: 'DM Serif Display', serif; font-size: 30px; letter-spacing: -0.02em; margin-bottom: 12px; }
-.success-sub { font-size: 16px; color: var(--ts); line-height: 1.8; font-weight: 300; max-width: 400px; margin-bottom: 32px; }
-.success-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 28px; }
-.success-chip { background: var(--green-light); color: var(--green-dark); border-radius: var(--r-pill); padding: 7px 16px; font-size: 12px; font-weight: 500; }
-.success-home { font-size: 13px; color: var(--tm); }
-.success-home a { color: var(--blue); text-decoration: none; }
-.success-home a:hover { text-decoration: underline; }
-
-/* ── FOOTER ── */
-.form-footer { border-top: 1px solid var(--border); padding: 18px 72px; max-width: 700px; width: 100%; margin: 0 auto; }
-.form-footer__links { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
-.form-footer__link { font-size: 12px; color: var(--tm); text-decoration: none; transition: color var(--ease); }
-.form-footer__link:hover { color: var(--blue); }
-.form-footer__disclaimer { font-size: 11px; color: var(--tm); line-height: 1.7; }
-
-/* ── POLICY SHEET ── */
-.policy-overlay { display: none; position: fixed; inset: 0; z-index: 500; background: rgba(10,24,36,0.5); backdrop-filter: blur(4px); align-items: flex-end; justify-content: center; }
-.policy-overlay.open { display: flex; }
-.policy-sheet { background: var(--white); width: 100%; max-width: 680px; max-height: 86vh; border-radius: 20px 20px 0 0; overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--sh-lg); animation: sheetUp 0.28s cubic-bezier(0.4,0,0.2,1); }
-@keyframes sheetUp { from { transform:translateY(32px); opacity:0; } to { transform:translateY(0); opacity:1; } }
-.policy-sheet__hd { padding: 22px 26px 18px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-.policy-sheet__title { font-family: 'DM Serif Display', serif; font-size: 19px; }
-.policy-sheet__close { width: 30px; height: 30px; border-radius: 50%; background: var(--sand); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--ts); transition: background var(--ease); }
-.policy-sheet__close:hover { background: var(--sand-dark); }
-.policy-sheet__body { overflow-y: auto; padding: 24px 26px; flex: 1; }
-.policy-sheet__body h3 { font-size: 14px; font-weight: 500; margin: 20px 0 8px; }
-.policy-sheet__body h3:first-child { margin-top: 0; }
-.policy-sheet__body p { font-size: 13px; color: var(--ts); line-height: 1.75; margin-bottom: 10px; }
-.policy-sheet__body ul { font-size: 13px; color: var(--ts); line-height: 1.75; padding-left: 18px; margin-bottom: 10px; }
-.policy-sheet__body li { margin-bottom: 4px; }
-.policy-sheet__body .p-date { font-size: 11px; color: var(--tm); margin-bottom: 20px; }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 860px) {
-  .page { grid-template-columns: 1fr; }
-  .panel-l { display: none; }
-  .mobile-bar { display: flex; }
-  .form-area { padding: 32px 28px; justify-content: flex-start; max-width: 100%; }
-  .form-footer { padding: 16px 28px; max-width: 100%; }
-  .progress-wrap { margin-bottom: 32px; }
-}
-@media (max-width: 520px) {
-  .form-area { padding: 24px 20px; }
-  .form-footer { padding: 14px 20px; }
-  .tile-grid--2 { grid-template-columns: 1fr; }
-  .sel-grid { grid-template-columns: 1fr; }
-  .cb-grid { grid-template-columns: 1fr; }
-  .field-row { grid-template-columns: 1fr; }
-  .step-q { font-size: 22px; }
-  .tile { padding: 14px 16px; }
-}
-</style>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .option-grid.cols-2 { grid-template-columns: 1fr; }
+      .option-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+      .input-row { grid-template-columns: 1fr; }
+      .step-nav { flex-direction: column-reverse; gap: 12px; }
+      .btn-next, .btn-back { width: 100%; justify-content: center; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="page">
+<header class="form-header">
+  <a href="index.html" class="form-logo">Borrow<span>Check</span></a>
+  <div class="form-header-right"><span id="headerStep">Step 1</span> of 8</div>
+  <a href="index.html" class="back-link">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to home
+  </a>
+</header>
 
-  <!-- ══ LEFT PANEL (1/3) ══ -->
-  <aside class="panel-l">
-    <div class="panel-l__bg"></div>
-    <div class="panel-l__grad"></div>
-    <div class="panel-l__inner">
+<div class="form-page">
+  <main class="form-main">
+    <div class="form-container">
 
-      <a href="index.html" class="p-logo">
-        <div class="p-logo__mark">
-          <svg viewBox="0 0 18 18" fill="none"><path d="M3 14L9 4L15 14" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10.5H12" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </div>
-        <span class="p-logo__text"><span>Borrow</span>Check</span>
-      </a>
-
-      <div class="p-mid">
-        <p class="p-eyebrow">Free pre-qualification</p>
-        <h2 class="p-title">Know what you're likely to be approved for — <em>before</em> you apply</h2>
-        <p class="p-sub">Takes 2 minutes. We review your situation properly, not just pass your details on.</p>
-        <div class="p-bullets">
-          <div class="p-bullet">
-            <div class="p-bullet__dot"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#1FAD72" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <p class="p-bullet__text"><strong>No credit check</strong> — won't affect your score</p>
-          </div>
-          <div class="p-bullet">
-            <div class="p-bullet__dot"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#1FAD72" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <p class="p-bullet__text">We assess your situation — <strong>not just your numbers</strong></p>
-          </div>
-          <div class="p-bullet">
-            <div class="p-bullet__dot"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#1FAD72" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <p class="p-bullet__text"><strong>UK team calls</strong> within one working day</p>
-          </div>
-          <div class="p-bullet">
-            <div class="p-bullet__dot"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="#1FAD72" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <p class="p-bullet__text">We point you to the <strong>right broker for your situation</strong></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-bottom">
-        <div class="p-quote">
-          <p class="p-quote__text">"We had no idea what we could afford. This gave us the confidence to actually start looking."</p>
-          <p class="p-quote__attr">— Sarah &amp; Tom, first-time buyers, Manchester</p>
-        </div>
-        <div class="p-pills">
-          <span class="p-pill"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>FCA-aware</span>
-          <span class="p-pill"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>UK-based</span>
-          <span class="p-pill"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5L3.5 6.5L7.5 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>Confidential</span>
-        </div>
-      </div>
-
-    </div>
-  </aside>
-
-  <!-- ══ RIGHT PANEL (2/3) ══ -->
-  <main class="panel-r">
-
-    <!-- Mobile header -->
-    <div class="mobile-bar">
-      <a href="index.html" class="mobile-bar__logo">
-        <div class="mobile-bar__mark"><svg viewBox="0 0 18 18" fill="none"><path d="M3 14L9 4L15 14" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10.5H12" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-        <span class="mobile-bar__text"><span>Borrow</span>Check</span>
-      </a>
-      <a href="index.html" class="mobile-back"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</a>
-    </div>
-
-    <!-- FORM -->
-    <div class="form-area" id="form-area">
-
-      <div class="progress-wrap" id="progress-wrap">
-        <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:14.2%"></div></div>
+      <!-- PROGRESS BAR -->
+      <div class="progress-bar-wrap" id="progressWrap">
         <div class="progress-meta">
-          <span class="progress-label" id="progress-label">Step 1 of 7</span>
-          <div class="step-dots" id="step-dots"></div>
+          <span class="progress-label" id="progressLabel">Mortgage type</span>
+          <span class="progress-count" id="progressCount">1 of 8</span>
         </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:12.5%"></div></div>
       </div>
 
-      <!-- STEP 1: Intent -->
-      <div class="form-step active" id="step1">
-        <h1 class="step-q">What are you looking to do?</h1>
-        <p class="step-hint">This helps us understand your situation before we get in touch.</p>
-        <div class="tile-grid tile-grid--2" id="grp-intent">
-          <div class="tile" onclick="selectTile(this,'grp-intent')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><path d="M11 3L3 10h2v9h5v-5h2v5h5V10h2L11 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
-            <div><div class="tile__label">First-time buyer</div><div class="tile__desc">Getting on the ladder</div></div>
+      <!-- STEP 1: Mortgage Type -->
+      <div class="step active" id="step-1">
+        <p class="step-eyebrow">Step 1</p>
+        <h2 class="step-title">What are you looking to do?</h2>
+        <p class="step-subtitle">We assess your situation first, so you avoid going down the wrong path.</p>
+        <div class="option-grid" id="mortgageType">
+          <div class="option-card" data-value="ftb" onclick="selectOption('mortgageType', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🏠</div>
+            <div class="option-label"><h4>First-time buyer</h4><p>Buying my first property</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-intent')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><path d="M4 10l7-7 7 7v9a1 1 0 01-1 1H5a1 1 0 01-1-1v-9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 19v-7h6v7" stroke="currentColor" stroke-width="1.4"/></svg></div>
-            <div><div class="tile__label">Moving home</div><div class="tile__desc">Upsizing, downsizing or relocating</div></div>
+          <div class="option-card" data-value="moving" onclick="selectOption('mortgageType', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">📦</div>
+            <div class="option-label"><h4>Moving home</h4><p>Buying a new home and selling current</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-intent')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><path d="M4 11a7 7 0 107 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M4 11V7M4 11H8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-            <div><div class="tile__label">Remortgage</div><div class="tile__desc">Switching or releasing equity</div></div>
+          <div class="option-card" data-value="remortgage" onclick="selectOption('mortgageType', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🔄</div>
+            <div class="option-label"><h4>Remortgage</h4><p>Switching to a new mortgage deal</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-intent')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><rect x="3" y="10" width="16" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 10V8a4 4 0 018 0v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-            <div><div class="tile__label">Buy-to-let</div><div class="tile__desc">Investment or rental property</div></div>
+          <div class="option-card" data-value="btl" onclick="selectOption('mortgageType', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🏢</div>
+            <div class="option-label"><h4>Buy to let</h4><p>Purchasing an investment property</p></div>
           </div>
-          <div class="tile tile--full" onclick="selectTile(this,'grp-intent')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M11 7v4l2.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><div class="tile__label">Just exploring</div><div class="tile__desc">Not committed yet — want to understand my options</div></div>
+          <div class="option-card" data-value="other" onclick="selectOption('mortgageType', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">💬</div>
+            <div class="option-label"><h4>Something else</h4><p>Let's discuss your situation</p></div>
           </div>
         </div>
         <div class="step-nav">
-          <button class="btn-next" onclick="nextStep()">Continue <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <span></span>
+          <button class="btn-next" onclick="nextStep()" id="next-1" disabled>
+            Continue
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+          </button>
         </div>
       </div>
 
-      <!-- STEP 2: Deposit -->
-      <div class="form-step" id="step2">
-        <h1 class="step-q">How much deposit do you have?</h1>
-        <p class="step-hint">Include gifted funds. A rough figure is fine at this stage.</p>
-        <div class="sel-grid" id="grp-deposit">
-          <button class="sel-btn" onclick="selectBtn(this,'grp-deposit')">Under £10,000<span class="sel-sub">Less than 5% on most properties</span></button>
-          <button class="sel-btn" onclick="selectBtn(this,'grp-deposit')">£10,000 – £25,000<span class="sel-sub">Around 5–10% on many properties</span></button>
-          <button class="sel-btn" onclick="selectBtn(this,'grp-deposit')">£25,000 – £50,000<span class="sel-sub">Solid position for most lenders</span></button>
-          <button class="sel-btn" onclick="selectBtn(this,'grp-deposit')">£50,000 – £100,000<span class="sel-sub">Strong deposit range</span></button>
-          <button class="sel-btn sel-btn--full" onclick="selectBtn(this,'grp-deposit')">£100,000+<span class="sel-sub">Very strong position</span></button>
+      <!-- STEP 2: Property Value -->
+      <div class="step" id="step-2">
+        <p class="step-eyebrow">Step 2</p>
+        <h2 class="step-title">Tell us about the property</h2>
+        <p class="step-subtitle">Approximate figures are fine — we're not running any credit checks at this stage.</p>
+        <div class="input-group">
+          <label class="input-label">Estimated property value</label>
+          <div class="slider-display" id="propValDisplay">£250,000</div>
+          <div class="slider-wrap">
+            <input type="range" id="propValSlider" min="50000" max="2000000" step="5000" value="250000" oninput="updatePropertyValue()">
+            <div class="slider-labels"><span>£50k</span><span>£2m+</span></div>
+          </div>
+          <div style="margin-top:16px;">
+            <label class="input-sublabel">Or type an amount:</label>
+            <div class="input-prefix">
+              <span class="input-prefix-symbol">£</span>
+              <input type="number" class="form-input" id="propValInput" placeholder="250000" oninput="updatePropertySlider()" style="padding-left:28px;">
+            </div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Your deposit amount</label>
+          <div class="slider-display" id="depositDisplay">£25,000</div>
+          <div class="slider-wrap">
+            <input type="range" id="depositSlider" min="5000" max="500000" step="1000" value="25000" oninput="updateDeposit()">
+            <div class="slider-labels"><span>£5k</span><span>£500k+</span></div>
+          </div>
+          <div style="margin-top:16px;">
+            <label class="input-sublabel">Or type an amount:</label>
+            <div class="input-prefix">
+              <span class="input-prefix-symbol">£</span>
+              <input type="number" class="form-input" id="depositInput" placeholder="25000" oninput="updateDepositSlider()" style="padding-left:28px;">
+            </div>
+          </div>
+          <div id="ltvBadge" class="ltv-badge" style="margin-top:16px;">
+            LTV: <span id="ltvValue">90%</span>
+          </div>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="btn-next" onclick="nextStep()">Continue <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()">
+            Continue
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+          </button>
         </div>
       </div>
 
-      <!-- STEP 3: Property value -->
-      <div class="form-step" id="step3">
-        <h1 class="step-q">What's your estimated property value?</h1>
-        <p class="step-hint">A rough figure is fine — we're not holding you to this.</p>
-        <div class="sel-grid" id="grp-propval">
-          <button class="sel-btn" onclick="selectBtn(this,'grp-propval')">Under £150,000<span class="sel-sub">Common outside London &amp; the South East</span></button>
-          <button class="sel-btn" onclick="selectBtn(this,'grp-propval')">£150,000 – £250,000<span class="sel-sub">Around the UK average</span></button>
-          <button class="sel-btn" onclick="selectBtn(this,'grp-propval')">£250,000 – £400,000<span class="sel-sub">Above average — SE &amp; commuter belt</span></button>
-          <button class="sel-btn" onclick="selectBtn(this,'grp-propval')">£400,000 – £600,000<span class="sel-sub">Higher value property</span></button>
-          <button class="sel-btn sel-btn--full" onclick="selectBtn(this,'grp-propval')">£600,000+<span class="sel-sub">Premium or London market</span></button>
+      <!-- STEP 3: Timeline -->
+      <div class="step" id="step-3">
+        <p class="step-eyebrow">Step 3</p>
+        <h2 class="step-title">What's your timeline?</h2>
+        <p class="step-subtitle">This helps us match you with an adviser who can respond at the right pace for you.</p>
+        <div class="option-grid" id="timeline">
+          <div class="option-card" data-value="asap" onclick="selectOption('timeline', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">⚡</div>
+            <div class="option-label"><h4>As soon as possible</h4><p>Within the next month</p></div>
+          </div>
+          <div class="option-card" data-value="1to3" onclick="selectOption('timeline', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">📅</div>
+            <div class="option-label"><h4>1–3 months</h4><p>I'm actively looking</p></div>
+          </div>
+          <div class="option-card" data-value="3to6" onclick="selectOption('timeline', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🗓️</div>
+            <div class="option-label"><h4>3–6 months</h4><p>Planning ahead</p></div>
+          </div>
+          <div class="option-card" data-value="exploring" onclick="selectOption('timeline', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🔍</div>
+            <div class="option-label"><h4>Just exploring</h4><p>Not in a rush — doing my research</p></div>
+          </div>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="btn-next" onclick="nextStep()">Continue <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()" id="next-3" disabled>
+            Continue
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+          </button>
         </div>
       </div>
 
       <!-- STEP 4: Employment -->
-      <div class="form-step" id="step4">
-        <h1 class="step-q">What's your employment situation?</h1>
-        <p class="step-hint">Lenders assess income differently depending on how you're employed.</p>
-        <div class="tile-grid tile-grid--2" id="grp-employment">
-          <div class="tile" onclick="selectTile(this,'grp-employment')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><rect x="4" y="7" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M8 7V6a3 3 0 016 0v1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-            <div><div class="tile__label">Employed</div><div class="tile__desc">Full-time or part-time PAYE</div></div>
+      <div class="step" id="step-4">
+        <p class="step-eyebrow">Step 4</p>
+        <h2 class="step-title">What's your employment status?</h2>
+        <p class="step-subtitle">This affects how lenders assess your income — and which advisers are best suited to your case.</p>
+        <div class="option-grid cols-2" id="employment">
+          <div class="option-card" data-value="employed" onclick="selectOption('employment', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">💼</div>
+            <div class="option-label"><h4>Employed (PAYE)</h4><p>Paid a salary by an employer</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-employment')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 19c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-            <div><div class="tile__label">Self-employed</div><div class="tile__desc">Sole trader or partnership</div></div>
+          <div class="option-card" data-value="selfemployed" onclick="selectOption('employment', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🧾</div>
+            <div class="option-label"><h4>Self-employed</h4><p>Sole trader or partnership</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-employment')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><path d="M4 6h14M4 11h14M4 16h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-            <div><div class="tile__label">Director / Ltd Co</div><div class="tile__desc">Company director or owner</div></div>
+          <div class="option-card" data-value="director" onclick="selectOption('employment', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🏛️</div>
+            <div class="option-label"><h4>Company director</h4><p>Director of a limited company</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-employment')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><path d="M7 8h8M7 12h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><rect x="3" y="4" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/></svg></div>
-            <div><div class="tile__label">Contractor</div><div class="tile__desc">Day rate or fixed-term contract</div></div>
+          <div class="option-card" data-value="contractor" onclick="selectOption('employment', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">📝</div>
+            <div class="option-label"><h4>Contractor</h4><p>Day rate or fixed-term contracts</p></div>
+          </div>
+          <div class="option-card" data-value="retired" onclick="selectOption('employment', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🌅</div>
+            <div class="option-label"><h4>Retired</h4><p>Pension or investment income</p></div>
+          </div>
+          <div class="option-card" data-value="other" onclick="selectOption('employment', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">💬</div>
+            <div class="option-label"><h4>Other</h4><p>Multiple incomes or other situation</p></div>
+          </div>
+        </div>
+        <div class="input-group" style="margin-top:8px;">
+          <label class="input-label">Annual income (gross, approximate)</label>
+          <span class="input-sublabel">Your total income before tax. Estimates are fine.</span>
+          <div class="input-prefix">
+            <span class="input-prefix-symbol">£</span>
+            <input type="number" class="form-input" id="income" placeholder="50000" style="padding-left:28px;">
           </div>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="btn-next" onclick="nextStep()">Continue <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()" id="next-4" disabled>
+            Continue
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+          </button>
         </div>
       </div>
 
-      <!-- STEP 5: Credit -->
-      <div class="form-step" id="step5">
-        <h1 class="step-q">How would you describe your credit history?</h1>
-        <p class="step-hint">Be honest — it helps us find lenders who are likely to say yes. We don't run a check ourselves.</p>
-        <div class="tile-grid tile-grid--2" id="grp-credit">
-          <div class="tile" onclick="selectTile(this,'grp-credit')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><path d="M5 12l4.5 4.5L18 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><div class="tile__label">Clean</div><div class="tile__desc">No missed payments or issues</div></div>
+      <!-- STEP 5: Credit Profile -->
+      <div class="step" id="step-5">
+        <p class="step-eyebrow">Step 5</p>
+        <h2 class="step-title">How would you describe your credit history?</h2>
+        <p class="step-subtitle">Be honest — different advisers specialise in different credit profiles. This helps us find the right match.</p>
+        <div class="info-box">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+          We do not perform any credit checks. This is self-reported information used only to match you with the right adviser.
+        </div>
+        <div class="option-grid" id="credit">
+          <div class="option-card" data-value="clean" onclick="selectOption('credit', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">✅</div>
+            <div class="option-label"><h4>Clean credit history</h4><p>No missed payments, defaults, or issues</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-credit')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M11 7v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="11" cy="15" r="0.8" fill="currentColor"/></svg></div>
-            <div><div class="tile__label">One or two blips</div><div class="tile__desc">Occasional late payment, nothing serious</div></div>
+          <div class="option-card" data-value="minor" onclick="selectOption('credit', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🔶</div>
+            <div class="option-label"><h4>Minor issues</h4><p>One or two missed payments, now resolved</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-credit')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><path d="M11 4l1.9 5.5H19l-5.3 3.8 2 6.2L11 15.8l-4.7 3.7 2-6.2L3 9.5h6.1L11 4z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
-            <div><div class="tile__label">Some adverse</div><div class="tile__desc">Defaults, CCJs or missed payments</div></div>
+          <div class="option-card" data-value="moderate" onclick="selectOption('credit', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">⚠️</div>
+            <div class="option-label"><h4>More significant issues</h4><p>CCJ, defaults, or debt management plan</p></div>
           </div>
-          <div class="tile" onclick="selectTile(this,'grp-credit')">
-            <div class="tile__icon"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 2"/><path d="M8 11h6M11 8v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-            <div><div class="tile__label">Not sure</div><div class="tile__desc">I haven't checked recently</div></div>
+          <div class="option-card" data-value="severe" onclick="selectOption('credit', this)">
+            <div class="option-dot"></div>
+            <div class="option-emoji">🔴</div>
+            <div class="option-label"><h4>Bankruptcy or IVA</h4><p>Past or current — within the last 6 years</p></div>
           </div>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="btn-next" onclick="nextStep()">Continue <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()" id="next-5" disabled>
+            Continue
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+          </button>
         </div>
       </div>
 
-      <!-- STEP 6: Flags (optional) -->
-      <div class="form-step" id="step6">
-        <h1 class="step-q">Anything else we should know?</h1>
-        <p class="step-hint">Optional — ticking anything relevant means we can prepare properly before we call.</p>
-        <div class="cb-grid">
-          <label class="cb-tile" onclick="toggleCb(this)"><input type="checkbox" value="previously-declined"><div class="cb-box"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Previously declined</span></label>
-          <label class="cb-tile" onclick="toggleCb(this)"><input type="checkbox" value="complex-income"><div class="cb-box"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Complex income</span></label>
-          <label class="cb-tile" onclick="toggleCb(this)"><input type="checkbox" value="gifted-deposit"><div class="cb-box"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Gifted deposit</span></label>
-          <label class="cb-tile" onclick="toggleCb(this)"><input type="checkbox" value="urgent"><div class="cb-box"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Need to move quickly</span></label>
-          <label class="cb-tile cb-tile--full" onclick="toggleCb(this)"><input type="checkbox" value="none"><div class="cb-box"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>None of the above — my situation is fairly straightforward</span></label>
+      <!-- STEP 6: Complexity Flags -->
+      <div class="step" id="step-6">
+        <p class="step-eyebrow">Step 6</p>
+        <h2 class="step-title">Are any of these relevant to your situation?</h2>
+        <p class="step-subtitle">Select all that apply. These help us identify which specialist is the right fit.</p>
+        <div class="option-grid" id="complexityFlags" style="margin-bottom:32px;">
+          <div class="checkbox-card" onclick="toggleFlag(this, 'recently-selfemployed')">
+            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span class="checkbox-label">Recently self-employed (less than 2 years of accounts)</span>
+          </div>
+          <div class="checkbox-card" onclick="toggleFlag(this, 'non-standard-property')">
+            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span class="checkbox-label">Non-standard property (flat above shop, new build, listed building, etc.)</span>
+          </div>
+          <div class="checkbox-card" onclick="toggleFlag(this, 'high-ltv')">
+            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span class="checkbox-label">Small deposit — less than 10% (high LTV)</span>
+          </div>
+          <div class="checkbox-card" onclick="toggleFlag(this, 'previously-declined')">
+            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span class="checkbox-label">Previously declined for a mortgage</span>
+          </div>
+          <div class="checkbox-card" onclick="toggleFlag(this, 'foreign-national')">
+            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span class="checkbox-label">Non-UK national or foreign-sourced income</span>
+          </div>
+          <div class="checkbox-card" onclick="toggleFlag(this, 'complex-income')">
+            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span class="checkbox-label">Complex income (bonuses, commission, rental income, dividends)</span>
+          </div>
+          <div class="checkbox-card" onclick="toggleFlag(this, 'none')">
+            <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <span class="checkbox-label">None of the above apply</span>
+          </div>
         </div>
         <div class="step-nav">
-          <button class="btn-back" onclick="prevStep()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="btn-next" onclick="nextStep()">Continue <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()">
+            Continue
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+          </button>
         </div>
-        <button class="skip-link" onclick="nextStep()">Skip this step</button>
       </div>
 
-      <!-- STEP 7: Contact -->
-      <div class="form-step" id="step7">
-        <h1 class="step-q">Last step — how do we reach you?</h1>
-        <p class="step-hint">We'll review what you've shared before we call — so the conversation is actually useful. No hard sell.</p>
-        <div class="fields-block">
-          <div>
-            <label class="field__label" for="fname">Full name</label>
-            <input class="field__input" type="text" id="fname" placeholder="Jane Smith" autocomplete="name">
+      <!-- STEP 7: Region -->
+      <div class="step" id="step-7">
+        <p class="step-eyebrow">Step 7</p>
+        <h2 class="step-title">Where is the property located?</h2>
+        <p class="step-subtitle">Some advisers have regional expertise. This helps us find the closest match.</p>
+        <div class="input-group">
+          <label class="input-label">Region or area</label>
+          <select class="form-input" id="region" style="cursor:pointer;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%234A6580' stroke-width='2'%3E%3Cpath d='M4 6l8 0 M4 10l8 0'/%3E%3C/svg%3E\");">
+            <option value="">Select a region…</option>
+            <option>London</option>
+            <option>South East England</option>
+            <option>South West England</option>
+            <option>East of England</option>
+            <option>East Midlands</option>
+            <option>West Midlands</option>
+            <option>Yorkshire &amp; the Humber</option>
+            <option>North West England</option>
+            <option>North East England</option>
+            <option>Scotland</option>
+            <option>Wales</option>
+            <option>Northern Ireland</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" onclick="nextStep()">
+            Almost done
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 8: Your Details -->
+      <div class="step" id="step-8">
+        <p class="step-eyebrow">Step 8 — Final step</p>
+        <h2 class="step-title">Great — let's get your results</h2>
+        <p class="step-subtitle">We'll use these details to send your match. We'll never share your data without consent.</p>
+        <div class="input-row">
+          <div class="input-group">
+            <label class="input-label" for="firstName">First name</label>
+            <input type="text" id="firstName" class="form-input" placeholder="Jane" autocomplete="given-name">
           </div>
-          <div class="field-row">
-            <div>
-              <label class="field__label" for="phone">Phone number</label>
-              <input class="field__input" type="tel" id="phone" placeholder="07700 900000" autocomplete="tel">
+          <div class="input-group">
+            <label class="input-label" for="lastName">Last name</label>
+            <input type="text" id="lastName" class="form-input" placeholder="Smith" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="email">Email address</label>
+          <input type="email" id="email" class="form-input" placeholder="jane.smith@email.com" autocomplete="email">
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="phone">Phone number</label>
+          <input type="tel" id="phone" class="form-input" placeholder="07700 900000" autocomplete="tel">
+        </div>
+        <div class="info-box">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Your information is secure and will only be shared with your matched adviser, with your consent. We do not sell your data to third parties.
+        </div>
+        <label class="consent-check">
+          <input type="checkbox" id="consentCheck" onchange="updateConsentButton()">
+          <span>I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>. I consent to being contacted by BorrowCheck and a matched mortgage adviser about my enquiry.</span>
+        </label>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep()">← Back</button>
+          <button class="btn-next" id="submitBtn" onclick="submitForm()" disabled style="background:#009E6E;">
+            Get My Match
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="step" id="step-success">
+        <div class="success-state">
+          <div class="success-icon">
+            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h2>You're in — we're on it.</h2>
+          <p>We've received your details. We'll assess your situation and match you with the right adviser, typically within one business day.</p>
+          <div class="success-steps">
+            <div class="ss-item">
+              <div class="ss-bullet">1</div>
+              <span>We review your case against current lender criteria</span>
             </div>
-            <div>
-              <label class="field__label" for="email">Email address</label>
-              <input class="field__input" type="email" id="email" placeholder="jane@example.com" autocomplete="email">
+            <div class="ss-item">
+              <div class="ss-bullet">2</div>
+              <span>We identify the adviser best suited to your situation</span>
+            </div>
+            <div class="ss-item">
+              <div class="ss-bullet">3</div>
+              <span>Your matched adviser contacts you to discuss your options — no obligation</span>
             </div>
           </div>
-          <div>
-            <label class="field__label" for="postcode">Postcode <span style="font-weight:400;color:var(--tm)">(optional)</span></label>
-            <input class="field__input" type="text" id="postcode" placeholder="SW1A 1AA" autocomplete="postal-code" style="max-width:200px;">
-          </div>
+          <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;color:#009E6E;text-decoration:none;font-size:15px;font-weight:600;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back to BorrowCheck
+          </a>
         </div>
-        <div class="step-nav">
-          <button class="btn-back" onclick="prevStep()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="btn-next" onclick="submitForm()">Submit my details <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 7.5h9M8 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        </div>
-        <p class="step-disclaimer">By submitting you agree to our <a href="#" onclick="openPolicy('privacy');return false;">Privacy Policy</a> and <a href="#" onclick="openPolicy('terms');return false;">Terms of Use</a>. We will contact you using the details above. We never sell your data. We don't just pass your details on — we make sure you're speaking to someone suited to your situation.</p>
       </div>
 
-      <!-- SUCCESS -->
-      <div class="success-screen" id="success">
-        <div class="success-icon"><svg viewBox="0 0 30 30" fill="none"><path d="M5 15L12 22L25 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h2 class="success-title">You're all set</h2>
-        <p class="success-sub">Thanks for sharing your details. We'll review your situation properly before calling — usually within one working day. No pressure, no hard sell.</p>
-        <div class="success-chips">
-          <span class="success-chip">✓ Details received</span>
-          <span class="success-chip">✓ No credit check taken</span>
-          <span class="success-chip">✓ We review before we call</span>
-        </div>
-        <p class="success-home"><a href="index.html">← Back to BorrowCheck</a></p>
-      </div>
-
-    </div><!-- /form-area -->
-
-    <div class="form-footer">
-      <div class="form-footer__links">
-        <a class="form-footer__link" href="#" onclick="openPolicy('privacy');return false;">Privacy Policy</a>
-        <a class="form-footer__link" href="#" onclick="openPolicy('terms');return false;">Terms of Use</a>
-        <a class="form-footer__link" href="#" onclick="openPolicy('complaints');return false;">Complaints</a>
-        <a class="form-footer__link" href="mailto:hello@borrowcheck.co.uk">hello@borrowcheck.co.uk</a>
-      </div>
-      <p class="form-footer__disclaimer">BorrowCheck is not a lender or regulated mortgage adviser. Nothing here constitutes financial advice. Your home may be repossessed if you do not keep up repayments on a mortgage. © 2025 BorrowCheck Ltd.</p>
     </div>
-
   </main>
 </div>
 
-<!-- POLICY SHEET -->
-<div class="policy-overlay" id="policy-overlay" onclick="handlePolicyBg(event)">
-  <div class="policy-sheet">
-    <div class="policy-sheet__hd">
-      <h2 class="policy-sheet__title" id="policy-title"></h2>
-      <button class="policy-sheet__close" onclick="closePolicy()">&#x2715;</button>
-    </div>
-    <div class="policy-sheet__body" id="policy-body"></div>
-  </div>
-</div>
-
 <script>
-var totalSteps = 7;
-var currentStep = 1;
+  let currentStep = 1;
+  const totalSteps = 8;
+  const stepLabels = ['Mortgage type', 'Property details', 'Timeline', 'Employment', 'Credit profile', 'Complexity', 'Location', 'Your details'];
+  const formData = {};
 
-function buildDots() {
-  var el = document.getElementById('step-dots');
-  el.innerHTML = '';
-  for (var i = 1; i <= totalSteps; i++) {
-    var d = document.createElement('div');
-    d.id = 'dot' + i;
-    d.className = 'step-dot' + (i === 1 ? ' active' : '');
-    el.appendChild(d);
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + (n === 0 ? 'success' : n)).classList.add('active');
+
+    if (n > 0) {
+      const pct = (n / totalSteps) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent = stepLabels[n - 1];
+      document.getElementById('progressCount').textContent = n + ' of ' + totalSteps;
+      document.getElementById('headerStep').textContent = 'Step ' + n;
+      document.getElementById('progressWrap').style.display = 'block';
+    } else {
+      document.getElementById('progressWrap').style.display = 'none';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-}
 
-function updateProgress(n) {
-  document.getElementById('progress-fill').style.width = (n / totalSteps * 100) + '%';
-  document.getElementById('progress-label').textContent = 'Step ' + n + ' of ' + totalSteps;
-  for (var i = 1; i <= totalSteps; i++) {
-    var d = document.getElementById('dot' + i);
-    if (!d) continue;
-    d.className = 'step-dot' + (i < n ? ' done' : i === n ? ' active' : '');
+  function nextStep() {
+    if (currentStep < totalSteps) {
+      currentStep++;
+      showStep(currentStep);
+    }
   }
-}
 
-function showStep(n) {
-  document.getElementById('step' + currentStep).classList.remove('active');
-  currentStep = n;
-  var el = document.getElementById('step' + n);
-  if (el) el.classList.add('active');
-  updateProgress(n);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function nextStep() {
-  if (currentStep < totalSteps) showStep(currentStep + 1);
-  else submitForm();
-}
-function prevStep() {
-  if (currentStep > 1) showStep(currentStep - 1);
-}
-
-function selectTile(el, grpId) {
-  document.getElementById(grpId).querySelectorAll('.tile').forEach(function(t) { t.classList.remove('active'); });
-  el.classList.add('active');
-}
-function selectBtn(el, grpId) {
-  document.getElementById(grpId).querySelectorAll('.sel-btn').forEach(function(b) { b.classList.remove('active'); });
-  el.classList.add('active');
-}
-function toggleCb(label) {
-  var cb = label.querySelector('input');
-  setTimeout(function() { label.classList.toggle('checked', cb.checked); }, 0);
-}
-
-function submitForm() {
-  var name  = document.getElementById('fname').value.trim();
-  var email = document.getElementById('email').value.trim();
-  var phone = document.getElementById('phone').value.trim();
-  var ok = true;
-  if (!name)  { document.getElementById('fname').classList.add('err');  ok = false; }
-  if (!email) { document.getElementById('email').classList.add('err');  ok = false; }
-  if (!phone) { document.getElementById('phone').classList.add('err');  ok = false; }
-  if (!ok) return;
-
-  var payload = {
-    name: name, email: email, phone: phone,
-    postcode: document.getElementById('postcode').value.trim(),
-    intent:      (document.querySelector('#grp-intent .tile.active .tile__label')      || {}).textContent || '',
-    deposit:     (document.querySelector('#grp-deposit .sel-btn.active')               || {}).firstChild  && document.querySelector('#grp-deposit .sel-btn.active').firstChild.textContent.trim() || '',
-    property_value:(document.querySelector('#grp-propval .sel-btn.active')             || {}).firstChild  && document.querySelector('#grp-propval .sel-btn.active').firstChild.textContent.trim() || '',
-    employment:  (document.querySelector('#grp-employment .tile.active .tile__label') || {}).textContent || '',
-    credit:      (document.querySelector('#grp-credit .tile.active .tile__label')      || {}).textContent || '',
-    flags:       Array.from(document.querySelectorAll('.cb-tile.checked input')).map(function(i){ return i.value; }),
-    submitted_at: new Date().toISOString(),
-    source: 'BorrowCheck — Form Page'
-  };
-
-  // ── SWAP THIS URL FOR YOUR WEBHOOK (Zapier / Make / HubSpot / GoHighLevel) ──
-  var WEBHOOK = 'YOUR_WEBHOOK_URL_HERE';
-
-  showSuccess();
-
-  if (WEBHOOK !== 'YOUR_WEBHOOK_URL_HERE') {
-    fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
-      .catch(function(e){ console.warn('Webhook error:', e); });
-  } else {
-    console.log('Form submission payload:', payload);
+  function prevStep() {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
   }
-}
 
-function showSuccess() {
-  for (var i = 1; i <= totalSteps; i++) {
-    var s = document.getElementById('step' + i);
-    if (s) s.classList.remove('active');
+  function selectOption(groupId, el) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    formData[groupId] = el.getAttribute('data-value');
+
+    // Enable next button for this step
+    const nextBtn = document.getElementById('next-' + currentStep);
+    if (nextBtn) nextBtn.disabled = false;
   }
-  document.getElementById('progress-wrap').style.display = 'none';
-  document.getElementById('success').classList.add('show');
-}
 
-['fname','email','phone'].forEach(function(id) {
-  var el = document.getElementById(id);
-  if (el) el.addEventListener('input', function(){ el.classList.remove('err'); });
-});
+  function toggleFlag(el, val) {
+    if (val === 'none') {
+      document.querySelectorAll('#complexityFlags .checkbox-card').forEach(c => {
+        c.classList.remove('checked');
+      });
+    } else {
+      const noneCard = document.querySelector('#complexityFlags .checkbox-card:last-child');
+      if (noneCard) noneCard.classList.remove('checked');
+    }
+    el.classList.toggle('checked');
+  }
 
-var policies = {
-  privacy: { title: 'Privacy Policy', body: '<p class="p-date">Last updated: 1 January 2025</p><h3>1. Who we are</h3><p>BorrowCheck Ltd is a pre-qualification and mortgage assessment service registered in England and Wales. We are not a lender or regulated mortgage adviser.</p><h3>2. What data we collect</h3><p>When you complete our enquiry form we collect your name, phone number, email address, postcode, and financial information including deposit range, employment status, credit profile, estimated property value, and buying intent. We may also collect technical data via analytics tools.</p><h3>3. How we use your data</h3><p>We use your data to contact you about your mortgage pre-qualification, assess your situation, improve our service, and comply with legal obligations. Our lawful basis is legitimate interests and consent where applicable.</p><h3>4. Who we share data with</h3><p>We do not sell your data. We may share it with regulated mortgage advisers where you consent to a referral, and with technology providers who operate our systems under data processing agreements.</p><h3>5. Retention</h3><p>We retain enquiry data for up to 24 months unless you request deletion earlier.</p><h3>6. Your rights</h3><p>Under UK GDPR you have the right to access, rectify, erase, restrict, port, and object to processing of your data. Email privacy@borrowcheck.co.uk. We respond within 30 days.</p><h3>7. ICO complaints</h3><p>You may complain to the Information Commissioner\'s Office at ico.org.uk or 0303 123 1113.</p>' },
-  terms: { title: 'Terms of Use', body: '<p class="p-date">Last updated: 1 January 2025</p><h3>1. About us</h3><p>BorrowCheck Ltd is a pre-qualification service. We are not a lender, broker, or FCA-regulated financial adviser. Nothing on this site constitutes regulated financial advice or a mortgage offer.</p><h3>2. Our service</h3><p>We help individuals understand their general mortgage position before engaging a regulated adviser. Any guidance we provide is indicative only. We may, with your consent, introduce you to a regulated adviser.</p><h3>3. No financial advice</h3><p>All information and estimates are indicative and should not be relied upon as financial, legal, or tax advice. Always seek independent regulated advice before making financial decisions.</p><h3>4. Risk warning</h3><p><strong>YOUR HOME MAY BE REPOSSESSED IF YOU DO NOT KEEP UP REPAYMENTS ON A MORTGAGE OR ANY OTHER LOAN SECURED ON IT.</strong></p><h3>5. Accuracy</h3><p>You agree to provide accurate and complete information. We accept no liability for outcomes arising from inaccurate submissions.</p><h3>6. Liability</h3><p>To the maximum extent permitted by law, BorrowCheck shall not be liable for any indirect or consequential loss arising from use of this service.</p><h3>7. Governing law</h3><p>These Terms are governed by the laws of England and Wales.</p>' },
-  complaints: { title: 'Complaints Policy', body: '<p class="p-date">Last updated: 1 January 2025</p><h3>Our commitment</h3><p>If something has gone wrong we want to hear about it.</p><h3>How to complain</h3><p><strong>Email:</strong> complaints@borrowcheck.co.uk<br><strong>Post:</strong> BorrowCheck Ltd, [Address]<br><strong>Phone:</strong> 0800 123 4567 (Mon–Fri 9am–5pm)</p><h3>Timescales</h3><p>We will acknowledge within 3 working days and provide a full written response within 8 weeks.</p><h3>Escalation</h3><p>As BorrowCheck is not FCA-regulated, complaints are not eligible for the Financial Ombudsman Service directly with us. For data complaints, contact the ICO at ico.org.uk or 0303 123 1113.</p>' }
-};
+  function formatCurrency(v) {
+    if (v >= 1000000) return '£' + (v / 1000000).toFixed(v % 1000000 === 0 ? 0 : 1) + 'm';
+    return '£' + v.toLocaleString('en-GB');
+  }
 
-function openPolicy(type) {
-  var p = policies[type];
-  if (!p) return;
-  document.getElementById('policy-title').textContent = p.title;
-  document.getElementById('policy-body').innerHTML = p.body;
-  document.getElementById('policy-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closePolicy() {
-  document.getElementById('policy-overlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function handlePolicyBg(e) {
-  if (e.target === document.getElementById('policy-overlay')) closePolicy();
-}
-document.addEventListener('keydown', function(e){ if (e.key==='Escape') closePolicy(); });
+  function updateLTV() {
+    const prop = parseInt(document.getElementById('propValSlider').value) || 250000;
+    const dep = parseInt(document.getElementById('depositSlider').value) || 25000;
+    const ltv = Math.round(((prop - dep) / prop) * 100);
+    const display = ltv < 0 ? '0%' : ltv + '%';
+    document.getElementById('ltvValue').textContent = display;
+    const badge = document.getElementById('ltvBadge');
+    badge.style.background = ltv > 90 ? '#FFF3F3' : ltv > 80 ? '#FFF9EC' : '#EBF0F7';
+    badge.style.color = ltv > 90 ? '#C0392B' : ltv > 80 ? '#B7791F' : '#0B2845';
+  }
 
-buildDots();
-updateProgress(1);
+  function updatePropertyValue() {
+    const v = parseInt(document.getElementById('propValSlider').value);
+    document.getElementById('propValDisplay').textContent = formatCurrency(v);
+    document.getElementById('propValInput').value = v;
+    updateLTV();
+  }
+  function updatePropertySlider() {
+    const v = parseInt(document.getElementById('propValInput').value) || 250000;
+    const clamped = Math.min(2000000, Math.max(50000, v));
+    document.getElementById('propValSlider').value = clamped;
+    document.getElementById('propValDisplay').textContent = formatCurrency(clamped);
+    updateLTV();
+  }
+  function updateDeposit() {
+    const v = parseInt(document.getElementById('depositSlider').value);
+    document.getElementById('depositDisplay').textContent = formatCurrency(v);
+    document.getElementById('depositInput').value = v;
+    updateLTV();
+  }
+  function updateDepositSlider() {
+    const v = parseInt(document.getElementById('depositInput').value) || 25000;
+    const clamped = Math.min(500000, Math.max(5000, v));
+    document.getElementById('depositSlider').value = clamped;
+    document.getElementById('depositDisplay').textContent = formatCurrency(clamped);
+    updateLTV();
+  }
+
+  function updateConsentButton() {
+    document.getElementById('submitBtn').disabled = !document.getElementById('consentCheck').checked;
+  }
+
+  function submitForm() {
+    currentStep = 0;
+    showStep(0);
+  }
+
+  // Init
+  updatePropertyValue();
+  updateDeposit();
+  updateLTV();
 </script>
 </body>
 </html>
