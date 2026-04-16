@@ -136,7 +136,7 @@
 
 <header class="form-header">
   <a href="index.html" class="form-logo">Borrow<span>Check</span></a>
-  <div class="form-header-right"><span id="headerStep">Step 1</span> of 8</div>
+  <div class="form-header-right"><span id="headerStep">Step 1</span> of 7</div>
   <a href="index.html" class="back-link">
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Back to home
@@ -160,7 +160,7 @@
       <div class="step active" id="step-1">
         <p class="step-eyebrow">Step 1</p>
         <h2 class="step-title">What are you looking to do?</h2>
-        <p class="step-subtitle">We assess your situation first, so you avoid going down the wrong path.</p>
+        <p class="step-subtitle">Tell us what you need so we can find the right adviser for your case.</p>
         <div class="option-grid" id="mortgageType">
           <div class="option-card" data-value="ftb" onclick="selectOption('mortgageType', this, checkStep1)">
             <div class="option-dot"></div><div class="option-emoji">🏠</div>
@@ -399,38 +399,9 @@
         </div>
       </div>
 
-      <!-- ═══ STEP 7: Region (tile grid) ═══ -->
+      <!-- ═══ STEP 7: Your Details ═══ -->
       <div class="step" id="step-7">
-        <p class="step-eyebrow">Step 7</p>
-        <h2 class="step-title">Where is the property located?</h2>
-        <p class="step-subtitle">Some advisers have regional expertise. This helps us find the closest match.</p>
-        <div class="option-grid cols-3" id="region">
-          <div class="option-card compact" data-value="London" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>London</h4></div></div>
-          <div class="option-card compact" data-value="South East" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>South East</h4></div></div>
-          <div class="option-card compact" data-value="South West" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>South West</h4></div></div>
-          <div class="option-card compact" data-value="East of England" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>East of England</h4></div></div>
-          <div class="option-card compact" data-value="East Midlands" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>East Midlands</h4></div></div>
-          <div class="option-card compact" data-value="West Midlands" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>West Midlands</h4></div></div>
-          <div class="option-card compact" data-value="Yorkshire & Humber" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Yorkshire &amp; Humber</h4></div></div>
-          <div class="option-card compact" data-value="North West" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>North West</h4></div></div>
-          <div class="option-card compact" data-value="North East" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>North East</h4></div></div>
-          <div class="option-card compact" data-value="Scotland" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Scotland</h4></div></div>
-          <div class="option-card compact" data-value="Wales" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Wales</h4></div></div>
-          <div class="option-card compact" data-value="Northern Ireland" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Northern Ireland</h4></div></div>
-          <div class="option-card compact" data-value="Not sure" onclick="selectOption('region', this)"><div class="option-dot"></div><div class="option-label"><h4>Not sure yet</h4></div></div>
-        </div>
-        <div class="step-nav">
-          <button class="btn-back" onclick="prevStep()">← Back</button>
-          <button class="btn-next" onclick="nextStep()">
-            Almost done
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- ═══ STEP 8: Your Details ═══ -->
-      <div class="step" id="step-8">
-        <p class="step-eyebrow">Step 8 — Final step</p>
+        <p class="step-eyebrow">Step 7 — Final step</p>
         <h2 class="step-title">Great — let's get your results</h2>
         <p class="step-subtitle">We'll use these details to send your match. We'll never share your data without consent.</p>
         <div class="input-row">
@@ -474,17 +445,22 @@
           <div class="success-icon">
             <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
-          <h2>You're in — we're on it.</h2>
-          <p>We've received your details. We'll assess your situation and match you with the right adviser, typically within one business day.</p>
+          <h2>We've got your details.</h2>
+          <p>We'll review what you've shared and match you with the right adviser for your situation. Expect to hear from them within <strong>1–2 working days</strong> — by phone or email, whichever you prefer.</p>
           <div class="success-steps">
-            <div class="ss-item"><div class="ss-bullet">1</div><span>We review your case against current lender criteria</span></div>
-            <div class="ss-item"><div class="ss-bullet">2</div><span>We identify the adviser best suited to your situation</span></div>
-            <div class="ss-item"><div class="ss-bullet">3</div><span>Your matched adviser contacts you to discuss your options — no obligation</span></div>
+            <div class="ss-item"><div class="ss-bullet">1</div><span>We review your answers and identify the adviser best suited to your case</span></div>
+            <div class="ss-item"><div class="ss-bullet">2</div><span>We introduce you — sharing your details with your matched adviser</span></div>
+            <div class="ss-item"><div class="ss-bullet">3</div><span>Your adviser reaches out to introduce themselves and discuss next steps — no pressure, no obligation</span></div>
           </div>
-          <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;color:#009E6E;text-decoration:none;font-size:15px;font-weight:600;">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-            Back to BorrowCheck
-          </a>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+            <a href="faq.html" style="display:inline-flex;align-items:center;gap:8px;background:#F0FAF6;border:1px solid #D6F2E8;color:#009E6E;text-decoration:none;font-size:15px;font-weight:600;padding:12px 24px;border-radius:10px;">
+              Read our FAQ while you wait
+            </a>
+            <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;color:#4A6580;text-decoration:none;font-size:14px;">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+              Back to BorrowCheck
+            </a>
+          </div>
         </div>
       </div>
 
@@ -503,8 +479,8 @@
 
   // ── STATE ───────────────────────────────────────────────────────────────────
   let currentStep = 1;
-  const totalSteps = 8;
-  const stepLabels = ['Mortgage type', 'Property details', 'Timeline', 'Employment', 'Credit profile', 'Complexity', 'Location', 'Your details'];
+  const totalSteps = 7;
+  const stepLabels = ['Mortgage type', 'Property details', 'Timeline', 'Employment', 'Credit profile', 'Complexity flags', 'Your details'];
   const formData = {};
   let goingBack = false;
 
@@ -612,7 +588,7 @@
 
     container.innerHTML = flags.map(f => `
       <div class="checkbox-card" onclick="toggleFlag(this, '${f.val}')">
-        <div class="checkbox-box"><svg class="checkbox-tick" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="checkbox-box"><svg class="checkbox-tick" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <span class="checkbox-label">${f.label}</span>
       </div>
     `).join('');

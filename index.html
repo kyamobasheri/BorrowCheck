@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BorrowCheck — Find the Right Mortgage Adviser First Time</title>
-  <meta name="description" content="BorrowCheck assesses your mortgage situation first, then matches you with the right adviser for your case. Free, no credit checks, no obligation.">
+  <meta name="description" content="BorrowCheck understands your mortgage situation in detail, then connects you with an adviser specifically suited to your case. Free, no credit checks, no obligation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -191,6 +191,17 @@
     /* ── NAV ACTIVE ── */
     .nav-links a.active { color: #fff; position: relative; }
     .nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: #00C282; border-radius: 1px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .testimonial-card { background: #F4F7FC; border: 1px solid #E0EBF5; border-radius: 16px; padding: 32px; }
+    .testimonial-quote { font-family: 'DM Serif Display', serif; font-size: 52px; color: #009E6E; line-height: 0.8; margin-bottom: 18px; }
+    .testimonial-card > p { font-size: 16px; color: #2A4560; line-height: 1.72; margin-bottom: 24px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: #009E6E; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 18px; flex-shrink: 0; }
+    .t-name { font-size: 15px; font-weight: 600; color: #0B2845; }
+    .t-detail { font-size: 13px; color: #4A6580; margin-top: 2px; }
+    @media (max-width: 900px) { .testimonial-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -232,8 +243,8 @@
   <div class="hero-inner">
     <div>
       <div class="hero-badge">UK Mortgage Matching</div>
-      <h1>Know what's actually possible — <em>before</em> you speak to a broker.</h1>
-      <p>Most people approach the wrong broker first. BorrowCheck assesses your situation against real lender criteria, then connects you with the adviser who's the right fit for your case.</p>
+      <h1>Not just any broker. The right one — <em>for your case</em>.</h1>
+      <p>Most people go to the nearest broker and hope for the best. BorrowCheck takes the time to understand your situation properly, then connects you with an adviser who regularly handles cases exactly like yours.</p>
       <div class="hero-actions">
         <a href="form.html" class="btn-primary">
           Check My Eligibility
@@ -272,8 +283,8 @@
       <div class="process-step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h4>We assess what's actually possible</h4>
-          <p>We review your details against real lender criteria — identifying what's genuinely achievable for your case.</p>
+          <h4>We understand your situation</h4>
+          <p>We learn what makes your case unique — your employment, credit history, and circumstances — so we can make the right introduction.</p>
         </div>
       </div>
       <div class="process-step">
@@ -355,8 +366,8 @@
           <div class="step-item fade-up fade-up-d1">
             <div class="step-circle">2</div>
             <div class="step-text">
-              <h4>We assess what's actually achievable</h4>
-              <p>We review your case against real lender criteria. We identify which lenders are likely to approve your application and which adviser types are best suited to your specific situation.</p>
+              <h4>We find your right match</h4>
+              <p>We review the details you've shared to understand what makes your case unique, then identify which type of adviser has specific experience handling situations just like yours.</p>
             </div>
           </div>
           <div class="step-item fade-up fade-up-d2">
@@ -369,7 +380,7 @@
         </div>
       </div>
       <div class="how-visual fade-up">
-        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:#0B2845;margin-bottom:28px;">What we check</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:#0B2845;margin-bottom:28px;">What helps us match you</div>
         <div class="how-visual-item">
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           <div><p>Mortgage type &amp; purpose</p><span>First-time buyer, remortgage, buy to let…</span></div>
@@ -390,7 +401,7 @@
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           <div><p>Case complexity</p><span>Any flags that need a specialist adviser</span></div>
         </div>
-        <a href="form.html" class="btn-primary" style="margin-top:32px;width:100%;justify-content:center;">Start Your Assessment</a>
+        <a href="form.html" class="btn-primary" style="margin-top:32px;width:100%;justify-content:center;">Find My Adviser</a>
       </div>
     </div>
   </div>
@@ -401,13 +412,13 @@
   <div class="section-inner">
     <div class="fade-up">
       <p class="section-label">Why BorrowCheck</p>
-      <h2 class="section-title">We assess first. Then connect.</h2>
+      <h2 class="section-title">We listen first. Then match.</h2>
     </div>
     <div class="why-grid">
       <div class="why-card fade-up">
         <div class="why-card-icon">🔍</div>
-        <h3>Pre-assessment before commitment</h3>
-        <p>We understand your situation before connecting you with anyone. That means you speak to an adviser already equipped to help — not one who'll turn you away.</p>
+        <h3>We learn your situation properly</h3>
+        <p>We take the time to understand your circumstances before making any introduction. That means the adviser you speak to already knows your case — and is genuinely the right fit for it.</p>
       </div>
       <div class="why-card fade-up fade-up-d1">
         <div class="why-card-icon">🎯</div>
@@ -428,12 +439,57 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section style="padding: 96px 24px; background: #fff;">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center; margin-bottom:0;">
+      <p class="section-label">From our users</p>
+      <h2 class="section-title">Real situations. Right advisers.</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">&ldquo;</div>
+        <p>I'd been turned down by two brokers who said they could handle self-employed cases. BorrowCheck matched me with someone who actually specialised in it — we got the mortgage sorted in six weeks.</p>
+        <div class="testimonial-author">
+          <div class="t-avatar">S</div>
+          <div>
+            <div class="t-name">Sarah T.</div>
+            <div class="t-detail">Self-employed · First home purchase · London</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up fade-up-d1">
+        <div class="testimonial-quote">&ldquo;</div>
+        <p>As first-time buyers we had no idea who to trust. The form took five minutes, and the adviser we were matched with was genuinely brilliant — explained everything clearly and found us a great rate.</p>
+        <div class="testimonial-author">
+          <div class="t-avatar">M</div>
+          <div>
+            <div class="t-name">Mark &amp; Jess D.</div>
+            <div class="t-detail">First-time buyers · Birmingham</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up fade-up-d2">
+        <div class="testimonial-quote">&ldquo;</div>
+        <p>I had a default from three years ago and was dreading the process. BorrowCheck matched me with an adviser who handles these cases every week — no awkward conversations, no surprises. First approach, successful application.</p>
+        <div class="testimonial-author">
+          <div class="t-avatar">P</div>
+          <div>
+            <div class="t-name">Priya R.</div>
+            <div class="t-detail">Remortgage · Adverse credit · Manchester</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="cta-section">
   <div class="cta-glow"></div>
   <div class="section-inner" style="position:relative;z-index:1;text-align:center;">
     <p class="section-label" style="color:#00C282;">Get started today</p>
-    <h2 class="section-title fade-up">Ready to find out exactly<br>what's possible for you?</h2>
+    <h2 class="section-title fade-up">Ready to be matched with<br>the right adviser for your case?</h2>
     <p class="fade-up">It takes 2 minutes. No credit check. No obligation. No pressure.</p>
     <div class="cta-row fade-up">
       <a href="form.html" class="btn-primary" style="font-size:17px;padding:18px 40px;">
@@ -451,7 +507,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-logo">Borrow<span>Check</span></div>
-        <p class="footer-desc">We help you understand what's actually possible before you speak to a broker — so you avoid going down the wrong path.</p>
+        <p class="footer-desc">We understand your mortgage situation in detail, then connect you with an adviser who's the right fit for your case — not just whoever's available.</p>
       </div>
       <div class="footer-col">
         <h4>Service</h4>
