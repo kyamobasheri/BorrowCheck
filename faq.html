@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — BorrowCheck</title>
+  <meta name="description" content="Answers to common questions about BorrowCheck — how it works, whether it affects your credit, and why it's free.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #0B2845; background: #fff; }
+    h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; letter-spacing: -0.02em; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,40,69,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; text-decoration: none; }
+    .nav-logo span { color: #00C282; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta { background: #009E6E; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.2s, transform 0.15s; }
+    .nav-cta:hover { background: #007A55; transform: translateY(-1px); }
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; color: #fff; padding: 4px; }
+    .mobile-menu { display: none; background: #0B2845; border-top: 1px solid rgba(255,255,255,0.07); padding: 20px 24px 28px; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mobile-menu .mob-cta { background: #009E6E; color: #fff; text-align: center; padding: 14px; border-radius: 8px; font-weight: 600; margin-top: 16px; border-bottom: none !important; }
+    @media (max-width: 900px) { .nav-links, .nav-cta { display: none; } .nav-burger { display: block; } }
+
+    .page-hero { background: #0B2845; padding: 140px 24px 80px; position: relative; overflow: hidden; }
+    .page-hero-glow { position: absolute; width: 500px; height: 500px; top: -100px; right: -100px; background: radial-gradient(circle, rgba(0,158,110,0.15) 0%, transparent 70%); pointer-events: none; }
+    .hero-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .page-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,194,130,0.12); border: 1px solid rgba(0,194,130,0.25); color: #00C282; padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 500; margin-bottom: 24px; }
+    .page-hero h1 { font-size: clamp(32px, 5vw, 48px); color: #fff; margin-bottom: 16px; }
+    .page-hero p { font-size: 18px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+    .faq-section { padding: 80px 24px 120px; }
+    .faq-inner { max-width: 800px; margin: 0 auto; }
+    .faq-category { margin-bottom: 56px; }
+    .faq-category-title { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #009E6E; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .faq-category-title::after { content: ''; flex: 1; height: 1px; background: #E0EBF5; }
+
+    .faq-item { border: 1px solid #E0EBF5; border-radius: 14px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.2s; }
+    .faq-item.open { border-color: #009E6E; }
+    .faq-q { width: 100%; background: #fff; border: none; padding: 22px 28px; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #0B2845; transition: background 0.15s; }
+    .faq-q:hover { background: #F9FAFB; }
+    .faq-item.open .faq-q { background: #F0FAF6; color: #007A55; }
+    .faq-icon { width: 24px; height: 24px; border-radius: 50%; background: #EBF0F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, transform 0.3s; }
+    .faq-item.open .faq-icon { background: #009E6E; transform: rotate(45deg); }
+    .faq-icon svg { color: #4A6580; transition: color 0.2s; }
+    .faq-item.open .faq-icon svg { color: #fff; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .faq-a-inner { padding: 0 28px 24px; font-size: 15px; color: #4A6580; line-height: 1.75; }
+    .faq-a-inner p + p { margin-top: 12px; }
+    .faq-a-inner a { color: #009E6E; text-decoration: none; }
+    .faq-a-inner a:hover { text-decoration: underline; }
+
+    .cta-section { background: linear-gradient(135deg, #0B2845 0%, #1A3D66 100%); padding: 96px 24px; text-align: center; position: relative; overflow: hidden; }
+    .cta-glow { position: absolute; width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(0,158,110,0.2) 0%, transparent 70%); pointer-events: none; }
+    .cta-section h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 40px); color: #fff; margin-bottom: 16px; }
+    .cta-section p { font-size: 18px; color: rgba(255,255,255,0.65); margin-bottom: 36px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: #009E6E; color: #fff; padding: 16px 32px; border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,158,110,0.35); }
+    .btn-primary:hover { background: #007A55; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,158,110,0.45); }
+
+    footer { background: #071C30; color: rgba(255,255,255,0.6); padding: 64px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; margin-bottom: 16px; }
+    .footer-logo span { color: #00C282; }
+    .footer-desc { font-size: 14px; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+    .footer-bottom p { font-size: 13px; max-width: 700px; line-height: 1.6; }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.8); }
+    @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Borrow<span>Check</span></a>
+    <div class="nav-links">
+      <a href="how-we-select.html">How We Select Advisers</a>
+      <a href="for-advisers.html">For Advisers</a>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="form.html" class="nav-cta">Check My Eligibility</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="how-we-select.html">How We Select Advisers</a>
+    <a href="for-advisers.html">For Advisers</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+    <a href="form.html" class="mob-cta">Check My Eligibility</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="hero-inner">
+    <div class="page-badge">Common Questions</div>
+    <h1>Frequently Asked Questions</h1>
+    <p>Straight answers to the questions we hear most often.</p>
+  </div>
+</div>
+
+<section class="faq-section">
+  <div class="faq-inner">
+
+    <!-- About BorrowCheck -->
+    <div class="faq-category">
+      <div class="faq-category-title">About BorrowCheck</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is BorrowCheck and what does it do?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>BorrowCheck is a free mortgage assessment and matching service. We help people understand what they can realistically get approved for — before they speak to a mortgage adviser.</p>
+            <p>You fill in a short form about your situation (property value, deposit, employment, credit history, etc.). We assess your case against current lender criteria, then connect you with an FCA-regulated mortgage adviser who has specific experience with cases like yours.</p>
+            <p>We're not a lender, and we don't provide financial advice. We're an introducer service — our job is to make sure you speak to the right adviser first time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Why shouldn't I just go directly to a mortgage broker?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>You can — but there are real risks to going to the wrong one first.</p>
+            <p>Not all mortgage brokers have the same lender access, and not all of them specialise in the same types of cases. A broker who mainly works with straightforward PAYE first-time buyers may not be well-equipped to help a self-employed applicant with a complex income structure. And if they submit an application with an unsuitable lender, a declined application can affect your credit file.</p>
+            <p>BorrowCheck does two things before you speak to anyone: assesses your situation against real lender criteria, and matches you with an adviser who has specific experience with your case type. That way, the adviser you speak to is already equipped to help — not working it out as they go.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How is BorrowCheck different from a comparison site?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Comparison sites show you a list of products and rates. BorrowCheck doesn't do that. We don't show you mortgage products or rates at all — that's your adviser's job.</p>
+            <p>Our role is more specific: we assess your situation and identify which adviser type is the right fit, then make a targeted introduction. Think of it less like comparing products, and more like getting a second opinion on which type of specialist you need before booking an appointment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cost & Commitment -->
+    <div class="faq-category">
+      <div class="faq-category-title">Cost &amp; Commitment</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is BorrowCheck really free?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Yes — completely free for users at every stage. There is no cost to fill in the form, no cost to receive your assessment, and no cost for the adviser match.</p>
+            <p>BorrowCheck is paid by the mortgage advisers we connect you with — but only when they successfully help you. This is a standard commercial arrangement common across the industry, and it doesn't affect the advice you receive. Your adviser is required by the FCA to act in your interest, regardless of how they are introduced to you.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Am I obligated to use the adviser you match me with?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>No. There is absolutely no obligation to proceed with the adviser we match you with. The introduction is a suggestion, not a contract. You're free to speak with them, ask questions, and decide at that point whether you want to work with them.</p>
+            <p>We ask that advisers make contact in a professional, pressure-free way. If you ever feel uncomfortable, let us know via our <a href="contact.html">contact page</a> and we'll address it promptly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credit & Privacy -->
+    <div class="faq-category">
+      <div class="faq-category-title">Credit &amp; Privacy</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Will completing the BorrowCheck form affect my credit score?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>No. BorrowCheck does not perform any credit checks — soft or hard — at any stage of the assessment process. Our form collects self-reported information only.</p>
+            <p>Your credit file is not accessed, and no search will appear on your credit record as a result of using BorrowCheck. Only if you choose to proceed with a mortgage application through your matched adviser will any credit check be performed — and your adviser will explain when and why that happens.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What happens to the information I provide?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>The information you provide is used solely to assess your situation and match you with an appropriate adviser. We share a summary of your assessment with your matched adviser to allow them to prepare for first contact.</p>
+            <p>We do not sell your data to third parties or use it for any other purpose. Full details of how we handle your data can be found in our <a href="privacy.html">Privacy Policy</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Assessment -->
+    <div class="faq-category">
+      <div class="faq-category-title">The Assessment &amp; Matching</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do you choose which adviser to match me with?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>We match based on your specific situation — including your mortgage type, employment status, credit profile, deposit size, and any complexity flags you've identified. Each adviser in our network has declared areas of specialism, and we match you to an adviser whose specialism aligns with your case.</p>
+            <p>For example, if you're self-employed with two years of accounts, we'll match you with an adviser experienced in self-employed cases — not a generalist who may not know the right lenders for that situation. If you have adverse credit, you'll be matched with an adverse credit specialist.</p>
+            <p>You can read more about our adviser vetting process on our <a href="how-we-select.html">How We Select Advisers</a> page.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if my situation is complicated or doesn't fit neatly into a category?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Complex situations are exactly what BorrowCheck is designed for. Straightforward cases are generally easy to handle through almost any adviser. It's the complex ones — bad credit, non-standard properties, recently self-employed, multiple income streams — where having the right specialist makes the biggest difference.</p>
+            <p>Our form includes a complexity flags step that lets you highlight specific aspects of your situation. We take these into account in the matching process and ensure you're connected with an adviser who has genuinely handled similar cases.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          I have bad credit. Can BorrowCheck still help me?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Yes. Our network includes advisers who specialise specifically in adverse credit cases — including CCJs, defaults, missed payments, and previous bankruptcy or IVA. These cases require an adviser with access to specialist lenders that high-street banks don't offer.</p>
+            <p>The worst outcome for someone with credit issues is to approach a mainstream lender or generalist broker who submits an unsuitable application — leading to a decline that makes your situation worse. BorrowCheck helps you avoid that by connecting you with someone who knows the right options for your credit profile.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How quickly will I be matched and contacted?
+          <span class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            <p>Typically within one business day of completing the form. We review your assessment and make the match before your details are passed to an adviser, so the process takes a little longer than an instant lead referral — but the quality of the match is significantly better.</p>
+            <p>Your matched adviser will then make contact, usually by email or phone. Remember, there's no obligation to proceed — the first contact is an introduction, not a sales call.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Still have questions -->
+    <div style="background:#F4F7FC;border-radius:16px;padding:36px;text-align:center;margin-top:40px;">
+      <h3 style="font-size:22px;margin-bottom:12px;">Still have a question?</h3>
+      <p style="font-size:16px;color:#4A6580;margin-bottom:24px;">We're happy to help. Send us a message and we'll get back to you promptly.</p>
+      <a href="contact.html" style="display:inline-flex;align-items:center;gap:8px;background:#009E6E;color:#fff;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(0,158,110,0.3);transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#007A55';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#009E6E';this.style.transform='translateY(0)'">
+        Contact Us
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div style="max-width:700px;margin:0 auto;position:relative;z-index:1;">
+    <h2>Ready to check what's actually possible?</h2>
+    <p>Free, no credit checks, no obligation. Takes 2 minutes.</p>
+    <a href="form.html" class="btn-primary" style="font-size:17px;padding:17px 36px;">
+      Check My Eligibility
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Borrow<span>Check</span></div>
+        <p class="footer-desc">We help you understand what's actually possible before you speak to a broker.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Service</h4>
+        <a href="form.html">Check Eligibility</a>
+        <a href="how-we-select.html">Our Advisers</a>
+        <a href="for-advisers.html">For Advisers</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="contact.html">Get in Touch</a>
+        <a href="mailto:hello@borrowcheck.co.uk">hello@borrowcheck.co.uk</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 BorrowCheck. BorrowCheck is not a lender and does not provide financial advice. We are an introducer service that connects users with FCA-authorised mortgage advisers.</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navBurger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const answer = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = '0';
+    });
+
+    // Open clicked if it was closed
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  }
+</script>
+</body>
+</html>
