@@ -128,13 +128,23 @@
     .sub-q-group { overflow: hidden; transition: opacity 0.25s ease; }
     .sub-q-group.hidden { display: none; }
 
+    /* ── FORM INTRO ── */
+    .form-intro { text-align: center; margin-bottom: 32px; }
+    .form-intro h1 { font-size: clamp(22px, 5vw, 30px); color: #0B2845; margin-bottom: 8px; }
+    .form-intro p { font-size: 15px; color: #4A6580; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 16px; }
+    .form-intro .pip { display: inline-flex; align-items: center; gap: 5px; }
+    .form-intro .pip svg { color: #009E6E; flex-shrink: 0; }
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .option-grid.cols-2 { grid-template-columns: 1fr; }
       .option-grid.cols-3 { grid-template-columns: 1fr 1fr; }
       .input-row { grid-template-columns: 1fr; }
-      .step-nav { flex-direction: column-reverse; gap: 12px; }
-      .btn-next, .btn-back { width: 100%; justify-content: center; }
+      .form-main { padding-bottom: 88px; }
+      .step-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #F4F7FC; border-top: 1px solid #E0EBF5; padding: 14px 20px 20px; z-index: 50; flex-direction: row; gap: 10px; }
+      .btn-next { flex: 1; justify-content: center; }
+      .btn-back { flex-shrink: 0; }
+      .form-intro { margin-bottom: 20px; }
+      .form-intro h1 { font-size: 20px; }
     }
   </style>
 </head>
@@ -152,6 +162,16 @@
 <div class="form-page">
   <main class="form-main">
     <div class="form-container">
+
+      <!-- FORM INTRO -->
+      <div class="form-intro" id="formIntro">
+        <h1>Find the right mortgage adviser</h1>
+        <p>
+          <span class="pip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>2 minutes to complete</span>
+          <span class="pip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>We call you the same day</span>
+          <span class="pip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No credit checks, ever</span>
+        </p>
+      </div>
 
       <!-- PROGRESS BAR -->
       <div class="progress-bar-wrap" id="progressWrap">
@@ -202,7 +222,7 @@
       <div class="step" id="step-2">
         <p class="step-eyebrow">Step 2</p>
         <h2 class="step-title" id="step2-title">Tell us about the property</h2>
-        <p class="step-subtitle">Approximate figures are fine — we're not running any credit checks at this stage.</p>
+        <p class="step-subtitle">Approximate figures are fine.</p>
 
         <!-- Property value — always shown -->
         <div class="sub-q-label" id="propValLabel">What's the property value?</div>
@@ -219,11 +239,11 @@
         <div id="depositGroup">
           <div class="sub-q-label">What's your deposit?</div>
           <div class="option-grid cols-2" id="deposit">
-            <div class="option-card compact" data-value="Under 5%" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>Under 5%</h4><p>High LTV — specialist lenders</p></div></div>
-            <div class="option-card compact" data-value="5–10%" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>5–10%</h4></div></div>
-            <div class="option-card compact" data-value="10–20%" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>10–20%</h4></div></div>
-            <div class="option-card compact" data-value="20–30%" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>20–30%</h4></div></div>
-            <div class="option-card compact" data-value="30%+" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>30% or more</h4></div></div>
+            <div class="option-card compact" data-value="Under £20,000" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>Under £20,000</h4><p>High LTV — specialist lenders</p></div></div>
+            <div class="option-card compact" data-value="£20,000–£50,000" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£20,000–£50,000</h4></div></div>
+            <div class="option-card compact" data-value="£50,000–£100,000" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£50,000–£100,000</h4></div></div>
+            <div class="option-card compact" data-value="£100,000–£200,000" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>£100,000–£200,000</h4></div></div>
+            <div class="option-card compact" data-value="Over £200,000" onclick="selectOption('deposit', this, checkStep2)"><div class="option-dot"></div><div class="option-label"><h4>Over £200,000</h4></div></div>
           </div>
         </div>
 
@@ -468,7 +488,7 @@
         <div class="step-nav">
           <button class="btn-back" onclick="prevStep()">← Back</button>
           <button class="btn-next" id="submitBtn" onclick="submitForm()" disabled>
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 5.18 5.18l.96-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 20.9 15.9z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 5.18 5.18l.96-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 20.9 15.9z"/></svg>
             Request My Call Back
           </button>
         </div>
@@ -539,8 +559,10 @@
       document.getElementById('progressCount').textContent = n + ' of ' + totalSteps;
       document.getElementById('headerStep').textContent = 'Step ' + n;
       document.getElementById('progressWrap').style.display = 'block';
+      document.getElementById('formIntro').style.display = 'block';
     } else {
       document.getElementById('progressWrap').style.display = 'none';
+      document.getElementById('formIntro').style.display = 'none';
     }
 
     // Step-specific init
@@ -588,7 +610,7 @@
     const isSelfEmpOrDir = emp === 'selfemployed' || emp === 'director';
     const isContractor = emp === 'contractor';
     const isEmployed = emp === 'employed';
-    const highDeposit = ['20–30%', '30%+'].includes(formData.deposit || '');
+    const highDeposit = ['£100,000–£200,000', 'Over £200,000'].includes(formData.deposit || '');
 
     const flags = [];
 
@@ -602,7 +624,7 @@
 
     // High LTV — hide for remortgage; hide for BTL if large deposit
     if (!isRemortgage && !(isBtl && highDeposit)) {
-      flags.push({ val: 'high-ltv', label: 'Small deposit — less than 10% (high LTV)' });
+      flags.push({ val: 'high-ltv', label: 'Small deposit — under £20,000 (high LTV)' });
     }
 
     // Equity release — remortgage only
