@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BorrowCheck — Find the Right Mortgage Adviser First Time</title>
-  <meta name="description" content="BorrowCheck understands your mortgage situation in detail, then connects you with an adviser specifically suited to your case. Free, no credit checks, no obligation.">
+  <title>BrokerMatch — Find the Right Mortgage Adviser First Time</title>
+  <meta name="description" content="Fill in a short form, we call you the same day, then match you with the right mortgage adviser for your situation. Free, no credit checks, no obligation.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -97,7 +97,7 @@
     .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
     .problem-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 16px; padding: 32px; transition: transform 0.2s, box-shadow 0.2s; border-left: 3px solid transparent; }
     .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(11,40,69,0.10), 0 4px 12px rgba(11,40,69,0.06); border-left-color: #009E6E; }
-    .problem-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 24px; }
+    .problem-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
     .problem-card h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 600; color: #0B2845; margin-bottom: 12px; }
     .problem-card p { font-size: 15px; color: #4A6580; line-height: 1.65; }
 
@@ -209,14 +209,14 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Borrow<span>Check</span></a>
+    <a href="index.html" class="nav-logo">Broker<span>Match</span></a>
     <div class="nav-links">
       <a href="how-we-select.html">How We Select Advisers</a>
       <a href="for-advisers.html">For Advisers</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
     </div>
-    <a href="form.html" class="nav-cta">Check My Eligibility</a>
+    <a href="form.html" class="nav-cta">Find My Adviser</a>
     <button class="nav-burger" id="navBurger" aria-label="Open menu">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
@@ -226,7 +226,7 @@
     <a href="for-advisers.html">For Advisers</a>
     <a href="faq.html">FAQ</a>
     <a href="contact.html">Contact</a>
-    <a href="form.html" class="mob-cta">Check My Eligibility</a>
+    <a href="form.html" class="mob-cta">Find My Adviser</a>
   </div>
 </nav>
 
@@ -244,10 +244,10 @@
     <div>
       <div class="hero-badge">UK Mortgage Matching</div>
       <h1>Not just any broker. The right one — <em>for your case</em>.</h1>
-      <p>Most people go to the nearest broker and hope for the best. BorrowCheck takes the time to understand your situation properly, then connects you with an adviser who regularly handles cases exactly like yours.</p>
+      <p>Most people go to the nearest broker and hope for the best. BrokerMatch takes the time to understand your situation properly, then connects you with an adviser who regularly handles cases exactly like yours.</p>
       <div class="hero-actions">
         <a href="form.html" class="btn-primary">
-          Check My Eligibility
+          Find My Adviser
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
         </a>
         <span class="hero-sub">Free · No credit checks · 2 minutes</span>
@@ -272,7 +272,7 @@
       </div>
     </div>
     <div class="hero-card">
-      <div class="hero-card-title">How BorrowCheck works</div>
+      <div class="hero-card-title">How BrokerMatch works</div>
       <div class="process-step">
         <div class="step-num">1</div>
         <div class="step-content">
@@ -330,17 +330,23 @@
     </div>
     <div class="problem-grid">
       <div class="problem-card fade-up fade-up-d1">
-        <div class="problem-icon" style="background:#EEF2FF;">🎯</div>
+        <div class="problem-icon" style="background:#EEF2FF;">
+          <svg width="24" height="24" fill="none" stroke="#4338CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
         <h3>Brokers aren't all generalists</h3>
         <p>Some brokers specialise in first-time buyers. Others focus on self-employed applicants or bad credit cases. Going to the wrong one means they may not have access to the right lenders for your situation.</p>
       </div>
       <div class="problem-card fade-up fade-up-d2">
-        <div class="problem-icon" style="background:#FFF7ED;">📋</div>
+        <div class="problem-icon" style="background:#FFF7ED;">
+          <svg width="24" height="24" fill="none" stroke="#D97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+        </div>
         <h3>Lenders assess you differently</h3>
         <p>Different lenders have very different criteria — for income multiples, credit history, employment type, and deposit requirements. Most people don't find out how they'll be viewed until they're already in the process.</p>
       </div>
       <div class="problem-card fade-up fade-up-d3">
-        <div class="problem-icon" style="background:#FFF3F3;">⏱️</div>
+        <div class="problem-icon" style="background:#FFF3F3;">
+          <svg width="24" height="24" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
         <h3>Rejections waste time and risk your record</h3>
         <p>A declined mortgage application can stay on your credit record. Understanding your options first means you only apply when you have a realistic chance — protecting your credit file and saving time.</p>
       </div>
@@ -353,7 +359,7 @@
   <div class="section-inner">
     <div class="how-inner">
       <div>
-        <p class="section-label fade-up">How BorrowCheck works</p>
+        <p class="section-label fade-up">How BrokerMatch works</p>
         <h2 class="section-title fade-up">Three steps to the right adviser — first time</h2>
         <div class="steps-list">
           <div class="step-item fade-up">
@@ -366,8 +372,8 @@
           <div class="step-item fade-up fade-up-d1">
             <div class="step-circle">2</div>
             <div class="step-text">
-              <h4>We call you — same day</h4>
-              <p>Usually within a few hours. A quick 5-minute call where we go through your situation properly — the context a form can't capture. This is what lets us make the right match, not just any match.</p>
+              <h4>We call you the same day</h4>
+              <p>Usually within a few hours — for a quick 5-minute conversation to understand your situation properly before connecting you with anyone.</p>
             </div>
           </div>
           <div class="step-item fade-up fade-up-d2">
@@ -411,7 +417,7 @@
 <section class="why-section">
   <div class="section-inner">
     <div class="fade-up">
-      <p class="section-label">Why BorrowCheck</p>
+      <p class="section-label">Why BrokerMatch</p>
       <h2 class="section-title">We call you first. Then match.</h2>
     </div>
     <div class="why-grid">
@@ -449,7 +455,7 @@
     <div class="testimonial-grid">
       <div class="testimonial-card fade-up">
         <div class="testimonial-quote">&ldquo;</div>
-        <p>I'd been turned down by two brokers who said they could handle self-employed cases. BorrowCheck matched me with someone who actually specialised in it — we got the mortgage sorted in six weeks.</p>
+        <p>I'd been turned down by two brokers who said they could handle self-employed cases. BrokerMatch matched me with someone who actually specialised in it — we got the mortgage sorted in six weeks.</p>
         <div class="testimonial-author">
           <div class="t-avatar">S</div>
           <div>
@@ -471,7 +477,7 @@
       </div>
       <div class="testimonial-card fade-up fade-up-d2">
         <div class="testimonial-quote">&ldquo;</div>
-        <p>I had a default from three years ago and was dreading the process. BorrowCheck matched me with an adviser who handles these cases every week — no awkward conversations, no surprises. First approach, successful application.</p>
+        <p>I had a default from three years ago and was dreading the process. BrokerMatch matched me with an adviser who handles these cases every week — no awkward conversations, no surprises. First approach, successful application.</p>
         <div class="testimonial-author">
           <div class="t-avatar">P</div>
           <div>
@@ -493,7 +499,7 @@
     <p class="fade-up">It takes 2 minutes. No credit check. No obligation. No pressure.</p>
     <div class="cta-row fade-up">
       <a href="form.html" class="btn-primary" style="font-size:17px;padding:18px 40px;">
-        Check My Eligibility — Free
+        Find My Adviser — Free
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
       </a>
       <span style="font-size:14px;color:rgba(255,255,255,0.4);">Takes 2 minutes · No credit checks · Completely free</span>
@@ -506,12 +512,12 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div>
-        <div class="footer-logo">Borrow<span>Check</span></div>
+        <div class="footer-logo">Broker<span>Match</span></div>
         <p class="footer-desc">We understand your mortgage situation in detail, then connect you with an adviser who's the right fit for your case — not just whoever's available.</p>
       </div>
       <div class="footer-col">
         <h4>Service</h4>
-        <a href="form.html">Check Eligibility</a>
+        <a href="form.html">Find My Adviser</a>
         <a href="how-we-select.html">Our Advisers</a>
         <a href="for-advisers.html">For Advisers</a>
         <a href="faq.html">FAQ</a>
@@ -525,11 +531,11 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="contact.html">Get in Touch</a>
-        <a href="mailto:hello@borrowcheck.co.uk">hello@borrowcheck.co.uk</a>
+        <a href="mailto:hello@brokermatch.co.uk">hello@brokermatch.co.uk</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 BorrowCheck. BorrowCheck is not a lender and does not provide financial advice. We are an introducer service that connects users with FCA-authorised and regulated mortgage advisers. Your home may be repossessed if you do not keep up repayments on your mortgage.</p>
+      <p>© 2026 BrokerMatch. BrokerMatch is not a lender and does not provide financial advice. We are an introducer service that connects users with FCA-authorised and regulated mortgage advisers. Your home may be repossessed if you do not keep up repayments on your mortgage.</p>
       <div class="footer-legal">
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
