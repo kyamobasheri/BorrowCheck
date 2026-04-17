@@ -585,7 +585,7 @@
       document.getElementById('progressCount').textContent = n + ' of ' + totalSteps;
       document.getElementById('headerStep').textContent = 'Step ' + n;
       document.getElementById('progressWrap').style.display = 'block';
-      document.getElementById('formIntro').style.display = 'block';
+      document.getElementById('formIntro').style.display = n === 1 ? 'block' : 'none';
     } else {
       document.getElementById('progressWrap').style.display = 'none';
       document.getElementById('formIntro').style.display = 'none';
@@ -595,7 +595,13 @@
     if (n === 2) initStep2();
     if (n === 6) renderComplexityFlags();
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (n > 1) {
+      const progressWrap = document.getElementById('progressWrap');
+      const top = progressWrap.getBoundingClientRect().top + window.scrollY - 12;
+      window.scrollTo({ top, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     goingBack = false;
   }
 
