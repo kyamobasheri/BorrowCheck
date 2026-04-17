@@ -99,6 +99,12 @@
     .consent-check a { color: #009E6E; text-decoration: none; }
     .consent-check a:hover { text-decoration: underline; }
 
+    /* ── FIELD VALIDATION ── */
+    .field-error { font-size: 12px; color: #C0392B; margin-top: 6px; min-height: 16px; display: none; }
+    .field-error.visible { display: block; }
+    .form-input.invalid { border-color: #E07070; box-shadow: 0 0 0 3px rgba(192,57,43,0.08); }
+    .form-input.valid { border-color: #009E6E; }
+
     /* ── NAVIGATION ── */
     .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
     .btn-back { background: none; border: 2px solid #E0EBF5; color: #4A6580; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; transition: border-color 0.2s, color 0.2s, transform 0.15s; font-family: 'Inter', sans-serif; }
@@ -407,22 +413,26 @@
         <div class="input-row">
           <div class="input-group">
             <label class="input-label" for="firstName">First name</label>
-            <input type="text" id="firstName" class="form-input" placeholder="Jane" autocomplete="given-name">
+            <input type="text" id="firstName" class="form-input" placeholder="Jane" autocomplete="given-name" oninput="validateStep7()" onblur="touchField('firstName')">
+            <div class="field-error" id="firstName-err"></div>
           </div>
           <div class="input-group">
             <label class="input-label" for="lastName">Last name</label>
-            <input type="text" id="lastName" class="form-input" placeholder="Smith" autocomplete="family-name">
+            <input type="text" id="lastName" class="form-input" placeholder="Smith" autocomplete="family-name" oninput="validateStep7()" onblur="touchField('lastName')">
+            <div class="field-error" id="lastName-err"></div>
           </div>
         </div>
         <div class="input-group">
           <label class="input-label" for="email">Email address</label>
-          <input type="email" id="email" class="form-input" placeholder="jane.smith@email.com" autocomplete="email">
+          <input type="email" id="email" class="form-input" placeholder="jane.smith@email.com" autocomplete="email" oninput="validateStep7()" onblur="touchField('email')">
+          <div class="field-error" id="email-err"></div>
         </div>
         <div class="input-group">
           <label class="input-label" for="phone">
             Phone number
           </label>
-          <input type="tel" id="phone" class="form-input" placeholder="07700 900000" autocomplete="tel">
+          <input type="tel" id="phone" class="form-input" placeholder="07700 900000" autocomplete="tel" oninput="validateStep7()" onblur="touchField('phone')">
+          <div class="field-error" id="phone-err"></div>
           <div style="margin-top:8px;font-size:13px;color:#009E6E;font-weight:500;display:flex;align-items:center;gap:6px;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 5.18 5.18l.96-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 20.9 15.9z"/></svg>
             We'll call you on this number — same day, usually within a few hours
@@ -449,7 +459,7 @@
         </div>
 
         <label class="consent-check">
-          <input type="checkbox" id="consentCheck" onchange="updateConsentButton()">
+          <input type="checkbox" id="consentCheck" onchange="validateStep7()">
           <span>I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>. I consent to BrokerMatch calling me to discuss my enquiry and sharing my details with a matched mortgage adviser.</span>
         </label>
         <div style="font-size:12px;color:#8BA4BA;margin-bottom:24px;margin-top:-12px;">
@@ -686,8 +696,79 @@
 
   function checkStep5() { document.getElementById('next-5').disabled = !formData.credit; }
 
-  function updateConsentButton() {
-    document.getElementById('submitBtn').disabled = !document.getElementById('consentCheck').checked;
+  const _touched = {};
+  function touchField(id) {
+    _touched[id] = true;
+    validateStep7();
+  }
+
+  const DISPOSABLE_DOMAINS = new Set([
+    'mailinator.com','guerrillamail.com','10minutemail.com','yopmail.com',
+    'tempmail.com','throwam.com','dispostable.com','sharklasers.com',
+    'guerrillamailblock.com','grr.la','guerrillamail.info','guerrillamail.biz',
+    'guerrillamail.de','guerrillamail.net','guerrillamail.org','spam4.me',
+    'trashmail.com','trashmail.me','trashmail.net','trashmail.org',
+    'fakeinbox.com','maildrop.cc','discard.email','spamgourmet.com',
+    'getairmail.com','mailnull.com','spamevader.com','mailnesia.com',
+  ]);
+  const FAKE_LOCALS = new Set(['test','fake','asdf','qwerty','aaa','bbb','ccc','noreply','no-reply','nobody','example','sample','demo']);
+
+  function validateName(val) {
+    const v = val.trim();
+    if (v.length < 2) return 'Please enter your name';
+    if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ'\- ]+$/.test(v)) return 'Name contains invalid characters';
+    if (/^(.)\1+$/.test(v.replace(/\s/g,''))) return 'Please enter a real name';
+    return '';
+  }
+
+  function validateEmail(val) {
+    const v = val.trim().toLowerCase();
+    if (!v) return 'Please enter your email address';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'Please enter a valid email address';
+    const [local, domain] = v.split('@');
+    if (DISPOSABLE_DOMAINS.has(domain)) return 'Please use a real email address';
+    if (FAKE_LOCALS.has(local)) return 'Please use a real email address';
+    return '';
+  }
+
+  function validatePhone(val) {
+    const digits = val.replace(/[\s\-().+]/g, '');
+    if (!digits) return 'Please enter your phone number';
+    const uk = digits.startsWith('44') ? '0' + digits.slice(2) : digits;
+    if (!/^0[1-9]\d{8,9}$/.test(uk)) return 'Please enter a valid UK phone number';
+    if (/^(.)\1{8,}$/.test(uk.slice(1))) return 'Please enter a real phone number';
+    return '';
+  }
+
+  function validateStep7() {
+    const fields = [
+      { id: 'firstName', fn: validateName },
+      { id: 'lastName',  fn: validateName },
+      { id: 'email',     fn: validateEmail },
+      { id: 'phone',     fn: validatePhone },
+    ];
+    let allOk = true;
+    fields.forEach(({ id, fn }) => {
+      const input = document.getElementById(id);
+      const errEl = document.getElementById(id + '-err');
+      const msg = fn(input.value);
+      if (msg) {
+        allOk = false;
+        input.classList.remove('valid');
+        if (_touched[id]) {
+          input.classList.add('invalid');
+          errEl.textContent = msg;
+          errEl.classList.add('visible');
+        }
+      } else {
+        input.classList.remove('invalid');
+        if (input.value.trim()) input.classList.add('valid');
+        errEl.textContent = '';
+        errEl.classList.remove('visible');
+      }
+    });
+    const consent = document.getElementById('consentCheck').checked;
+    document.getElementById('submitBtn').disabled = !(allOk && consent);
   }
 
   // ── SUBMIT ──────────────────────────────────────────────────────────────────
