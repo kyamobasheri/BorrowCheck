@@ -402,8 +402,8 @@
       <!-- ═══ STEP 7: Your Details ═══ -->
       <div class="step" id="step-7">
         <p class="step-eyebrow">Step 7 — Final step</p>
-        <h2 class="step-title">Great — let's get your results</h2>
-        <p class="step-subtitle">We'll use these details to send your match. We'll never share your data without consent.</p>
+        <h2 class="step-title">Almost done — we'll call you today</h2>
+        <p class="step-subtitle">Leave your number and we'll call you, usually within a few hours, for a quick 5-minute chat before making any introduction.</p>
         <div class="input-row">
           <div class="input-group">
             <label class="input-label" for="firstName">First name</label>
@@ -419,22 +419,47 @@
           <input type="email" id="email" class="form-input" placeholder="jane.smith@email.com" autocomplete="email">
         </div>
         <div class="input-group">
-          <label class="input-label" for="phone">Phone number</label>
+          <label class="input-label" for="phone">
+            Phone number
+          </label>
           <input type="tel" id="phone" class="form-input" placeholder="07700 900000" autocomplete="tel">
+          <div style="margin-top:8px;font-size:13px;color:#009E6E;font-weight:500;display:flex;align-items:center;gap:6px;">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 5.18 5.18l.96-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 20.9 15.9z"/></svg>
+            We'll call you on this number — same day, usually within a few hours
+          </div>
         </div>
-        <div class="info-box">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Your information is secure and will only be shared with your matched adviser, with your consent. We do not sell your data to third parties.
+
+        <!-- What happens next -->
+        <div style="background:#F4F7FC;border:1px solid #E0EBF5;border-radius:14px;padding:20px 24px;margin-bottom:24px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#009E6E;margin-bottom:14px;">What happens next</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#4A6580;">
+              <div style="width:22px;height:22px;background:#009E6E;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">1</div>
+              We call you — same day, usually within a few hours
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#4A6580;">
+              <div style="width:22px;height:22px;background:#009E6E;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">2</div>
+              Quick 5-minute call to understand your situation properly
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#4A6580;">
+              <div style="width:22px;height:22px;background:#009E6E;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">3</div>
+              We match you with the right adviser and make the introduction
+            </div>
+          </div>
         </div>
+
         <label class="consent-check">
           <input type="checkbox" id="consentCheck" onchange="updateConsentButton()">
-          <span>I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>. I consent to being contacted by BorrowCheck and a matched mortgage adviser about my enquiry.</span>
+          <span>I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>. I consent to BorrowCheck calling me to discuss my enquiry and sharing my details with a matched mortgage adviser.</span>
         </label>
+        <div style="font-size:12px;color:#8BA4BA;margin-bottom:24px;margin-top:-12px;">
+          🔒 Your data is secure and never sold to third parties.
+        </div>
         <div class="step-nav">
           <button class="btn-back" onclick="prevStep()">← Back</button>
           <button class="btn-next" id="submitBtn" onclick="submitForm()" disabled>
-            Get My Match
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l7-7M12 5H6M12 5v6"/></svg>
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 5.18 5.18l.96-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 20.9 15.9z"/></svg>
+            Request My Call Back
           </button>
         </div>
       </div>
