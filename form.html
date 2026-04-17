@@ -459,6 +459,12 @@
           </div>
         </div>
 
+        <div class="input-group">
+          <label class="input-label" for="city">Town or city</label>
+          <input type="text" id="city" class="form-input" placeholder="e.g. Manchester" autocomplete="address-level2" oninput="validateStep7()" onblur="touchField('city')">
+          <div class="field-error" id="city-err"></div>
+        </div>
+
         <!-- What happens next -->
         <div style="background:#F4F7FC;border:1px solid #E0EBF5;border-radius:14px;padding:20px 24px;margin-bottom:24px;">
           <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#009E6E;margin-bottom:16px;">Your progress</div>
@@ -794,12 +800,18 @@
     return '';
   }
 
+  function validateCity(val) {
+    if (!val.trim()) return 'Please enter your town or city';
+    return '';
+  }
+
   function validateStep7() {
     const fields = [
       { id: 'firstName', fn: validateName },
       { id: 'lastName',  fn: validateName },
       { id: 'email',     fn: validateEmail },
       { id: 'phone',     fn: validatePhone },
+      { id: 'city',      fn: validateCity },
     ];
     let allOk = true;
     fields.forEach(({ id, fn }) => {
@@ -836,6 +848,7 @@
     formData.lastName  = document.getElementById('lastName').value.trim();
     formData.email     = document.getElementById('email').value.trim();
     formData.phone     = document.getElementById('phone').value.trim();
+    formData.city      = document.getElementById('city').value.trim();
     formData.complexityFlags = (formData.complexityFlags || []).join(', ');
 
     // Send to Google Sheets (no-cors — data is written even if response is opaque)
