@@ -20,7 +20,7 @@
     .nav-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; text-decoration: none; }
     .nav-logo span { color: #00C282; }
     .nav-links { display: flex; gap: 32px; }
-    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s, transform 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
     .nav-cta { background: #009E6E; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.2s, transform 0.15s; }
     .nav-cta:hover { background: #007A55; transform: translateY(-1px); }
@@ -51,7 +51,7 @@
     .faq-item.open .faq-q { background: #F0FAF6; color: #007A55; }
     .faq-icon { width: 24px; height: 24px; border-radius: 50%; background: #EBF0F7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, transform 0.3s; }
     .faq-item.open .faq-icon { background: #009E6E; transform: rotate(45deg); }
-    .faq-icon svg { color: #4A6580; transition: color 0.2s; }
+    .faq-icon svg { color: #4A6580; transition: color 0.2s, transform 0.2s; }
     .faq-item.open .faq-icon svg { color: #fff; }
     .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1); }
     .faq-a-inner { padding: 0 28px 24px; font-size: 15px; color: #4A6580; line-height: 1.75; }
@@ -73,15 +73,24 @@
     .footer-logo span { color: #00C282; }
     .footer-desc { font-size: 14px; line-height: 1.7; max-width: 280px; }
     .footer-col h4 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
-    .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s, transform 0.2s; }
     .footer-col a:hover { color: #fff; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
     .footer-bottom p { font-size: 13px; max-width: 700px; line-height: 1.6; }
     .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.2s, transform 0.2s; }
     .footer-legal a:hover { color: rgba(255,255,255,0.8); }
     @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } }
+  
+    /* ── BUTTON SHIMMER ── */
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::before { content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent); transform: skewX(-20deg); transition: left 0.55s cubic-bezier(0.4,0,0.2,1); pointer-events: none; z-index: 1; }
+    .btn-primary:hover::before { left: 200%; }
+    .btn-primary > * { position: relative; z-index: 2; }
+    /* ── NAV SCROLL ── */
+    .nav { transition: box-shadow 0.3s; }
+    .nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.28); }
   </style>
 </head>
 <body>

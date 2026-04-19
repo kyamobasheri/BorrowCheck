@@ -20,7 +20,9 @@
     .nav-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; text-decoration: none; }
     .nav-logo span { color: #00C282; }
     .nav-links { display: flex; gap: 32px; }
-    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: #00C282; border-radius: 1px; transform: scaleX(0); transform-origin: left; transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
     .nav-links a.active { position: relative; }
     .nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 2px; background: #00C282; border-radius: 1px; }
@@ -53,7 +55,7 @@
     .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .intro-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
     .stat-box { background: #fff; border: 1px solid #E0EBF5; border-radius: 16px; padding: 28px; transition: transform 0.2s, box-shadow 0.2s; }
-    .stat-box:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(11,40,69,0.08); }
+    .stat-box:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(11,40,69,0.12), 0 4px 16px rgba(0,158,110,0.07); }
     .stat-num { font-family: 'DM Serif Display', serif; font-size: 34px; color: #009E6E; margin-bottom: 6px; line-height: 1.1; }
     .stat-label { font-size: 14px; color: #4A6580; line-height: 1.5; }
     @media (max-width: 900px) { .intro-grid { grid-template-columns: 1fr; gap: 40px; } }
@@ -61,8 +63,8 @@
     /* VETTING PROCESS */
     .vetting-section { background: #F4F7FC; }
     .vetting-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
-    .vetting-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 16px; padding: 32px; display: flex; gap: 20px; transition: transform 0.2s, box-shadow 0.2s; }
-    .vetting-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(11,40,69,0.09), 0 4px 12px rgba(11,40,69,0.05); }
+    .vetting-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 16px; padding: 32px; display: flex; gap: 20px; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.35s; border-left: 3px solid transparent; }
+    .vetting-card:hover { transform: translateY(-6px); box-shadow: 0 20px 56px rgba(11,40,69,0.10), 0 4px 16px rgba(0,158,110,0.08); border-left-color: #009E6E; }
     .vetting-num { width: 44px; height: 44px; background: #0B2845; color: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; flex-shrink: 0; font-family: 'DM Serif Display', serif; }
     .vetting-content h3 { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 600; color: #0B2845; margin-bottom: 10px; }
     .vetting-content p { font-size: 15px; color: #4A6580; line-height: 1.65; }
@@ -82,8 +84,8 @@
 
     /* WHAT WE LOOK FOR */
     .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
-    .spec-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 14px; padding: 24px; transition: transform 0.2s, box-shadow 0.2s; }
-    .spec-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(11,40,69,0.08); }
+    .spec-card { background: #fff; border: 1px solid #E0EBF5; border-radius: 14px; padding: 24px; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 2px 8px rgba(11,40,69,0.04); }
+    .spec-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(11,40,69,0.10), 0 4px 12px rgba(0,158,110,0.06); }
     .spec-icon { font-size: 28px; margin-bottom: 14px; }
     .spec-card h3 { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #0B2845; margin-bottom: 8px; }
     .spec-card p { font-size: 14px; color: #4A6580; line-height: 1.6; }
@@ -116,9 +118,18 @@
     @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; } }
     @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; } }
 
-    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1); }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .fd1 { transition-delay: 0.1s; } .fd2 { transition-delay: 0.2s; } .fd3 { transition-delay: 0.3s; }
+  
+    /* ── BUTTON SHIMMER ── */
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::before { content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent); transform: skewX(-20deg); transition: left 0.55s cubic-bezier(0.4,0,0.2,1); pointer-events: none; z-index: 1; }
+    .btn-primary:hover::before { left: 200%; }
+    .btn-primary > * { position: relative; z-index: 2; }
+    /* ── NAV SCROLL ── */
+    .nav { transition: box-shadow 0.3s; }
+    .nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.28); }
   </style>
 </head>
 <body>
@@ -421,12 +432,16 @@
 
 <script>
   document.getElementById('navBurger').addEventListener('click', () => document.getElementById('mobileMenu').classList.toggle('open'));
-  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:0.05,rootMargin:'0px 0px -20px 0px'});
+  const navEl = document.querySelector('.nav');
+  if (navEl) window.addEventListener('scroll', () => navEl.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); } }), {threshold:0.07,rootMargin:'0px 0px -32px 0px'});
+  // Fallback reveal after 1.5s
+  setTimeout(() => document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible')), 1500);
   document.querySelectorAll('.fade-up').forEach(el => {
     const r = el.getBoundingClientRect();
     if (r.top < window.innerHeight + 100) { el.classList.add('visible'); } else { obs.observe(el); }
   });
-  setTimeout(() => { document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible')); }, 900);
+
 </script>
 </body>
 </html>

@@ -23,7 +23,15 @@ const mime = {
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
   if (urlPath === '/') urlPath = '/index.html';
-  if (!path.extname(urlPath)) urlPath += '.html';
+  // For paths without extension, try /path/index.html first, then /path.html
+  if (!path.extname(urlPath)) {
+    const dirIndex = path.join(__dirname, urlPath, 'index.html');
+    if (fs.existsSync(dirIndex)) {
+      urlPath = urlPath.replace(/\/?$/, '/index.html');
+    } else {
+      urlPath += '.html';
+    }
+  }
 
   const filePath = path.join(__dirname, urlPath);
 
